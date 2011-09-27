@@ -13,57 +13,57 @@ public class TransferObject {
     /**
      * Transfer content from instance of InputStream to instance of OutputStream
      *
-     * @param input InputStream content to transfer from
-     * @param output OutputStream where the transferred content is written
+     * @param in InputStream content to transfer from
+     * @param out OutputStream where the transferred content is written
      * @param numberOfBytes int bytes to be transferred
      * @param offset int determines how many bytes to be skipped from the beginning of the InputStream
      * @return int the number of transferred bytes
      */
-    public int transfer(InputStream input, OutputStream output, int numberOfBytes, int offset) {
+    public int transfer(InputStream in, OutputStream out, int numberOfBytes, int offset) {
         int numberRead;
         int transferedBytes = 0;
         byte[] bytes = new byte[4096];
 
         if (numberOfBytes == -1) {
             try {
-                while ((numberRead = input.read()) != -1) {
-                    output.write(numberRead);
+                while ((numberRead = in.read()) != -1) {
+                    out.write(numberRead);
                     transferedBytes++;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
                 try {
-                    input.close();
+                    in.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
                 try {
-                    output.close();
+                    out.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         } else {
             try {
-                numberRead = input.read(bytes);
+                numberRead = in.read(bytes);
 
                 for (int i = 0; i < numberOfBytes; i++) {
-                    output.write(bytes[offset + i]);
+                    out.write(bytes[offset + i]);
                     transferedBytes++;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
                 try {
-                    input.close();
+                    in.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
 
                 try {
-                    output.close();
+                    out.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
