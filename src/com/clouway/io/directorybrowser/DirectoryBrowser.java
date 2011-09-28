@@ -8,6 +8,11 @@ import java.io.File;
  */
 public class DirectoryBrowser {
 
+    /**
+     * Lists the content of a directory.
+     *
+     * @param path String path to the directory
+     */
     public void listContent(String path) {
 
         File file = new File(path);
