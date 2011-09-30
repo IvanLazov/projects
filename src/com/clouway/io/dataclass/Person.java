@@ -11,6 +11,7 @@ public class Person implements Serializable {
     private String name;
     private String sex;
     private int age;
+    private String sisterName;
 
     public Person(String name, String sex, int age) {
         this.name = name;
@@ -40,5 +41,13 @@ public class Person implements Serializable {
 
     public int getAge() {
         return age;
+    }
+
+    public String getSisterName() {
+        return sisterName;
+    }
+
+    public void setSisterName(String sisterName) {
+        this.sisterName = sisterName;
     }
 }

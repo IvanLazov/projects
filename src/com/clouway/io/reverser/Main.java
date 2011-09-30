@@ -1,7 +1,5 @@
 package com.clouway.io.reverser;
 
-import java.io.IOException;
-
 /**
  * Ivan Lazov
  * darkpain1989@gmail.com

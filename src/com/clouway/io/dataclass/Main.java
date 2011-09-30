@@ -20,14 +20,14 @@ public class Main {
             System.err.println("Error writing to file.");
         }
 
+        serialize.saveObject(out, personOne);
+
         FileInputStream in = null;
         try {
             in = new FileInputStream(pathToFile);
         } catch (FileNotFoundException e) {
             System.err.println("Error reading from file");
         }
-
-        serialize.saveObject(out, personOne);
 
         Person personTwo = (Person) serialize.getObject(in);
         System.out.println("Name: " + personTwo.getName());

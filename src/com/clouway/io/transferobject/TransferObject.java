@@ -21,14 +21,14 @@ public class TransferObject {
      */
     public int transfer(InputStream in, OutputStream out, int numberOfBytes, int offset) {
         int numberRead;
-        int transferedBytes = 0;
+        int transferredBytes = 0;
         byte[] bytes = new byte[4096];
 
         if (numberOfBytes == -1) {
             try {
                 while ((numberRead = in.read()) != -1) {
                     out.write(numberRead);
-                    transferedBytes++;
+                    transferredBytes++;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -47,12 +47,9 @@ public class TransferObject {
             }
         } else {
             try {
-                numberRead = in.read(bytes);
-
-                for (int i = 0; i < numberOfBytes; i++) {
-                    out.write(bytes[offset + i]);
-                    transferedBytes++;
-                }
+                in.skip(offset);
+                transferredBytes = in.read(bytes, 0, numberOfBytes);
+                out.write(bytes);
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -70,7 +67,7 @@ public class TransferObject {
             }
         }
 
-        return transferedBytes;
+        return transferredBytes;
     }
 }
 
