@@ -2,10 +2,6 @@ package com.clouway.exceptions.number;
 
 import java.util.Scanner;
 
-/**
- * Ivan Lazov
- * darkpain1989@gmail.com
- */
 public class Number {
 
     private Scanner scan = new Scanner(System.in);

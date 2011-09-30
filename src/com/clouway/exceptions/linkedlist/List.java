@@ -1,9 +1,5 @@
 package com.clouway.exceptions.linkedlist;
 
-/**
- * Ivan Lazov
- * darkpain1989@gmail.com
- */
 public class List {
 
     private ListNode firstNode;
@@ -17,6 +13,7 @@ public class List {
 
     /**
      * Add element at the end of the list
+     *
      * @param obj Object element added in the list
      */
     public void add(Object obj) {
@@ -67,6 +64,7 @@ public class List {
 
     /**
      * Return true if the list is empty
+     *
      * @return firstNode if it's null
      */
     public boolean isEmpty() {

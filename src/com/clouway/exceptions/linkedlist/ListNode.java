@@ -1,9 +1,5 @@
 package com.clouway.exceptions.linkedlist;
 
-/**
- * Ivan Lazov
- * darkpain1989@gmail.com
- */
 public class ListNode {
 
     Object object;

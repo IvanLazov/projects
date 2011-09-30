@@ -1,9 +1,5 @@
 package com.clouway.exceptions.number;
 
-/**
- * Ivan Lazov
- * darkpain1989@gmail.com
- */
 public class Main {
 
     public static void main(String[] args) {
