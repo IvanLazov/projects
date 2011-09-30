@@ -2,10 +2,6 @@ package com.clouway.io.dataclass;
 
 import java.io.*;
 
-/**
- * Ivan Lazov
- * darkpain1989@gmail.com
- */
 public class DataClass {
 
     private ObjectOutputStream output;

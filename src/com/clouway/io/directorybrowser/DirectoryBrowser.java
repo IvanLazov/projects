@@ -2,10 +2,6 @@ package com.clouway.io.directorybrowser;
 
 import java.io.File;
 
-/**
- * Ivan Lazov
- * darkpain1989@gmail.com
- */
 public class DirectoryBrowser {
 
     /**

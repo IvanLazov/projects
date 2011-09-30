@@ -3,10 +3,6 @@ package com.clouway.io.consolereader;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-/**
- * Ivan Lazov
- * darkpain1989@gmail.com
- */
 public class ConsoleReader {
 
     private Scanner input = new Scanner(System.in);

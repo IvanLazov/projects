@@ -3,10 +3,6 @@ package com.clouway.io.textwriter;
 import java.io.InputStream;
 import java.util.Scanner;
 
-/**
- * Ivan Lazov
- * darkpain1989@gmail.com
- */
 public class TextReader {
     private final InputStream in;
 
@@ -16,8 +12,9 @@ public class TextReader {
 
     /**
      * Reads until reach of the specific line terminator
+     *
      * @param terminationString String set the desired line terminator
-     * @return readed content from the system input to a buffer
+     * @return readed content from the buffer
      */
     public String readUntilReach(String terminationString) {
         Scanner scanner = new Scanner(in);

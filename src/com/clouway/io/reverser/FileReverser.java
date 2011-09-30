@@ -2,10 +2,6 @@ package com.clouway.io.reverser;
 
 import java.io.*;
 
-/**
- * Ivan Lazov
- * darkpain1989@gmail.com
- */
 public class FileReverser {
 
     private BufferedReader reader;

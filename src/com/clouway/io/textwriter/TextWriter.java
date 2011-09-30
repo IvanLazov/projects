@@ -3,10 +3,6 @@ package com.clouway.io.textwriter;
 import java.io.IOException;
 import java.io.OutputStream;
 
-/**
- * Ivan Lazov
- * darkpain1989@gmail.com
- */
 public class TextWriter {
 
     /**

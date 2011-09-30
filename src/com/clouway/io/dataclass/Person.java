@@ -2,10 +2,6 @@ package com.clouway.io.dataclass;
 
 import java.io.Serializable;
 
-/**
- * Ivan Lazov
- * darkpain1989@gmail.com
- */
 public class Person implements Serializable {
 
     private String name;

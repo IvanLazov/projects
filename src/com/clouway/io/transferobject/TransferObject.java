@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-/**
- * Ivan Lazov
- * darkpain1989@gmail.com
- */
 public class TransferObject {
 
     /**
