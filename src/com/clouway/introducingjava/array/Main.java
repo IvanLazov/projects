@@ -1,13 +1,7 @@
 package com.clouway.introducingjava.array;
 
-/**
- * Created by IntelliJ IDEA.
- * User: clouway
- * Date: 9/7/11
- * Time: 3:21 PM
- * To change this template use File | Settings | File Templates.
- */
 public class Main {
+
     public static void main(String[] args) {
         int[] myArray = {5, 7, 3, 9, 12};
 

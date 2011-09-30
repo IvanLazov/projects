@@ -1,17 +1,12 @@
 package com.clouway.introducingjava.array;
 
-/**
- * Created by IntelliJ IDEA.
- * User: clouway
- * Date: 9/7/11
- * Time: 3:17 PM
- * To change this template use File | Settings | File Templates.
- */
 public class ArrayMinimalElement {
+
     /**
         *  Search the minimal element in array
-        * @param myArray
-        * @return The minimum element in com.clouway.array
+        *
+        * @param myArray int
+        * @return The minimum element in array
         */
     public int getMinElement(int[] myArray) {
         int minElement = myArray[0];

@@ -2,19 +2,15 @@ package com.clouway.introducingjava.stringgenerate;
 
 import java.util.Random;
 
-/**
- * Created by IntelliJ IDEA.
- * User: clouway
- * Date: 9/7/11
- * Time: 5:58 PM
- * To change this template use File | Settings | File Templates.
- */
 public class StringGenerate {
+
     static final String characters = "abcdefghijklmnopqrstuvwxyz";
+
     /**
         * Generates random string from characters
+        *
         * @param lenght int set the desired lenght of the generated string
-        * @return
+        * @return generated string
         */
     public static String generateRandomString(int lenght) {
 

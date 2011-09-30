@@ -2,18 +2,12 @@ package com.clouway.introducingjava.arrayreverse;
 
 import java.util.Arrays;
 
-/**
- * Created by IntelliJ IDEA.
- * User: clouway
- * Date: 9/7/11
- * Time: 5:31 PM
- * To change this template use File | Settings | File Templates.
- */
 public class ArrayReverse {
+
     /**
-        * Reverse element order in com.clouway.array
+        * Reverse element order in array
         *
-        * @param myArray
+        * @param myArray int
         */
     public static void reverseArray(int[] myArray) {
         for (int i = 0; i < myArray.length / 2; i++) {

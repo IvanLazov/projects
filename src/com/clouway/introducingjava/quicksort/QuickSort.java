@@ -2,13 +2,6 @@ package com.clouway.introducingjava.quicksort;
 
 import java.util.Arrays;
 
-/**
- * Created by IntelliJ IDEA.
- * User: clouway
- * Date: 9/7/11
- * Time: 8:05 PM
- * To change this template use File | Settings | File Templates.
- */
 public class QuickSort {
 
     static int[] myArray = {1, 12, 5, 26, 7, 14, 3, 7, 2};
@@ -18,8 +11,9 @@ public class QuickSort {
     }
 
     /**
-        * Sort com.clouway.array
-        * @param myArray
+        * Sorts array
+        *
+        * @param myArray int
         * @param left int first index
         * @param right int last index
         */
