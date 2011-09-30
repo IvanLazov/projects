@@ -18,14 +18,6 @@ public class LCM {
     public int leastCommonMultiple(int firstNumber, int secondNumber, int gcd) {
         firstNumber = (firstNumber * secondNumber) / gcd;
 
-
-        int temp = 5;
-
-        temp = 10;
-
-
-        temp = 20;
-
         return firstNumber;
     }
 }
