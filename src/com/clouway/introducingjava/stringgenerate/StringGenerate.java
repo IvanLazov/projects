@@ -1,4 +1,4 @@
-package com.clouway.stringgenerate;
+package com.clouway.introducingjava.stringgenerate;
 
 import java.util.Random;
 

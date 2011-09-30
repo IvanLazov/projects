@@ -1,4 +1,4 @@
-package com.clouway.gcd;
+package com.clouway.introducingjava.gcd;
 
 /**
  * Created by IntelliJ IDEA.

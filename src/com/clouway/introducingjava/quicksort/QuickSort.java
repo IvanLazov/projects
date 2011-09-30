@@ -1,4 +1,4 @@
-package com.clouway.quicksort;
+package com.clouway.introducingjava.quicksort;
 
 import java.util.Arrays;
 

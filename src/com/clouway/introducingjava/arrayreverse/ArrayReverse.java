@@ -1,4 +1,4 @@
-package com.clouway.arrayreverse;
+package com.clouway.introducingjava.arrayreverse;
 
 import java.util.Arrays;
 

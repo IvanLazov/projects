@@ -1,4 +1,4 @@
-package com.clouway.array;
+package com.clouway.introducingjava.array;
 
 /**
  * Created by IntelliJ IDEA.
