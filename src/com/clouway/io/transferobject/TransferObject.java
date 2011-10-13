@@ -45,7 +45,7 @@ public class TransferObject {
             try {
                 in.skip(offset);
                 transferredBytes = in.read(bytes, 0, numberOfBytes);
-                out.write(bytes);
+                out.write(bytes, 0, numberOfBytes);
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {

@@ -10,7 +10,7 @@ public class Main {
         InputStream input = new FileInputStream("transferIn.txt");
         OutputStream output = new FileOutputStream("transferOut.txt");
 
-        int numberOfBytesTransfered = application.transfer(input, output, 2, 7);
+        int numberOfBytesTransfered = application.transfer(input, output, 2, 5);
         System.out.println("Number of bytes transfered: " + numberOfBytesTransfered);
     }
 }
