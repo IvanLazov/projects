@@ -26,6 +26,8 @@ public class StoreTest {
         store.add(productTwo);
     }
 
+
+
     @Test
     public void verifyTheProductIsInTheStore() {
 
@@ -37,6 +39,7 @@ public class StoreTest {
 
         store.increaseQuantity("Xbox", 10);
         assertEquals(40, listOfProducts.get("Xbox").getProductQuantity());
+        assertEquals(40, store.currentProductQuantity("Xbox"));
     }
 
     @Test

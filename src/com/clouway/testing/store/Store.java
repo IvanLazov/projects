@@ -4,6 +4,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
+import java.util.List;
 
 public class Store {
 
@@ -83,7 +84,7 @@ public class Store {
      */
     public void sortProducts(PrintStream out) {
 
-        ArrayList<Product> arrayList = new ArrayList<Product>(listOfProducts.values());
+        List<Product> arrayList = new ArrayList<Product>(listOfProducts.values());
         Collections.sort(arrayList);
 
         for (Product product : arrayList) {
@@ -108,7 +109,7 @@ public class Store {
      * @param productName the name of the product
      * @return the maximum quantity of the product, that can be stored
      */
-    private int currentProductQuantity(String productName) {
+    int currentProductQuantity(String productName) {
 
         return listOfProducts.get(productName).getProductQuantity();
     }

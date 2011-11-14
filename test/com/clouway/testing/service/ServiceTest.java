@@ -49,6 +49,7 @@ public class ServiceTest {
 
     @Test(expected = InvalidAgeException.class)
     public void ageAboveOneHundredIsInvalid() {
+        // test should not save persondate with too big age
 
         context.checking(new Expectations() {{
             allowing(validator).validateAge("120");
@@ -71,6 +72,7 @@ public class ServiceTest {
 
     @Test
     public void userAgeMustBeLessThanEighteen() {
+        //test should say tath user is adult when age is less than eighteen
 
         context.checking(new Expectations() {{
             oneOf(database).getData("Mike");
