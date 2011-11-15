@@ -6,6 +6,9 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Created by Ivan Lazov (darkpain1989@gmail.com)
+ */
 public class StoreTest {
 
     private Store store;
