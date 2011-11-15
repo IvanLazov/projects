@@ -20,7 +20,7 @@ public class PersonDataServiceTest {
     private PersonDataService personDataService;
     private final Validator validator = context.mock(Validator.class);
     private final Database database = context.mock(Database.class);
-
+    private String userName = "Mike";
 
     @Before
     public void setUp() {
@@ -32,10 +32,10 @@ public class PersonDataServiceTest {
 
         context.checking(new Expectations() {{
             oneOf(validator).validateAge("20");
-            oneOf(database).saveData("Mike", "20");
+            oneOf(database).saveData(userName, "20");
         }});
 
-        personDataService.personData("Mike", "20");
+        personDataService.savePersonData(userName, "20");
     }
 
     @Test(expected = InvalidAgeException.class)
@@ -46,7 +46,7 @@ public class PersonDataServiceTest {
             will(throwException(new InvalidAgeException()));
         }});
 
-        personDataService.personData("Mike", "8");
+        personDataService.savePersonData(userName, "8");
     }
 
     @Test(expected = InvalidAgeException.class)
@@ -57,28 +57,39 @@ public class PersonDataServiceTest {
             will(throwException(new InvalidAgeException()));
         }});
 
-        personDataService.personData("Mike", "120");
+        personDataService.savePersonData(userName, "120");
     }
 
     @Test
-    public void userIsAdult() {
+    public void userIsAdultIfItsEighteenYearsOld() {
 
         context.checking(new Expectations() {{
-            oneOf(database).getData("Mike");
+            oneOf(database).getData(userName);
+            will(returnValue("18"));
+        }});
+
+        assertTrue(personDataService.isUserAdult(userName));
+    }
+
+    @Test
+    public void userIsAdultIfItsBiggerThanEighteenYears() {
+
+        context.checking(new Expectations() {{
+            oneOf(database).getData(userName);
             will(returnValue("20"));
         }});
 
-        assertTrue(personDataService.isUserAdult("Mike"));
+        assertTrue(personDataService.isUserAdult(userName));
     }
 
     @Test
-    public void userIsNotAdult() {
+    public void userIsNotAdultIfItsYoungerThanEighteenYears() {
 
         context.checking(new Expectations() {{
-            oneOf(database).getData("Mike");
+            oneOf(database).getData(userName);
             will(returnValue("10"));
         }});
 
-        assertFalse(personDataService.isUserAdult("Mike"));
+        assertFalse(personDataService.isUserAdult(userName));
     }
 }

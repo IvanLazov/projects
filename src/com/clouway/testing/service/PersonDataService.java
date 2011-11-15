@@ -1,35 +1,30 @@
 package com.clouway.testing.service;
 
 /**
+ * PersonDataService class uses Validator class to validate user age.
+ * If the user age is valid (between 10 and 100) saves the user name and age
+ * in a database using Database class.
+ *
  * Created by Ivan Lazov (darkpain1989@gmail.com)
  */
 public class PersonDataService {
 
     private Validator validator;
     private Database database;
+    private final static int MINIMAL_AGE = 18;
 
     public PersonDataService(Database database, Validator validator) {
         this.database = database;
         this.validator = validator;
     }
 
-    public void setValidator(Validator validator) {
-
-        this.validator = validator;
-    }
-
-    public void setDatabase(Database database) {
-
-        this.database = database;
-    }
-
     /**
-     * Validate the age of the user, and if its valid saves it in the database
+     * If user age is valid, save the user name and age in database
      *
      * @param userName   Name of user
      * @param age   Age of user
      */
-    public void personData(String userName, String age) {
+    public void savePersonData(String userName, String age) {
         validator.validateAge(age);
         database.saveData(userName, age);
     }
@@ -42,7 +37,7 @@ public class PersonDataService {
      */
     public boolean isUserAdult(String userName) {
 
-        if (Integer.parseInt(database.getData(userName)) >= 18) {
+        if (Integer.parseInt(database.getData(userName)) >= MINIMAL_AGE) {
             return true;
         }
 
