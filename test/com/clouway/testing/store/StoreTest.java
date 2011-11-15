@@ -2,7 +2,7 @@ package com.clouway.testing.store;
 
 import org.junit.Before;
 import org.junit.Test;
-
+import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -12,15 +12,17 @@ import static org.junit.Assert.assertTrue;
 public class StoreTest {
 
     private Store store;
+    Product productXbox = new Product("Xbox", 3000, 399.00);
+    Product productPS3 = new Product("PS3", 1000, 599.00);
 
     @Before
     public void setUp() {
 
         store = new Store();
+        store.registerProduct(productPS3);
+        store.registerProduct(productXbox);
 
-        store.registerProduct(new Product("PS3", 1000, 599.00));
-        store.registerProduct(new Product("Xbox", 3000, 399.00));
-        store.registerProduct(new Product("Wii", 500, 299.00));
+        store.increaseQuantityOfProduct("PS3", 100);
     }
 
     @Test
@@ -41,18 +43,24 @@ public class StoreTest {
     }
 
     @Test
-    public void increaseQuantityOfProduct() {
+    public void sellProductFromStore() {
 
-        store.increaseQuantityOfProduct("PS3", 10);
-        assertEquals(10, store.getProduct("PS3").getProductCurrentQuantity());
+        store.sellProduct("PS3", 20);
+        assertEquals(80, store.getProduct("PS3").getProductCurrentQuantity());
     }
 
     @Test
-    public void sellProductIfThereIsEnoughQuantity() {
+    public void increaseQuantityOfProduct() {
 
         store.increaseQuantityOfProduct("PS3", 10);
-        store.decreaseQuantityOfProduct("PS3", 8);
-        assertEquals(2, store.getProduct("PS3").getProductCurrentQuantity());
+        assertEquals(110, store.getProduct("PS3").getProductCurrentQuantity());
+    }
+
+    @Test
+    public void decreaseQuantityOfProduct() {
+
+        store.decreaseQuantityOfProduct("PS3", 10);
+        assertEquals(90, store.getProduct("PS3").getProductCurrentQuantity());
     }
 
     @Test(expected = InsufficientQuantityOfProductException.class)
@@ -70,13 +78,9 @@ public class StoreTest {
     @Test
     public void sortElementsOfStoreByPrice() {
 
-        double[] productsPrice = {299.00, 399.00, 599.00};
+        List<Product> products = store.getSortedProducts();
 
-        Product[] products = new Product[store.sortProducts().size()];
-        products = store.sortProducts().toArray(products);
-
-        for (int i = 0; i < products.length; i++) {
-            assertEquals(productsPrice[i], products[i].getProductPrice(), 0);
-        }
+        assertEquals(productPS3, products.get(1));
+        assertEquals(productXbox, products.get(0));
     }
 }

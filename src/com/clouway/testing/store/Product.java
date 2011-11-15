@@ -45,4 +45,14 @@ public class Product implements Comparable<Product> {
             return 0;
         }
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productName='" + productName + '\'' +
+                ", productCurrentQuantity=" + productCurrentQuantity +
+                ", productMaxQuantity=" + productMaxQuantity +
+                ", productPrice=" + productPrice +
+                '}';
+    }
 }
