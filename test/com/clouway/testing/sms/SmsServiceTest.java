@@ -7,6 +7,9 @@ import org.jmock.integration.junit4.JUnit4Mockery;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+/**
+ * Created by Ivan Lazov (darkpain1989@gmail.com)
+ */
 import static org.junit.Assert.assertEquals;
 
 //@RunWith(JMock.class)
