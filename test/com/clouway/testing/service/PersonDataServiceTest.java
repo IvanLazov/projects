@@ -10,19 +10,21 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+/**
+ * Created by Ivan Lazov (darkpain1989@gmail.com)
+ */
 @RunWith(JMock.class)
-public class ServiceTest {
+public class PersonDataServiceTest {
 
     Mockery context = new JUnit4Mockery();
+    private PersonDataService personDataService;
     private final Validator validator = context.mock(Validator.class);
     private final Database database = context.mock(Database.class);
-    private Service service;
+
 
     @Before
     public void setUp() {
-        service = new Service();
-        service.setDatabase(database);
-        service.setValidator(validator);
+        personDataService = new PersonDataService(database, validator);
     }
 
     @Test
@@ -33,7 +35,7 @@ public class ServiceTest {
             oneOf(database).saveData("Mike", "20");
         }});
 
-        service.processData("Mike", "20");
+        personDataService.personData("Mike", "20");
     }
 
     @Test(expected = InvalidAgeException.class)
@@ -44,41 +46,39 @@ public class ServiceTest {
             will(throwException(new InvalidAgeException()));
         }});
 
-        service.processData("Mike", "8");
+        personDataService.personData("Mike", "8");
     }
 
     @Test(expected = InvalidAgeException.class)
     public void ageAboveOneHundredIsInvalid() {
-        // test should not save persondate with too big age
 
         context.checking(new Expectations() {{
             allowing(validator).validateAge("120");
             will(throwException(new InvalidAgeException()));
         }});
 
-        service.processData("Mike", "120");
+        personDataService.personData("Mike", "120");
     }
 
     @Test
-    public void userAgeMustBeBiggerThanEighteen() {
+    public void userIsAdult() {
 
         context.checking(new Expectations() {{
             oneOf(database).getData("Mike");
             will(returnValue("20"));
         }});
 
-        assertTrue(service.isUserAdult("Mike"));
+        assertTrue(personDataService.isUserAdult("Mike"));
     }
 
     @Test
-    public void userAgeMustBeLessThanEighteen() {
-        //test should say tath user is adult when age is less than eighteen
+    public void userIsNotAdult() {
 
         context.checking(new Expectations() {{
             oneOf(database).getData("Mike");
             will(returnValue("10"));
         }});
 
-        assertFalse(service.isUserAdult("Mike"));
+        assertFalse(personDataService.isUserAdult("Mike"));
     }
 }

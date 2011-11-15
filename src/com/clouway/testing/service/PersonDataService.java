@@ -1,9 +1,17 @@
 package com.clouway.testing.service;
 
-public class Service {
+/**
+ * Created by Ivan Lazov (darkpain1989@gmail.com)
+ */
+public class PersonDataService {
 
     private Validator validator;
     private Database database;
+
+    public PersonDataService(Database database, Validator validator) {
+        this.database = database;
+        this.validator = validator;
+    }
 
     public void setValidator(Validator validator) {
 
@@ -16,12 +24,12 @@ public class Service {
     }
 
     /**
-     * Validate the age of the user, then saves it in the database
+     * Validate the age of the user, and if its valid saves it in the database
      *
-     * @param userName   the name of the user
-     * @param age   the age of the user
+     * @param userName   Name of user
+     * @param age   Age of user
      */
-    public void processData(String userName, String age) {
+    public void personData(String userName, String age) {
         validator.validateAge(age);
         database.saveData(userName, age);
     }
@@ -29,8 +37,8 @@ public class Service {
     /**
      * Determines whether the user is adult
      *
-     * @param userName   the name of the user
-     * @return true if the user age is bigger than 18
+     * @param userName   Name of user
+     * @return true   If user age is bigger than 18
      */
     public boolean isUserAdult(String userName) {
 
