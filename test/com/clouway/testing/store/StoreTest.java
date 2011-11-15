@@ -3,70 +3,77 @@ package com.clouway.testing.store;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.Hashtable;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
 
 public class StoreTest {
 
     private Store store;
-    private Hashtable<String, Product> listOfProducts = new Hashtable<String, Product>();
 
     @Before
     public void setUp() {
 
-        store = new Store(listOfProducts);
-        Product product = new Product("PS3", 10, 1000, 399.00);
-        Product productTwo = new Product("Xbox", 30, 2500, 599.00);
-        store.add(product);
-        store.add(productTwo);
+        store = new Store();
+
+        store.registerProduct(new Product("PS3", 1000, 599.00));
+        store.registerProduct(new Product("Xbox", 3000, 399.00));
+        store.registerProduct(new Product("Wii", 500, 299.00));
     }
 
+    @Test
+    public void registerProductInStore() {
 
+        store.registerProduct(new Product("Xbox 360", 4000, 799.00));
+        assertTrue(store.isProductInStore("Xbox 360"));
+    }
 
     @Test
-    public void verifyTheProductIsInTheStore() {
-
+    public void isProductInStore() {
         assertTrue(store.isProductInStore("PS3"));
+    }
+
+    @Test(expected = ProductIsRegisteredException.class)
+    public void cannotRegisterExistingProduct() {
+        store.registerProduct(new Product("Xbox", 3000, 899.00));
     }
 
     @Test
     public void increaseQuantityOfProduct() {
 
-        store.increaseQuantity("Xbox", 10);
-        assertEquals(40, listOfProducts.get("Xbox").getProductQuantity());
-        assertEquals(40, store.currentProductQuantity("Xbox"));
+        store.increaseQuantityOfProduct("PS3", 10);
+        assertEquals(10, store.getProduct("PS3").getProductCurrentQuantity());
     }
 
     @Test
-    public void sellProduct() {
+    public void sellProductIfThereIsEnoughQuantity() {
 
-        store.sell("PS3", 8);
-        assertEquals(2, listOfProducts.get("PS3").getProductQuantity());
+        store.increaseQuantityOfProduct("PS3", 10);
+        store.decreaseQuantityOfProduct("PS3", 8);
+        assertEquals(2, store.getProduct("PS3").getProductCurrentQuantity());
     }
 
     @Test(expected = InsufficientQuantityOfProductException.class)
     public void cannotSellProductWithInsufficientQuantity() {
 
-        store.sell("PS3", 300);
+        store.decreaseQuantityOfProduct("PS3", 300);
     }
 
     @Test(expected = ReachedMaximumQuantityOfProductException.class)
     public void cannotIncreaseProductQuantityMoreThanTheProductMaximumQuantity() {
 
-        store.increaseQuantity("PS3", 1000);
+        store.increaseQuantityOfProduct("PS3", 2000);
     }
 
     @Test
-    public void printElementsOfStore() {
+    public void sortElementsOfStoreByPrice() {
 
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        double[] productsPrice = {299.00, 399.00, 599.00};
 
-        store.sortProducts(new PrintStream(out));
-        assertEquals("PS3 399.0\nXbox 599.0\n", new String(out.toByteArray()));
+        Product[] products = new Product[store.sortProducts().size()];
+        products = store.sortProducts().toArray(products);
+
+        for (int i = 0; i < products.length; i++) {
+            assertEquals(productsPrice[i], products[i].getProductPrice(), 0);
+        }
     }
 }

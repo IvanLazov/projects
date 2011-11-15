@@ -1,36 +1,34 @@
 package com.clouway.testing.store;
 
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Hashtable;
-import java.util.List;
+import java.util.*;
 
+/**
+ * Created by Ivan Lazov (darkpain1989@gmail.com)
+ */
 public class Store {
 
-    private Hashtable<String, Product> listOfProducts = new Hashtable<String, Product>();
-
-    public Store(Hashtable<String, Product> listOfProducts) {
-        this.listOfProducts = listOfProducts;
-    }
+    private Map<String, Product> listOfProducts = new Hashtable<String, Product>();
 
     /**
-     * Add product in store
+     * Register product in store.
+     * Cannot register product that is already registered.
      *
-     * @param product the product to be added
+     * @param product   Product that will be registered
      */
-    public void add(Product product) {
+    public void registerProduct(Product product) {
 
-        if (!isProductInStore(product.getProductName())) {
+        if (isProductInStore(product.getProductName())) {
+            throw new ProductIsRegisteredException();
+        } else {
             listOfProducts.put(product.getProductName(), product);
         }
     }
 
     /**
-     * Verify that the product is in store
+     * Verify that product is in store
      *
-     * @param productName the name of the product
-     * @return true if the product is in store
+     * @param productName   Name of product
+     * @return true   If product is in store
      */
     public boolean isProductInStore(String productName) {
 
@@ -42,75 +40,82 @@ public class Store {
     }
 
     /**
-     * Increases the quantity of the product
+     * Increase quantity of product
      *
-     * @param productName   the name of the product
-     * @param quantityToAdd the quantity to be added
+     * @param productName   Name of product
+     * @param quantityToAdd  Quantity to be added
      */
-    public void increaseQuantity(String productName, int quantityToAdd) {
+    public void increaseQuantityOfProduct(String productName, int quantityToAdd) {
 
         if (isProductInStore(productName)) {
-
             if (currentProductQuantity(productName) + quantityToAdd > maximumProductQuantity(productName)) {
                 throw new ReachedMaximumQuantityOfProductException();
             } else {
-                listOfProducts.get(productName).setProductQuantity(currentProductQuantity(productName) + quantityToAdd);
+                listOfProducts.get(productName).setProductCurrentQuantity(currentProductQuantity(productName) + quantityToAdd);
             }
         }
     }
 
     /**
-     * Sell product from the store
+     * Decreases quantity of product
      *
-     * @param productName    the name of the product
-     * @param quantityToSell the quantity to be sold
+     * @param productName   name of product
+     * @param quantityToSell   quantity to be sold
      */
-    public void sell(String productName, int quantityToSell) {
+    public void decreaseQuantityOfProduct(String productName, int quantityToSell) {
 
         if (isProductInStore(productName)) {
 
             if ((currentProductQuantity(productName) - quantityToSell) < 0) {
+
                 throw new InsufficientQuantityOfProductException();
+
             } else {
-                listOfProducts.get(productName).setProductQuantity(currentProductQuantity(productName) - quantityToSell);
+
+                listOfProducts.get(productName).setProductCurrentQuantity(currentProductQuantity(productName) - quantityToSell);
+
             }
         }
     }
 
     /**
-     * Sorts products in store
+     * Returns product with the specified name
      *
-     * @param out the stream where we want the products to be displayed
+     * @param productName   name of product
+     * @return Product
      */
-    public void sortProducts(PrintStream out) {
+    public Product getProduct(String productName) {
+        return listOfProducts.get(productName);
+    }
+
+    /**
+     * Sort the registered products in store by price
+     */
+    public List<Product> sortProducts() {
 
         List<Product> arrayList = new ArrayList<Product>(listOfProducts.values());
         Collections.sort(arrayList);
 
-        for (Product product : arrayList) {
-            out.println(product.getProductName() + " " + product.getProductPrice());
-        }
+        return arrayList;
     }
 
     /**
-     * Returns the quantity of the product
+     * Returns the maximum quantity of the product that can be stored
      *
-     * @param productName the name of the product
-     * @return the quantity of the products
+     * @param productName   the name of the product
+     * @return the maximum quantity of the product
      */
     private int maximumProductQuantity(String productName) {
-
         return listOfProducts.get(productName).getProductMaxQuantity();
     }
 
     /**
-     * Return the maximum quantity of the product, that can be stored
+     * Returns the current quantity of the product
      *
      * @param productName the name of the product
      * @return the maximum quantity of the product, that can be stored
      */
     int currentProductQuantity(String productName) {
-
-        return listOfProducts.get(productName).getProductQuantity();
+        return listOfProducts.get(productName).getProductCurrentQuantity();
     }
 }

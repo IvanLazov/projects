@@ -1,16 +1,17 @@
 package com.clouway.testing.store;
 
+/**
+ * Created by Ivan Lazov (darkpain1989@gmail.com)
+ */
 public class Product implements Comparable<Product> {
 
-    private String productName;
-    private int productQuantity;
-    private int productMaxQuantity;
-    private double productPrice;
+    private String productName; // name of product
+    private int productCurrentQuantity = 0; // current quantity of product in store
+    private int productMaxQuantity; // maximum quantity of product that can be stored
+    private double productPrice; // price of product
 
-    public Product(String productName, int productQuantity, int productMaxQuantity, double productPrice) {
-
+    public Product(String productName, int productMaxQuantity, double productPrice) {
         this.productName = productName;
-        this.productQuantity = productQuantity;
         this.productMaxQuantity = productMaxQuantity;
         this.productPrice = productPrice;
     }
@@ -19,8 +20,8 @@ public class Product implements Comparable<Product> {
         return productName;
     }
 
-    public int getProductQuantity() {
-        return productQuantity;
+    public int getProductCurrentQuantity() {
+        return productCurrentQuantity;
     }
 
     public int getProductMaxQuantity() {
@@ -31,12 +32,11 @@ public class Product implements Comparable<Product> {
         return productPrice;
     }
 
-    public void setProductQuantity(int productQuantity) {
-        this.productQuantity = productQuantity;
+    public void setProductCurrentQuantity(int productCurrentQuantity) {
+        this.productCurrentQuantity = productCurrentQuantity;
     }
 
     public int compareTo(Product product) {
-
         if (this.productPrice > product.productPrice) {
             return 1;
         } else if (this.productPrice < product.productPrice) {
