@@ -1,6 +1,9 @@
 package com.clouway.testing.sms;
 
 /**
+ * SmsService class sends a sms message via external SmsGateway.
+ * Valid sms messages are these which have length between 1 and 120 symbols
+ *
  * Created by Ivan Lazov (darkpain1989@gmail.com)
  */
 public class SmsService {
