@@ -23,6 +23,7 @@ public class Counter implements Runnable {
         this.lifeTime = lifeTime;
         this.elements = elements;
         this.counters = counters;
+        startCounting();
     }
 
     public void run() {
@@ -50,6 +51,13 @@ public class Counter implements Runnable {
      */
     public void reset() {
         counter = 0;
+    }
+
+    /**
+     * Start counting process
+     */
+    private void startCounting() {
+        new Thread(this).start();
     }
 
     /**
