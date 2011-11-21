@@ -33,7 +33,6 @@ public class TimeoutHashtable {
             elements.put(key, object);
             counters.put(key, counter);
 
-            new Thread(counter).start();
         } else {
 
             elements.put(key, object);
