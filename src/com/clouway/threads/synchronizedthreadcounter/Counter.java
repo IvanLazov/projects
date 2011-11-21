@@ -1,4 +1,4 @@
-package com.clouway.threads.synchronizedThreadCounter;
+package com.clouway.threads.synchronizedthreadcounter;
 
 /**
  * Counter is shared resource that serves for synchronizing threads

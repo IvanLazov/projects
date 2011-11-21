@@ -1,4 +1,4 @@
-package com.clouway.threads.synchronizedThreadCounter;
+package com.clouway.threads.synchronizedthreadcounter;
 
 /**
  * Created by Ivan Lazov (darkpain1989@gmail.com)

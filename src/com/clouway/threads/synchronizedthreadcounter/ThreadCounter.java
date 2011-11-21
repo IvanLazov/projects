@@ -1,4 +1,4 @@
-package com.clouway.threads.synchronizedThreadCounter;
+package com.clouway.threads.synchronizedthreadcounter;
 
 /**
  * ThreadCounter implements interface Runnable.
