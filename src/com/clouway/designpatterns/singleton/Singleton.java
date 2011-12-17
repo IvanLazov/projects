@@ -7,7 +7,7 @@ package com.clouway.designpatterns.singleton;
  */
 public class Singleton {
 
-    private static boolean instanceFlag = false;
+    private static boolean instanceFlag = false; // monitors creation of instance
 
     private Singleton() {
         
