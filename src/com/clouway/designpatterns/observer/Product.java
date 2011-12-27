@@ -18,8 +18,4 @@ public class Product {
 
         return name;
     }
-
-    public int getQuantity() {
-        return quantity;
-    }
 }
