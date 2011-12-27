@@ -6,12 +6,10 @@ package com.clouway.designpatterns.observer;
 public class Product {
 
     private final String name;
-    private int quantity;
 
-    public Product(String name, int quantity) {
+    public Product(String name) {
 
         this.name = name;
-        this.quantity = quantity;
     }
 
     public String getName() {
