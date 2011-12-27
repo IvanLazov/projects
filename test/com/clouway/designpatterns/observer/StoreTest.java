@@ -32,7 +32,7 @@ public class StoreTest {
     public void registerProductInStore() {
 
         Store store = new Store(listOfRegisteredProducts);
-        Product product = new Product("Acer", 20);
+        Product product = new Product("Acer");
         store.addRegisterProductListener(new RegisteredProducts(listOfRegisteredProducts));
         store.register(product);
         assertEquals(product, listOfRegisteredProducts.get("Acer"));
@@ -41,12 +41,12 @@ public class StoreTest {
     @Test
     public void registeringProductInStoreShouldNotifyListener() {
         
-        Product product = new Product("Acer", 20);
+        final Product product = new Product("Acer");
         Store store = new Store(listOfRegisteredProducts);
         store.addRegisterProductListener(registeredProductListener);
 
         context.checking(new Expectations(){{
-            oneOf(registeredProductListener).onRegisteredProductUpdate(listOfRegisteredProducts);
+            oneOf(registeredProductListener).onRegisteredProductUpdate(product);
         }});
 
         store.register(product);
@@ -55,7 +55,7 @@ public class StoreTest {
     @Test
     public void registeredProductMustBeInTheRegisteredProductsList() {
         
-        Product product = new Product("Acer", 20);
+        Product product = new Product("Acer");
         Store store = new Store(listOfRegisteredProducts);
         store.addRegisterProductListener(new RegisteredProducts(listOfRegisteredProducts));
         store.register(product);
@@ -65,7 +65,7 @@ public class StoreTest {
     @Test
     public void sellProductFromStore() {
         
-        Product product = new Product("Acer", 20);
+        Product product = new Product("Acer");
         Store store = new Store(listOfRegisteredProducts);
         store.addRegisterProductListener(new RegisteredProducts(listOfRegisteredProducts));
         store.addSoldProductListener(new SoldProduct(new ArrayList<Product>()));
@@ -78,7 +78,7 @@ public class StoreTest {
     @Test
     public void sellingProductFromStoreShouldNotifyListener() {
         
-        final Product product = new Product("Acer", 20);
+        final Product product = new Product("Acer");
         Store store = new Store(listOfRegisteredProducts);
         store.addRegisterProductListener(new RegisteredProducts(listOfRegisteredProducts));
         store.addSoldProductListener(soldProductListener);
@@ -94,7 +94,7 @@ public class StoreTest {
     @Test
     public void soldProductMustBeInTheSoldProductsList() {
 
-        Product product = new Product("Acer", 20);
+        Product product = new Product("Acer");
         Store store = new Store(listOfRegisteredProducts);
 
         store.addRegisterProductListener(new RegisteredProducts(listOfRegisteredProducts));
