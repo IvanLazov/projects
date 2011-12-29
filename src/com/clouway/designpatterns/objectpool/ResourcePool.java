@@ -13,8 +13,8 @@ import java.util.List;
 public class ResourcePool {
 
     private Resource resource;
-    private List<Resource> usedResources = new ArrayList<Resource>(); // resources which are currently used
-    private List<Resource> unusedResources = new ArrayList<Resource>(); // resources which are not used at the moment
+    private final List<Resource> usedResources = new ArrayList<Resource>(); // resources which are currently used
+    private final List<Resource> unusedResources = new ArrayList<Resource>(); // resources which are not used at the moment
     private final int maximumNumberOfResources; // maximum number of resource in the pool
     private int currentNumberOfResources; // number of current resources in the pool
 
