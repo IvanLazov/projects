@@ -20,6 +20,23 @@ public class Application {
         }
     }
 
+    interface MobileAbstractFactory {
+        Samsung createSamsung();
+
+        IPhone createIPhone();
+    }
+
+    class CommonSeriesMobileFactoryMobile implements MobileAbstractFactory {
+
+        public Samsung createSamsung() {
+            return null;  //To change body of implemented methods use File | Settings | File Templates.
+        }
+
+        public IPhone createIPhone() {
+            return null;  //To change body of implemented methods use File | Settings | File Templates.
+        }
+    }
+
     public static void main(String[] args) {
 
         Factory factory = new Factory(chooseSmartPhoneFactory("IPhone"));
