@@ -9,22 +9,21 @@ public class Singleton {
 
     private static Singleton singleton;
 
+    static {
+        singleton = new Singleton();
+    }
+
     private Singleton() {
 
         System.out.println("Singleton created");
     }
 
     /**
-     * Get only one instance of the class
+     * Return an instance of Singleton
      *
-     * @return an instance of Singleton class
+     * @return Singleton instance
      */
     public static Singleton getInstance() {
-
-        if (singleton == null) {
-            singleton = new Singleton();
-        }
-
         return singleton;
     }
 }
