@@ -7,9 +7,15 @@ public class Main {
     
     public static void main(String[] args) {
 
-        ImageProxy imageOne = new ImageProxy("Summer");
-        ImageProxy imageTwo = new ImageProxy("Winter");
+        ImageClient imageOne = new ImageClient(new Image() {
+            public void createImage() {
+                System.out.println("tetestsetset");
+            }
+        });
+
         imageOne.createImage();
-        imageTwo.createImage();
+
+        imageOne = new ImageClient(new FullColorImage());
+        imageOne.createImage();
     }
 }
