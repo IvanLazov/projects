@@ -8,5 +8,5 @@ package com.clouway.designpatterns.abstractfactory;
  */
 public interface SmartPhone {
     
-    public void showOSVersion();
+    void showOSVersion();
 }
