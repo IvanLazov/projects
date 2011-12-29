@@ -8,5 +8,5 @@ package com.clouway.designpatterns.abstractfactory;
  */
 public interface SmartPhoneFactory {
     
-    public SmartPhone createSmartPhone();
+    SmartPhone createSmartPhone();
 }
