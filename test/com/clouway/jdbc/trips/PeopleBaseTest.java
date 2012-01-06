@@ -1,4 +1,4 @@
-package com.clouway.jdbc;
+package com.clouway.jdbc.trips;
 
 import org.junit.*;
 
@@ -21,7 +21,7 @@ public class PeopleBaseTest {
     @BeforeClass
     public static void connect() throws SQLException {
 
-        databaseHelper.connectToDatabase();
+        databaseHelper.connectToDataSource();
     }
 
     @Before
@@ -80,6 +80,6 @@ public class PeopleBaseTest {
     @AfterClass
     public static void disconnect() throws SQLException {
 
-        databaseHelper.disconnectFromDatabase();
+        databaseHelper.disconnectFromDataSource();
     }
 }

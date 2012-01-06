@@ -1,4 +1,4 @@
-package com.clouway.jdbc;
+package com.clouway.jdbc.trips;
 
 import java.sql.*;
 
@@ -25,7 +25,7 @@ public class TripBaseTest {
     @BeforeClass
     public static void connect() throws SQLException {
 
-        databaseHelper.connectToDatabase();
+        databaseHelper.connectToDataSource();
     }
     
     @Before
@@ -69,6 +69,6 @@ public class TripBaseTest {
     @AfterClass
     public static void disconnect() throws SQLException {
 
-        databaseHelper.disconnectFromDatabase();
+        databaseHelper.disconnectFromDataSource();
     }
 }

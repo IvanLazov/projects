@@ -1,4 +1,4 @@
-package com.clouway.jdbc;
+package com.clouway.jdbc.trips;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,5 +8,5 @@ import java.sql.SQLException;
  */
 public interface RowMapper<T> {
 
-    T map(ResultSet resultSet) throws SQLException;
+    T map(ResultSet resultSet) throws SQLException; // Return an object of type T from the given ResultSet
 }

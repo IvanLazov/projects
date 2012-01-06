@@ -1,4 +1,4 @@
-package com.clouway.jdbc;
+package com.clouway.jdbc.trips;
 
 import java.sql.SQLException;
 import java.util.List;

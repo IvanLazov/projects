@@ -1,4 +1,4 @@
-package com.clouway.jdbc;
+package com.clouway.jdbc.trips;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * DatabaseHelper class is used to connect/disconnect to given database
- * and execute queries
+ * DatabaseHelper class is used to connect/disconnect to given data source
+ * and execute queries to it
  *
  * Created by Ivan Lazov (darkpain1989@gmail.com)
  */
@@ -18,7 +18,7 @@ public class DatabaseHelper {
     private Connection connection;
 
     /**
-     * Constructors defines the dataSource to which we will connect
+     * Constructors defines the data source to which we will connect
      */
     public DatabaseHelper() {
 
@@ -30,21 +30,21 @@ public class DatabaseHelper {
     }
 
     /**
-     * Connect to the Database
+     * Connect to the data source
      *
      * @throws SQLException if an error occurs
      */
-    public void connectToDatabase() throws SQLException {
+    public void connectToDataSource() throws SQLException {
 
         connection = dataSource.getConnection();
     }
 
     /**
-     * Disconnect from the Database
+     * Disconnect from the data source
      *
      * @throws SQLException if an error occurs
      */
-    public void disconnectFromDatabase() throws SQLException {
+    public void disconnectFromDataSource() throws SQLException {
 
         if (connection != null) {
             connection.close();

@@ -1,0 +1,16 @@
+CREATE TABLE `person` (
+  `name` varchar(20) NOT NULL,
+  `id` char(10) NOT NULL,
+  `age` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE `trip` (
+  `id` char(10) NOT NULL,
+  `arrivalDate` date NOT NULL,
+  `departureDate` date NOT NULL,
+  `city` varchar(30) NOT NULL,
+  KEY `id` (`id`),
+  CONSTRAINT `trip_ibfk_1` FOREIGN KEY (`id`) REFERENCES `person` (`id`)
+) ENGINE=InnoDB
