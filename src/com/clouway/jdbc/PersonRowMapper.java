@@ -9,12 +9,7 @@ import java.sql.SQLException;
 public class PersonRowMapper implements RowMapper<Person> {
 
     public Person map(ResultSet resultSet) throws SQLException {
-
-        String name = resultSet.getString("name");
-        String egn = resultSet.getString("egn");
-        int age = resultSet.getInt("age");
-        String email = resultSet.getString("email");
         
-        return new Person(name, egn, age, email);
+        return new Person(resultSet.getString("name"), resultSet.getString("egn"), resultSet.getInt("age"), resultSet.getString("email"));
     }
 }

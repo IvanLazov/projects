@@ -14,13 +14,23 @@ public class City {
         this.numberOfVisitors = numberOfVisitors;
     }
 
-    public String getName() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        return name;
+        City city = (City) o;
+
+        if (numberOfVisitors != city.numberOfVisitors) return false;
+        if (name != null ? !name.equals(city.name) : city.name != null) return false;
+
+        return true;
     }
 
-    public int getNumberOfVisitors() {
-
-        return numberOfVisitors;
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + numberOfVisitors;
+        return result;
     }
 }

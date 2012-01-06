@@ -1,6 +1,6 @@
 package com.clouway.jdbc;
 
-import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -8,11 +8,11 @@ import java.util.List;
  */
 public interface TripBase {
 
-    void save(Trip trip);
+    void save(Trip trip) throws SQLException;
 
-    void update(String egn, Date arrivalDate, Date departureDate, String city);
+    void update(String egn, String arrivalDate, String departureDate, String city) throws SQLException;
 
-    List<Trip> getAllTrips();
+    List<Trip> getAllTrips() throws SQLException;
 
-    List<City> getAllCitiesOrderedByNumberOfVisits();
+    List<City> getAllCitiesOrderedByNumberOfVisits() throws SQLException;
 }

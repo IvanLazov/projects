@@ -1,18 +1,16 @@
 package com.clouway.jdbc;
 
-import java.sql.Date;
-
 /**
  * Created by Ivan Lazov (darkpain1989@gmail.com)
  */
 public class Trip {
     
     private String egn;
-    private Date arrivalDate;
-    private Date departureDate;
+    private String arrivalDate;
+    private String departureDate;
     private String city;
 
-    public Trip(String egn, Date arrivalDate, Date departureDate, String city) {
+    public Trip(String egn, String arrivalDate, String departureDate, String city) {
 
         this.egn = egn;
         this.arrivalDate = arrivalDate;
@@ -25,12 +23,12 @@ public class Trip {
         return egn;
     }
 
-    public Date getArrivalDate() {
+    public String getArrivalDate() {
 
         return arrivalDate;
     }
 
-    public Date getDepartureDate() {
+    public String getDepartureDate() {
 
         return departureDate;
     }

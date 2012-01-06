@@ -1,11 +1,9 @@
 package com.clouway.jdbc;
 
 import java.sql.*;
-import java.util.List;
 
-import org.junit.After;
-import org.junit.Test;
-import org.junit.Before;
+import org.junit.*;
+
 import static org.junit.Assert.*;
 
 /**
@@ -13,79 +11,64 @@ import static org.junit.Assert.*;
  */
 public class TripBaseTest {
 
-    private Statement statement;
-    private DatabaseHelper databaseHelper = new DatabaseHelper();
+    private static DatabaseHelper databaseHelper = new DatabaseHelper();
     private TripBase tripBase = new TripBaseImpl(databaseHelper);
     private PeopleBase peopleBase = new PeopleBaseImpl(databaseHelper);
 
     private Person person = new Person("Ivan", "8912271449", 22, "darkpain@abv.bg");
-    private Person person2 = new Person("Krasimir", "8912141449", 22, "555@mail.bg");
-    private Trip trip = new Trip("8912271449", Date.valueOf("2012-01-10"), Date.valueOf("2012-01-20"), "Paris");
-    private Trip trip2 = new Trip("8912141449", Date.valueOf("2012-02-10"), Date.valueOf("2012-02-15"), "Paris");
+    private Person person2 = new Person("Adam", "8510105050", 28, "adam@mail.bg");
 
-    @Before
-    public void setUp() throws SQLException {
+    private Trip trip  = new Trip("8912271449", "2012-01-10", "2012-01-20", "Paris");
+    private Trip trip2 = new Trip("8510105050", "2012-02-10", "2012-02-15", "Paris");
+    private Trip trip3 = new Trip("8510105050", "2012-04-08", "2012-04-15", "New York");
+
+    @BeforeClass
+    public static void connect() throws SQLException {
 
         databaseHelper.connectToDatabase();
-        databaseHelper.createTablePerson();
-        databaseHelper.createTableTrip();        
+    }
+    
+    @Before
+    public void setUp() throws SQLException {
+                
         peopleBase.save(person);
         peopleBase.save(person2);
         tripBase.save(trip);
         tripBase.save(trip2);
-        statement = databaseHelper.getConnection().createStatement();
+        tripBase.save(trip3);
     }
 
     @Test
-    public void saveTripInDatabase() throws SQLException {
+    public void changeTripArrivalDate() throws SQLException {
 
-        ResultSet resultSet = statement.executeQuery("SELECT city FROM trip WHERE egn='8912271449'");
-        resultSet.next();
-
-        assertEquals("Paris", trip.getCity());
-    }
-
-    @Test
-    public void changeTripInformation() throws SQLException {
-
-        tripBase.update("8912271449", Date.valueOf("2012-01-14"), Date.valueOf("2012-01-31"), "Paris");
-
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM trip WHERE egn='8912271449'");
-        resultSet.next();
-        
-        assertEquals(Date.valueOf("2012-01-14"), resultSet.getDate("arrivalDate"));
-        assertEquals(Date.valueOf("2012-01-31"), resultSet.getDate("departureDate"));
+        tripBase.update("8912271449", "2012-01-01", "2012-01-20", "Paris");
+        assertEquals("2012-01-01", tripBase.getAllTrips().get(0).getArrivalDate());
     }
     
     @Test
     public void getAllTrips() throws SQLException {
-        
-        List<Trip> trips = tripBase.getAllTrips();
 
-        assertEquals(trip, trips.get(0));
-        assertEquals(trip2, trips.get(1));
+        assertEquals(trip, tripBase.getAllTrips().get(0));
+        assertEquals(trip2, tripBase.getAllTrips().get(1));
     }
 
     @Test
-    public void showCitiesOrderedByNumberOfVisitors() throws SQLException {
-
-        Person person = new Person("Adio","8903124343",23,"adio@gmail.com");
-        Trip trip = new Trip("8903124343", Date.valueOf("2012-01-20"), Date.valueOf("2012-01-30"),"New York");
-        peopleBase.save(person);
-        tripBase.save(trip);
-
-        List<City> cities = tripBase.getAllCitiesOrderedByNumberOfVisits();
-
-        assertEquals(2, cities.get(0).getNumberOfVisitors());
-        assertEquals(1, cities.get(1).getNumberOfVisitors());
+    public void showCitiesOrderedByNumberOfVisitors() throws SQLException {     
+        
+        assertEquals(new City("Paris", 2), tripBase.getAllCitiesOrderedByNumberOfVisits().get(0));
+        assertEquals(new City("New York", 1), tripBase.getAllCitiesOrderedByNumberOfVisits().get(1));
     }
-    
-    @After
-    public void tearDown() throws SQLException {
 
-        statement.close();
-        databaseHelper.dropTable("trip");
-        databaseHelper.dropTable("person");
+    @After
+    public void deleteData() throws SQLException {
+
+        databaseHelper.executeQuery("DELETE FROM trip");
+        databaseHelper.executeQuery("DELETE FROM person");
+    }
+
+    @AfterClass
+    public static void disconnect() throws SQLException {
+
         databaseHelper.disconnectFromDatabase();
     }
 }

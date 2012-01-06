@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * DatabaseHelper class is used to connect/disconnect to given database
+ * and execute queries
+ *
  * Created by Ivan Lazov (darkpain1989@gmail.com)
  */
 public class DatabaseHelper {
@@ -14,6 +17,9 @@ public class DatabaseHelper {
     private MysqlDataSource dataSource;
     private Connection connection;
 
+    /**
+     * Constructors defines the dataSource to which we will connect
+     */
     public DatabaseHelper() {
 
         dataSource = new MysqlDataSource();
@@ -23,20 +29,21 @@ public class DatabaseHelper {
         dataSource.setPassword("clouway.com");
     }
 
-    public Connection getConnection() {
-
-        if (connection != null) {
-
-            return connection;
-        }
-        return null;
-    }
-
+    /**
+     * Connect to the Database
+     *
+     * @throws SQLException if an error occurs
+     */
     public void connectToDatabase() throws SQLException {
 
         connection = dataSource.getConnection();
     }
 
+    /**
+     * Disconnect from the Database
+     *
+     * @throws SQLException if an error occurs
+     */
     public void disconnectFromDatabase() throws SQLException {
 
         if (connection != null) {
@@ -44,6 +51,13 @@ public class DatabaseHelper {
         }
     }
 
+    /**
+     * Execute query with given parameters
+     *
+     * @param query the query to be executed
+     * @param params parameters which will be used in the query
+     * @throws SQLException if an error occurs
+     */
     public void executeQuery(String query, Object... params) throws SQLException {
 
         PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -51,6 +65,16 @@ public class DatabaseHelper {
         preparedStatement.executeUpdate();
     }
 
+    /**
+     * Execute query which returns a List of objects of type T
+     *
+     * @param query the query to be executed
+     * @param rowMapper the RowMapper object which will created object of type T
+     * @param params parameters which will be used in the query
+     * @param <T> the type of the returned objects
+     * @return a List of type T
+     * @throws SQLException if an error occurs
+     */
     public <T> List<T> executeQuery(String query, RowMapper<T> rowMapper, Object... params) throws SQLException {
 
         List<T> results = new ArrayList<T>();
@@ -65,56 +89,17 @@ public class DatabaseHelper {
         return results;
     }
 
+    /**
+     * Set parameters for the preparedStatement
+     *
+     * @param preparedStatement used to set the parameters for the query
+     * @param params parameters which will be used in the query
+     * @throws SQLException if an error occurs
+     */
     private void fillParameters(PreparedStatement preparedStatement, Object[] params) throws SQLException {
 
         for (int i = 0; i < params.length; i++) {
             preparedStatement.setObject(i + 1, params[i]);
         }
-    }
-
-    public void createTablePerson() {
-
-        try {
-
-            Statement statement = connection.createStatement();
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS person" +
-                    "(" +
-                    "  name VARCHAR(20) NOT NULL," +
-                    "  egn CHAR(10) NOT NULL," +
-                    "  age INT NOT NULL," +
-                    "  email VARCHAR(50) NOT NULL," +
-                    "  UNIQUE (egn)" +
-                    ") ENGINE = InnoDB;");
-            statement.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void createTableTrip() {
-
-        try {
-
-            Statement statement = connection.createStatement();
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS trip" +
-                    "(" +
-                    "  egn CHAR(10) NOT NULL," +
-                    "  arrivalDate DATE NOT NULL," +
-                    "  departureDate DATE NOT NULL," +
-                    "  city VARCHAR(50) NOT NULL," +
-                    "  FOREIGN KEY (egn) REFERENCES person(egn)" +
-                    ") ENGINE = InnoDB;");
-
-            statement.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public void dropTable(String table) throws SQLException {
-
-        this.executeQuery("DROP TABLE " + table);
     }
 }
