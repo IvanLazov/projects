@@ -1,0 +1,26 @@
+// Create function for search a user in articleHistory table by id
+
+delimiter $
+CREATE FUNCTION searchForId(id_number INT)
+RETURNS INT
+READS SQL DATA
+BEGIN
+    RETURN (SELECT COUNT(*) FROM articleHistory WHERE articleHistory.id = id_number);
+END$
+delimiter ;
+
+
+
+// Create trigger that saves a copy of data into articleHistory table, when an update occurs in article table
+
+delimiter $
+CREATE TRIGGER saveToHistory
+BEFORE UPDATE ON article
+FOR EACH ROW
+BEGIN
+    IF (SELECT searchForId(OLD.id) = 0)
+     THEN INSERT INTO articleHistory VALUES(OLD.id, OLD.name);
+    ELSE UPDATE articleHistory SET name=OLD.name WHERE articleHistory.id = OLD.id;
+    END IF;
+END$
+delimiter ;
