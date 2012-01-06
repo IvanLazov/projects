@@ -10,6 +10,6 @@ public class PersonRowMapper implements RowMapper<Person> {
 
     public Person map(ResultSet resultSet) throws SQLException {
         
-        return new Person(resultSet.getString("name"), resultSet.getString("egn"), resultSet.getInt("age"), resultSet.getString("email"));
+        return new Person(resultSet.getString("name"), resultSet.getString("id"), resultSet.getInt("age"), resultSet.getString("email"));
     }
 }

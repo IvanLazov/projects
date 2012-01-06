@@ -10,6 +10,6 @@ public class TripRowMapper implements RowMapper<Trip> {
 
     public Trip map(ResultSet resultSet) throws SQLException {
         
-        return new Trip(resultSet.getString("egn"), resultSet.getString("arrivalDate"), resultSet.getString("departureDate"), resultSet.getString("city"));
+        return new Trip(resultSet.getString("id"), resultSet.getString("arrivalDate"), resultSet.getString("departureDate"), resultSet.getString("city"));
     }
 }

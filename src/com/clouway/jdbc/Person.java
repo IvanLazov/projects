@@ -6,14 +6,14 @@ package com.clouway.jdbc;
 public class Person {
 
     private String name;
-    private String egn;
+    private String id;
     private int age;
     private String email;
 
-    public Person(String name, String egn, int age, String email) {
+    public Person(String name, String id, int age, String email) {
 
         this.name = name;
-        this.egn = egn;
+        this.id = id;
         this.age = age;
         this.email = email;
     }
@@ -23,9 +23,9 @@ public class Person {
         return name;
     }
 
-    public String getEgn() {
+    public String getId() {
 
-        return egn;
+        return id;
     }
 
     public int getAge() {
@@ -46,7 +46,7 @@ public class Person {
         Person person = (Person) o;
 
         if (age != person.age) return false;
-        if (egn != null ? !egn.equals(person.egn) : person.egn != null) return false;
+        if (id != null ? !id.equals(person.id) : person.id != null) return false;
         if (email != null ? !email.equals(person.email) : person.email != null) return false;
         if (name != null ? !name.equals(person.name) : person.name != null) return false;
 
@@ -56,7 +56,7 @@ public class Person {
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (egn != null ? egn.hashCode() : 0);
+        result = 31 * result + (id != null ? id.hashCode() : 0);
         result = 31 * result + age;
         result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;

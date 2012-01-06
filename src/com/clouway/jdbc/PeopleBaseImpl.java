@@ -28,42 +28,42 @@ public class PeopleBaseImpl implements PeopleBase {
      */
     public void save(Person person) throws SQLException {
 
-        databaseHelper.executeQuery("INSERT INTO person VALUES(?,?,?,?)", person.getName(), person.getEgn(), person.getAge(), person.getEmail());
+        databaseHelper.executeQuery("INSERT INTO person VALUES(?,?,?,?)", person.getName(), person.getId(), person.getAge(), person.getEmail());
     }
 
     /**
-     * Update Person's email address which has given egn
+     * Update Person's email address which has given id
      *
-     * @param egn the egn of the Person
+     * @param id the id of the Person
      * @param email the new email address of the Person
      * @throws SQLException if an error occurs
      */
-    public void update(String egn, String email) throws SQLException {
+    public void update(String id, String email) throws SQLException {
 
-        databaseHelper.executeQuery("UPDATE person SET email=? WHERE egn=?", email, egn);
+        databaseHelper.executeQuery("UPDATE person SET email=? WHERE id=?", email, id);
     }
 
     /**
-     * Delete person from database using Person's egn
+     * Delete person from database using Person's id
      *
-     * @param egn the egn of the Person
+     * @param id the id of the Person
      * @throws SQLException if an error occurs
      */
-    public void deletePerson(String egn) throws SQLException {
+    public void deletePerson(String id) throws SQLException {
 
-        databaseHelper.executeQuery("DELETE FROM person WHERE egn=?", egn);
+        databaseHelper.executeQuery("DELETE FROM person WHERE id=?", id);
     }
 
     /**
-     * Return a Person with given egn
+     * Return a Person with given id
      *
-     * @param egn egn of the Person
+     * @param id id of the Person
      * @return a Person from the Database
      * @throws SQLException if an error occurs
      */
-    public Person getPerson(String egn) throws SQLException {
+    public Person getPerson(String id) throws SQLException {
 
-        return databaseHelper.executeQuery("SELECT * FROM person WHERE egn=?", new PersonRowMapper(), egn).get(0);
+        return databaseHelper.executeQuery("SELECT * FROM person WHERE id=?", new PersonRowMapper(), id).get(0);
     }
 
     public List<Person> getAllPeople() throws SQLException {
@@ -78,6 +78,6 @@ public class PeopleBaseImpl implements PeopleBase {
 
     public List<Person> getAllPeopleInTheSameCityAtTheSameDate(String date, String city) throws SQLException {
 
-        return databaseHelper.executeQuery("SELECT * FROM person LEFT JOIN trip ON person.egn = trip.egn WHERE arrivalDate <= ? AND departureDate >= ? AND city = ?", new PersonRowMapper(), date, date, city);
+        return databaseHelper.executeQuery("SELECT * FROM person LEFT JOIN trip ON person.id = trip.id WHERE arrivalDate <= ? AND departureDate >= ? AND city = ?", new PersonRowMapper(), date, date, city);
     }
 }

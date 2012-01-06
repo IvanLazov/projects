@@ -5,22 +5,22 @@ package com.clouway.jdbc;
  */
 public class Trip {
     
-    private String egn;
+    private String id;
     private String arrivalDate;
     private String departureDate;
     private String city;
 
-    public Trip(String egn, String arrivalDate, String departureDate, String city) {
+    public Trip(String id, String arrivalDate, String departureDate, String city) {
 
-        this.egn = egn;
+        this.id = id;
         this.arrivalDate = arrivalDate;
         this.departureDate = departureDate;
         this.city = city;
     }
 
-    public String getEgn() {
+    public String getId() {
 
-        return egn;
+        return id;
     }
 
     public String getArrivalDate() {
@@ -49,14 +49,14 @@ public class Trip {
         if (city != null ? !city.equals(trip.city) : trip.city != null) return false;
         if (departureDate != null ? !departureDate.equals(trip.departureDate) : trip.departureDate != null)
             return false;
-        if (egn != null ? !egn.equals(trip.egn) : trip.egn != null) return false;
+        if (id != null ? !id.equals(trip.id) : trip.id != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = egn != null ? egn.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (arrivalDate != null ? arrivalDate.hashCode() : 0);
         result = 31 * result + (departureDate != null ? departureDate.hashCode() : 0);
         result = 31 * result + (city != null ? city.hashCode() : 0);

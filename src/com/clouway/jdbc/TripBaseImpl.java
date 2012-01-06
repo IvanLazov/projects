@@ -17,12 +17,12 @@ public class TripBaseImpl implements TripBase {
 
     public void save(Trip trip) throws SQLException {
 
-        databaseHelper.executeQuery("INSERT INTO trip VALUES(?,?,?,?)", trip.getEgn(), trip.getArrivalDate(), trip.getDepartureDate(), trip.getCity());
+        databaseHelper.executeQuery("INSERT INTO trip VALUES(?,?,?,?)", trip.getId(), trip.getArrivalDate(), trip.getDepartureDate(), trip.getCity());
     }
 
-    public void update(String egn, String arrivalDate, String departureDate, String city) throws SQLException {
+    public void update(String id, String arrivalDate, String departureDate, String city) throws SQLException {
 
-        databaseHelper.executeQuery("UPDATE trip SET arrivalDate=?, departureDate=?, city=? WHERE egn=?", arrivalDate, departureDate, city, egn);
+        databaseHelper.executeQuery("UPDATE trip SET arrivalDate=?, departureDate=?, city=? WHERE id=?", arrivalDate, departureDate, city, id);
     }
     
     public List<Trip> getAllTrips() throws SQLException {

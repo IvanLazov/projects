@@ -10,7 +10,7 @@ public interface TripBase {
 
     void save(Trip trip) throws SQLException;
 
-    void update(String egn, String arrivalDate, String departureDate, String city) throws SQLException;
+    void update(String id, String arrivalDate, String departureDate, String city) throws SQLException;
 
     List<Trip> getAllTrips() throws SQLException;
 
