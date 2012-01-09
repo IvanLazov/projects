@@ -57,7 +57,10 @@ public class Store {
     public void sell(String product) {
 
         soldProductListener.onSoldProductUpdate(listOfRegisteredProducts.get(product));
-        listOfRegisteredProducts.remove(product);
+
+        if (soldProductListener != null) {
+            listOfRegisteredProducts.remove(product);
+        }
     }
 
     /**
