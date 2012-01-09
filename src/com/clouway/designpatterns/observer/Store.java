@@ -33,10 +33,7 @@ public class Store {
     public void register(Product product) {
 
         listOfRegisteredProducts.put(product.getName(), product);
-
-        if (registeredProductListener != null) {
-            registeredProductListener.onRegisteredProductUpdate(product);
-        }
+        registeredProductListener.onRegisteredProductUpdate(product);
     }
 
     /**
@@ -57,10 +54,7 @@ public class Store {
     public void sell(String product) {
 
         soldProductListener.onSoldProductUpdate(listOfRegisteredProducts.get(product));
-
-        if (soldProductListener != null) {
-            listOfRegisteredProducts.remove(product);
-        }
+        listOfRegisteredProducts.remove(product);
     }
 
     /**
