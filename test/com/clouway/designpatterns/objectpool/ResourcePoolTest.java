@@ -29,21 +29,21 @@ public class ResourcePoolTest {
     public void acquireTheSameReleasedResource() {
 
         pool.release(resource);
-        Resource resource2 = pool.acquire();
-        assertEquals(resource, resource2);
+        Resource actualResource = pool.acquire();
+        assertEquals(resource, actualResource);
     }
 
     @Test
     public void acquireTwoDifferentResources() {
 
-        Resource resource2 = pool.acquire();
-        assertNotSame(resource, resource2);
+        Resource actualResource = pool.acquire();
+        assertNotSame(resource, actualResource);
     }
 
     @Test(expected = NoAvailableResourcesException.class)
     public void cannotAcquireResource() {
 
-        Resource resource2 = pool.acquire();
-        Resource resource3 = pool.acquire();        
+        Resource first = pool.acquire();
+        Resource second = pool.acquire();
     }
 }
