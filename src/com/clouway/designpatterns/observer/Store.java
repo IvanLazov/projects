@@ -33,7 +33,10 @@ public class Store {
     public void register(Product product) {
 
         listOfRegisteredProducts.put(product.getName(), product);
-        registeredProductListener.onRegisteredProductUpdate(product);
+
+        if (registeredProductListener != null) {
+            registeredProductListener.onRegisteredProductUpdate(product);
+        }
     }
 
     /**
