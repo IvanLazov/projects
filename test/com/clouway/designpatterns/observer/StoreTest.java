@@ -3,9 +3,7 @@ package com.clouway.designpatterns.observer;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -16,7 +14,6 @@ import static org.junit.Assert.assertEquals;
 public class StoreTest {
 
     private final Map<String, Product> listOfRegisteredProducts = new HashMap<String, Product>();
-    private final List<Product> listOfSoldProducts = new ArrayList<Product>();
 
     private Store store = new Store(listOfRegisteredProducts);
     private Product product = new Product("Acer");
@@ -37,7 +34,7 @@ public class StoreTest {
         store.register(sony);
         assertEquals(sony, listOfRegisteredProducts.get("Sony"));
     }
-
+    
     @Test
     public void registeringProductInStoreShouldNotifyListener() {
 
@@ -47,16 +44,8 @@ public class StoreTest {
     }
 
     @Test
-    public void registeredProductMustBeInTheRegisteredProductsList() {
-
-        store.register(product);
-        assertEquals(product, listOfRegisteredProducts.get("Acer"));
-    }
-
-    @Test
     public void sellProductFromStore() {
 
-        store.register(product);
         store.sell(product.getName());
         assertEquals(null, listOfRegisteredProducts.get(product.getName()));
     }
@@ -65,15 +54,6 @@ public class StoreTest {
     public void sellingProductFromStoreShouldNotifyListener() {
 
         store.addSoldProductListener(mockSoldProductListener);
-        store.register(product);
-        store.sell(product.getName());
-    }
-
-    @Test
-    public void soldProductMustBeInTheSoldProductsList() {
-
-        store.addSoldProductListener(mockSoldProductListener);
-        store.register(product);
         store.sell(product.getName());
         assertEquals(product, mockSoldProductListener.product);
     }
