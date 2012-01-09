@@ -22,7 +22,7 @@ public class StoreTest {
 
     private final Map<String, Product> listOfRegisteredProducts = new HashMap<String, Product>();
     private final List<Product> listOfSoldProducts = new ArrayList<Product>();
-    
+
     private Mockery context = new JUnit4Mockery();
 
     private final RegisteredProductListener registeredProductListener = context.mock(RegisteredProductListener.class);
@@ -37,10 +37,10 @@ public class StoreTest {
         store.register(product);
         assertEquals(product, listOfRegisteredProducts.get("Acer"));
     }
-    
+
     @Test
     public void registeringProductInStoreShouldNotifyListener() {
-        
+
         final Product product = new Product("Acer");
         Store store = new Store(listOfRegisteredProducts);
         store.addRegisterProductListener(registeredProductListener);
@@ -51,10 +51,10 @@ public class StoreTest {
 
         store.register(product);
     }
-    
+
     @Test
     public void registeredProductMustBeInTheRegisteredProductsList() {
-        
+
         Product product = new Product("Acer");
         Store store = new Store(listOfRegisteredProducts);
         store.addRegisterProductListener(new RegisteredProducts(listOfRegisteredProducts));
@@ -64,20 +64,20 @@ public class StoreTest {
 
     @Test
     public void sellProductFromStore() {
-        
+
         Product product = new Product("Acer");
         Store store = new Store(listOfRegisteredProducts);
         store.addRegisterProductListener(new RegisteredProducts(listOfRegisteredProducts));
         store.addSoldProductListener(new SoldProduct(new ArrayList<Product>()));
 
-        store.register(product);        
+        store.register(product);
         store.sell("Acer");
         assertEquals(null, listOfRegisteredProducts.get("Acer"));
     }
 
     @Test
     public void sellingProductFromStoreShouldNotifyListener() {
-        
+
         final Product product = new Product("Acer");
         Store store = new Store(listOfRegisteredProducts);
         store.addRegisterProductListener(new RegisteredProducts(listOfRegisteredProducts));
