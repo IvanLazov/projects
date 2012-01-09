@@ -8,11 +8,38 @@ import java.util.List;
  */
 public interface TripBase {
 
-    void save(Trip trip) throws SQLException; // save trip in data source
+    /**
+     * Save trip in database
+     *
+     * @param trip the Trip to be saved
+     * @throws SQLException if an error occurs
+     */
+    void save(Trip trip) throws SQLException;
 
-    void update(String id, String arrivalDate, String departureDate, String city) throws SQLException; // update trip information
+    /**
+     * Update trip information
+     *
+     * @param id id of Person
+     * @param arrivalDate new arrival date
+     * @param departureDate new departure date
+     * @param city trip destination
+     * @throws SQLException if an error occurs
+     */
+    void update(String id, String arrivalDate, String departureDate, String city) throws SQLException;
 
-    List<Trip> getAllTrips() throws SQLException; // get all trips from the data source
+    /**
+     * Return a list of all trips from the database
+     *
+     * @return a list of all trips in the database
+     * @throws SQLException if an error occurs
+     */
+    List<Trip> getAllTrips() throws SQLException;
 
-    List<City> getAllCitiesOrderedByNumberOfVisits() throws SQLException; // return a list of Cities ordered by number of visits
+    /**
+     * Return a list of Cities ordered by the number of visits
+     *
+     * @return a list of Cities ordered by the number of visits
+     * @throws SQLException if an error occurs
+     */
+    List<City> getAllCitiesOrderedByNumberOfVisits() throws SQLException;
 }

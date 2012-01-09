@@ -8,17 +8,64 @@ import java.util.List;
  */
 public interface PeopleBase {
 
-    void save(Person person) throws SQLException; // save person in data source
+    /**
+     * Save a Person in database
+     *
+     * @param person Person to be saved in database
+     * @throws SQLException if an error occurs
+     */
+    void save(Person person) throws SQLException;
 
-    void update(String id, String email) throws SQLException; // update person email address, must provide valid person id
+    /**
+     * Update person email address
+     *
+     * @param id id of Person
+     * @param email new email address of the person
+     * @throws SQLException if an error occurs
+     */
+    void update(String id, String email) throws SQLException;
 
-    void deletePerson(String id) throws SQLException; // delete person from data source
+    /**
+     * Delete person from database
+     *
+     * @param id id of Person
+     * @throws SQLException if an error occurs
+     */
+    void deletePerson(String id) throws SQLException;
 
-    Person getPerson(String id) throws SQLException; // return person with given id
-    
-    List<Person> getAllPeople() throws SQLException; // return a List of all Persons saved in the data source
+    /**
+     * Get person with given id
+     *
+     * @param id id of Person
+     * @return a Person from the database if exists
+     * @throws SQLException if an error occurs
+     */
+    Person getPerson(String id) throws SQLException;
 
-    List<Person> getAllPeopleWhichNameStartsWith(String letters) throws SQLException; // return a List of all Persons which name starts with given letter
+    /**
+     * Return a list of all Persons saved in the database
+     *
+     * @return a list of all Persons in the database
+     * @throws SQLException if an error occurs
+     */
+    List<Person> getAllPeople() throws SQLException;
 
-    List<Person> getAllPeopleInTheSameCityAtTheSameDate(String date, String city) throws SQLException; // return a List of all Persons which are at the same city at the same time
+    /**
+     * Return a list of Persons which name starts with the given letter
+     *
+     * @param letters the letters with which the name must start
+     * @return a list of persons which name starts with the given letter
+     * @throws SQLException if an error occurs
+     */
+    List<Person> getAllPeopleWhichNameStartsWith(String letters) throws SQLException;
+
+    /**
+     * Return a list of all Persons which are at the same city at the same time
+     *
+     * @param date searched date
+     * @param city searched city
+     * @return a list of all Persons which are at the same city at the same time
+     * @throws SQLException if an error occurs
+     */
+    List<Person> getAllPeopleInTheSameCityAtTheSameDate(String date, String city) throws SQLException;
 }

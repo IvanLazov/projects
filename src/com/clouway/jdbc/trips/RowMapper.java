@@ -8,5 +8,12 @@ import java.sql.SQLException;
  */
 public interface RowMapper<T> {
 
-    T map(ResultSet resultSet) throws SQLException; // Return an object of type T from the given ResultSet
+    /**
+     * Return an object of type T from the given ResultSet
+     *
+     * @param resultSet the ResultSet which we use to create the object
+     * @return an object of type T from the given ResultSet
+     * @throws SQLException if an error occurs
+     */
+    T map(ResultSet resultSet) throws SQLException;
 }
