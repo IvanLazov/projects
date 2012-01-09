@@ -53,8 +53,8 @@ public class PeopleBaseTest {
     @Test
     public void deletePersonFromDatabase() throws SQLException {
         
-        peopleBase.deletePerson("8912271450");
-        assertEquals(person, peopleBase.getAllPeople().get(0));
+        peopleBase.deletePerson(person2.getId());
+        assertEquals(person, databaseHelper.executeQuery("SELECT * FROM person", personRowMapper).get(0));
     }
 
     @Test
