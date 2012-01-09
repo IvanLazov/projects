@@ -8,5 +8,10 @@ package com.clouway.designpatterns.observer;
  */
 public interface SoldProductListener {
 
-    void onSoldProductUpdate(Product product); // when a product is sold from the store, the class is notified about which product is sold
+    /**
+     * When a product is sold from the store, the class that implements this interface is notified
+     *
+     * @param product sold product
+     */
+    void onSoldProductUpdate(Product product);
 }

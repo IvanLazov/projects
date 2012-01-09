@@ -8,5 +8,10 @@ package com.clouway.designpatterns.observer;
  */
 public interface RegisteredProductListener {
 
-    void onRegisteredProductUpdate(Product product); // when a product is added to the store, the class is notified about which product is added
+    /**
+     * When a product is added to the store, the class that implements this interface is notified
+     *
+     * @param product added product in store
+     */
+    void onRegisteredProductUpdate(Product product);
 }
