@@ -122,6 +122,15 @@ public class PeopleBaseTest {
         assertEquals("No persons are registered for this date & city", 0, peopleBase.getAllPeopleInTheSameCityAtTheSameDate("2012-09-20", "New York").size());
     }
     
+    @Test
+    public void updatesOfPersonTableAreSavedInPersonUpdatesTable() throws SQLException {
+        
+        savePersons(ivan, ivelin, krasimir);
+        
+        peopleBase.update(ivan.getId(), "ivan@gmail.com");
+        assertEquals(ivan.getEmail(), databaseHelper.executeQuery("SELECT * FROM personUpdates", personRowMapper).get(0).getEmail());
+    }
+    
     @After
     public void deleteData() throws SQLException {
 
