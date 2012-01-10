@@ -23,6 +23,7 @@ public class PeopleBaseImpl implements PeopleBase {
     /**
      * Save person into the Database
      *
+     *
      * @param person the person which will be saved
      * @throws SQLException if an error occurs
      */
@@ -52,18 +53,6 @@ public class PeopleBaseImpl implements PeopleBase {
     public void deletePerson(String id) throws SQLException {
 
         databaseHelper.executeQuery("DELETE FROM person WHERE id=?", id);
-    }
-
-    /**
-     * Return a Person with given id
-     *
-     * @param id id of the Person
-     * @return a Person from the Database
-     * @throws SQLException if an error occurs
-     */
-    public Person getPerson(String id) throws SQLException {
-
-        return databaseHelper.executeQuery("SELECT * FROM person WHERE id=?", new PersonRowMapper(), id).get(0);
     }
 
     /**
