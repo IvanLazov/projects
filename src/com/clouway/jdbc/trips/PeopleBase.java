@@ -11,6 +11,7 @@ public interface PeopleBase {
     /**
      * Save a Person in database
      *
+     *
      * @param person Person to be saved in database
      * @throws SQLException if an error occurs
      */
@@ -32,15 +33,6 @@ public interface PeopleBase {
      * @throws SQLException if an error occurs
      */
     void deletePerson(String id) throws SQLException;
-
-    /**
-     * Get person with given id
-     *
-     * @param id id of Person
-     * @return a Person from the database if exists
-     * @throws SQLException if an error occurs
-     */
-    Person getPerson(String id) throws SQLException;
 
     /**
      * Return a list of all Persons saved in the database
