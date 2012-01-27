@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE information [
+        <!ELEMENT information (employee+)>
+        <!ELEMENT employee (firstName, lastName, age, position, employer+, address+)>
+        <!ELEMENT firstName (#PCDATA)>
+        <!ELEMENT lastName (#PCDATA)>
+        <!ELEMENT age (#PCDATA)>
+        <!ELEMENT position (#PCDATA)>
+        <!ELEMENT employer (name, startDate, endDate)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT startDate (#PCDATA)>
+        <!ELEMENT endDate (#PCDATA)>
+        <!ELEMENT address (street, streetNo, section, city)>
+        <!ELEMENT street (#PCDATA)>
+        <!ELEMENT streetNo (#PCDATA)>
+        <!ELEMENT section (#PCDATA)>
+        <!ELEMENT city (#PCDATA)>
+        ]>
+<information>
+    <employee>
+        <firstName>Ivan</firstName>
+        <lastName>Lazov</lastName>
+        <age>22</age>
+        <position>programmer</position>
+        <employer>
+            <name>Miroslav Genov</name>
+            <startDate>2011-09-07</startDate>
+            <endDate>2016-09-07</endDate>
+        </employer>
+        <address>
+            <street>Dimitur Blagoev</street>
+            <streetNo>19</streetNo>
+            <section>1</section>
+            <city>Veliko Turnovo</city>
+        </address>
+        <address>
+            <street>Alen Mak</street>
+            <streetNo>3</streetNo>
+            <section>1</section>
+            <city>Veliko Turnovo</city>
+        </address>
+    </employee>
+</information>
