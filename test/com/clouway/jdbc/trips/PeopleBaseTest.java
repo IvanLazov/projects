@@ -41,16 +41,16 @@ public class PeopleBaseTest {
         assertEquals(3, databaseHelper.executeQuery("SELECT * FROM person", personRowMapper).size());
     }
 
-    @Test
-    public void updatePersonEmail() throws SQLException {
-
-        savePersons(ivan, ivelin);
-
-        peopleBase.update(ivan.getId(), "ivan@gmail.com");
-
-        assertEquals("ivan@gmail.com", databaseHelper.executeQuery("SELECT * FROM person", personRowMapper).get(0).getEmail());
-        assertEquals(ivelin.getEmail(), databaseHelper.executeQuery("SELECT * FROM person", personRowMapper).get(1).getEmail());
-    }
+//    @Test
+//    public void updatePersonEmail() throws SQLException {
+//
+//        savePersons(ivan, ivelin);
+//
+//        peopleBase.update(ivan.getId(), "ivan@gmail.com");
+//
+//        assertEquals("ivan@gmail.com", databaseHelper.executeQuery("SELECT * FROM person", personRowMapper).get(0).getEmail());
+//        assertEquals(ivelin.getEmail(), databaseHelper.executeQuery("SELECT * FROM person", personRowMapper).get(1).getEmail());
+//    }
 
     @Test
     public void showPeopleWhichNameStartsWithLetterI() throws SQLException {
@@ -123,14 +123,14 @@ public class PeopleBaseTest {
         assertEquals("No persons are registered for this date & city", 0, peopleBase.getAllPeopleInTheSameCityAtTheSameDate("2012-09-20", "New York").size());
     }
     
-    @Test
-    public void updatesOfPersonTableAreSavedInPersonUpdatesTable() throws SQLException {
-        
-        savePersons(ivan, ivelin, krasimir);
-        
-        peopleBase.update(ivan.getId(), "ivan@gmail.com");
-        assertEquals(ivan.getEmail(), databaseHelper.executeQuery("SELECT * FROM personUpdates", personRowMapper).get(0).getEmail());
-    }
+//    @Test
+//    public void updatesOfPersonTableAreSavedInPersonUpdatesTable() throws SQLException {
+//
+//        savePersons(ivan, ivelin, krasimir);
+//
+//        peopleBase.update(ivan.getId(), "ivan@gmail.com");
+//        assertEquals(ivan.getEmail(), databaseHelper.executeQuery("SELECT * FROM personUpdates", personRowMapper).get(0).getEmail());
+//    }
     
     @After
     public void deleteData() throws SQLException {
