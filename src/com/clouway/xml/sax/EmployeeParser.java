@@ -44,13 +44,13 @@ public class EmployeeParser extends DefaultHandler {
     /**
      * Parse the XML file
      */
-    public void parseDocument() {
+    public void parse() {
 
         SAXParserFactory factory = SAXParserFactory.newInstance();
 
         try {
             SAXParser parser = factory.newSAXParser();
-            parser.parse("employee.xml", this);
+            parser.parse("employee", this);
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (SAXException e) {

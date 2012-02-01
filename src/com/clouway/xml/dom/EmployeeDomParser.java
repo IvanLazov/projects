@@ -9,7 +9,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,7 @@ import java.util.List;
  * <p/>
  * Created by Ivan Lazov (darkpain1989@gmail.com)
  */
-public class XmlDomParser {
+public class EmployeeDomParser {
 
   private Document document;
   private List<Employee> employeeList = new ArrayList<Employee>();
@@ -26,21 +25,29 @@ public class XmlDomParser {
   /**
    * Parse the XML file
    */
-  public void parse() {
+  public void parse() throws ParserConfigurationException, IOException, SAXException {
 
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    DocumentBuilder builder = factory.newDocumentBuilder();
+    document = builder.parse("employee");
+  }
 
-    try {
+  interface ElementVisitor {
 
-      DocumentBuilder builder = factory.newDocumentBuilder();
-      document = builder.parse("employee.xml");
+    void visitElement(Element element);
+  }
 
-    } catch (ParserConfigurationException e) {
-      e.printStackTrace();
-    } catch (SAXException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
+  private void walk(String tagName, ElementVisitor visitor) {
+
+    NodeList nodeList = document.getElementsByTagName(tagName);
+
+    if (nodeList != null && nodeList.getLength() > 0) {
+
+      for (int i = 0; i < nodeList.getLength(); i++) {
+
+        Element element = (Element) nodeList.item(i);
+        visitor.visitElement(element);
+      }
     }
   }
 
@@ -52,18 +59,16 @@ public class XmlDomParser {
   public List<Employee> getEmployeeList() {
 
     walk("employee", new ElementVisitor() {
+
       public void visitElement(Element element) {
+
         Employee employee = createEmployee(element);
         employeeList.add(employee);
       }
     });
+
     return employeeList;
   }
-
-  interface ElementVisitor {
-    void visitElement(Element element);
-  }
-
 
   /**
    * Returns a list of Address objects
@@ -73,8 +78,11 @@ public class XmlDomParser {
   private List<Address> getAddressesList() {
 
     final List<Address> addressList = new ArrayList<Address>();
+
     walk("address", new ElementVisitor() {
+
       public void visitElement(Element element) {
+
         Address address = createAddress(element);
         addressList.add(address);
       }
@@ -83,38 +91,23 @@ public class XmlDomParser {
     return addressList;
   }
 
-  private void walk(String tagName, ElementVisitor visitor) {
-
-    NodeList nodeList = document.getElementsByTagName(tagName);
-
-    if (nodeList != null && nodeList.getLength() > 0) {
-      for (int i = 0; i < nodeList.getLength(); i++) {
-        Element element = (Element) nodeList.item(i);
-        visitor.visitElement(element);
-      }
-    }
-
-  }
-
   /**
    * Returns a list of Employer objects
    *
    * @return list of Employer objects
    */
   private List<Employer> getEmployersList() {
+    
+    final List<Employer> employerList = new ArrayList<Employer>();
+    
+    walk("employer", new ElementVisitor() {
 
-    NodeList nodeList = document.getElementsByTagName("employer");
-    List<Employer> employerList = new ArrayList<Employer>();
+      public void visitElement(Element element) {
 
-    if (nodeList != null && nodeList.getLength() > 0) {
-
-      for (int i = 0; i < nodeList.getLength(); i++) {
-
-        Element element = (Element) nodeList.item(i);
         Employer employer = createEmployer(element);
         employerList.add(employer);
       }
-    }
+    });
 
     return employerList;
   }

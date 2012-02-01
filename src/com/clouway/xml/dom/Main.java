@@ -12,7 +12,7 @@ public class Main {
 
   public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
 
-    XmlDomParser parser = new XmlDomParser();
+    EmployeeDomParser parser = new EmployeeDomParser();
     parser.parse();
 
     System.out.println(parser.getEmployeeList());

@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         EmployeeParser parser = new EmployeeParser(new ObjectMaker());
-        parser.parseDocument();
+        parser.parse();
 
         System.out.println(parser.getEmployeeList());
     }
