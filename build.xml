@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<project name="MyProject" basedir=".">
+
+	<!-- Define properties -->
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="lib.dir" value="${basedir}/lib" />
+	<property name="target.dir" value="${basedir}/target" />
+	<property name="classes.dir" value="${basedir}/classes" />
+	
+	<!-- Clean -->
+	<target name="clean" description="Delete build files">		
+		<delete dir="${classes.dir}" /> 		
+		<delete dir="${target.dir}" />
+	</target>
+	
+	<!-- Compile src -->
+	<target name="compile" depends="clean">
+		<mkdir dir="${classes.dir}" />
+
+		<javac destdir="${classes.dir}" includeantruntime="false">
+			<classpath>
+				<fileset dir="${lib.dir}">
+					<include name="*.jar" />
+				</fileset>			
+			</classpath>
+
+			<src path="${src.dir}" />
+		</javac>
+	</target>
+
+	<!-- Package -->
+	<target name="package" depends="compile">
+		<mkdir dir="${target.dir}" />
+		<mkdir dir="${target.dir}/lib" />
+		
+		<jar destfile="${target.dir}/${ant.project.name}.jar">
+			<manifest>
+				<attribute name="Created-By" value="Ivan Lazov" />
+				<attribute name="Main-Class" value="com.clouway.Main" />			
+				<attribute name="Class-Path" value="${target.dir}/lib/log4j.jar" />
+			</manifest>
+
+			<fileset dir="${classes.dir}" />			
+		</jar>
+	
+		<copy todir="${target.dir}/lib">
+			<fileset dir="${lib.dir}">
+				<include name="*.jar" />
+			</fileset>
+		</copy>
+	</target>
+</project>
