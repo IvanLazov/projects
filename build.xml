@@ -37,7 +37,7 @@
 			<manifest>
 				<attribute name="Created-By" value="Ivan Lazov" />
 				<attribute name="Main-Class" value="com.clouway.Main" />			
-				<attribute name="Class-Path" value="${target.dir}/lib/log4j.jar" />
+				<attribute name="Class-Path" value="lib/log4j.jar" />
 			</manifest>
 
 			<fileset dir="${classes.dir}" />			
