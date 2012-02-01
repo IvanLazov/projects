@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        XmlSaxParser parser = new XmlSaxParser(new ObjectMaker());
+        EmployeeParser parser = new EmployeeParser(new ObjectMaker());
         parser.parseDocument();
 
         System.out.println(parser.getEmployeeList());

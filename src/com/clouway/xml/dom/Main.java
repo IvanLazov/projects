@@ -10,11 +10,11 @@ import java.io.IOException;
  */
 public class Main {
 
-    public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
+  public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
 
-        XmlDomParser parser = new XmlDomParser();
-        parser.parseDocument();
+    XmlDomParser parser = new XmlDomParser();
+    parser.parse();
 
-        System.out.println(parser.getEmployeeList());
-    }
+    System.out.println(parser.getEmployeeList());
+  }
 }

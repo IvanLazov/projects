@@ -17,7 +17,7 @@ public class ObjectMaker {
      */
     public ObjectMaker() {
 
-        tagNameToClass.put("employee", Employee.class);
+        tagNameToClass.put("employee.xml", Employee.class);
         tagNameToClass.put("employer", Employer.class);
         tagNameToClass.put("address", Address.class);
     }
