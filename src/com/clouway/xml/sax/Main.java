@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        EmployeeParser parser = new EmployeeParser(new ObjectMaker());
+        EmployeeSAXParser parser = new EmployeeSAXParser(new ObjectMaker());
         parser.parse();
 
         System.out.println(parser.getEmployeeList());

@@ -29,7 +29,7 @@ public class EmployeeDomParser {
 
     DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
     DocumentBuilder builder = factory.newDocumentBuilder();
-    document = builder.parse("employee");
+    document = builder.parse("employee.xml");
   }
 
   interface ElementVisitor {

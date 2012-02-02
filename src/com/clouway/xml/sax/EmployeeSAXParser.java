@@ -19,7 +19,7 @@ import java.util.Map;
  *
  * Created by Ivan Lazov (darkpain1989@gmail.com)
  */
-public class EmployeeParser extends DefaultHandler {
+public class EmployeeSAXParser extends DefaultHandler {
 
     private String tag; // current tag
     private final ObjectMaker objectMaker;
@@ -32,11 +32,11 @@ public class EmployeeParser extends DefaultHandler {
     private List<Address> addressList = new ArrayList<Address>(); // list of Address objects
 
     /**
-     * Constructor sets which ObjectMaker the EmployeeParser will use to create objects
+     * Constructor sets which ObjectMaker the EmployeeSAXParser will use to create objects
      *
      * @param objectMaker ObjectMaker which we will use to create objects
      */
-    public EmployeeParser(ObjectMaker objectMaker) {
+    public EmployeeSAXParser(ObjectMaker objectMaker) {
 
         this.objectMaker = objectMaker;
     }
@@ -50,7 +50,7 @@ public class EmployeeParser extends DefaultHandler {
 
         try {
             SAXParser parser = factory.newSAXParser();
-            parser.parse("employee", this);
+            parser.parse("employee.xml", this);
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         } catch (SAXException e) {
