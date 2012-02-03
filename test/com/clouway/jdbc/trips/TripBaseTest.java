@@ -28,11 +28,14 @@ public class TripBaseTest {
         databaseHelper.connectToDataSource();
     }
 
+    @Before
+    public void saveData() throws SQLException {
+      
+      savePersons(ivan, martin);
+      saveTrips(first, second, third);
+    }
     @Test
     public void saveTripInDatabase() throws SQLException {
-
-        savePersons(ivan, martin);
-        saveTrips(first, second, third);
 
         assertEquals(first, databaseHelper.executeQuery("SELECT * FROM trip", new TripRowMapper()).get(0));
         assertEquals(second, databaseHelper.executeQuery("SELECT * FROM trip", new TripRowMapper()).get(1));
@@ -41,9 +44,6 @@ public class TripBaseTest {
     
     @Test
     public void changeTripArrivalDate() throws SQLException {
-
-        savePersons(ivan, martin);
-        saveTrips(first, second, third);
 
         tripBase.update(ivan.getId(), "2012-11-11", "2012-11-20", "Paris");
 
@@ -56,9 +56,6 @@ public class TripBaseTest {
     @Test
     public void getAllTrips() throws SQLException {
 
-        savePersons(ivan, martin);
-        saveTrips(first, second, third);
-
         assertEquals(first, databaseHelper.executeQuery("SELECT * FROM trip", new TripRowMapper()).get(0));
         assertEquals(second, databaseHelper.executeQuery("SELECT * FROM trip", new TripRowMapper()).get(1));
         assertEquals(third, databaseHelper.executeQuery("SELECT * FROM trip", new TripRowMapper()).get(2));
@@ -66,9 +63,6 @@ public class TripBaseTest {
 
     @Test
     public void showCitiesOrderedByNumberOfVisitors() throws SQLException {
-
-        savePersons(ivan, martin);
-        saveTrips(first, second, third);
 
         assertEquals(new City("Paris", 2), tripBase.getAllCitiesOrderedByNumberOfVisits().get(0));
         assertEquals(new City("New York", 1), tripBase.getAllCitiesOrderedByNumberOfVisits().get(1));
