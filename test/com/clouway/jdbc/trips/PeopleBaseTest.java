@@ -32,11 +32,14 @@ public class PeopleBaseTest {
         databaseHelper.connectToDataSource();
     }
 
+    @Before
+    public void saveData() throws SQLException {
+
+      savePersons(ivan, ivelin, krasimir);
+    }
 
     @Test
     public void savePersonInDatabase() throws SQLException {
-
-        savePersons(ivan, ivelin, krasimir);
 
         assertEquals(3, databaseHelper.executeQuery("SELECT * FROM person", personRowMapper).size());
     }
@@ -55,32 +58,24 @@ public class PeopleBaseTest {
     @Test
     public void showPeopleWhichNameStartsWithLetterI() throws SQLException {
 
-        savePersons(ivan, ivelin, krasimir);
-
         assertEquals(ivan, peopleBase.getAllPeopleWhichNameStartsWith("I").get(0));
         assertEquals(ivelin, peopleBase.getAllPeopleWhichNameStartsWith("I").get(1));
     }
 
     @Test
     public void showPeopleWhichNameStartsWithLettersIve() throws SQLException {
-        
-        savePersons(ivan, ivelin, krasimir);
 
         assertEquals(ivelin, peopleBase.getAllPeopleWhichNameStartsWith("Ive").get(0));
     }
     
     @Test
     public void showPeopleWhichNameStartsWithLetterK() throws SQLException {
-        
-        savePersons(ivan, ivelin, krasimir);
 
         assertEquals(krasimir, peopleBase.getAllPeopleWhichNameStartsWith("K").get(0));
     }
     
     @Test
     public void showPeopleWhichNameStartsWithEmptyString() throws SQLException {
-        
-        savePersons(ivan, ivelin, krasimir);
 
         assertEquals("This will return all saved persons in the database", 3, peopleBase.getAllPeopleWhichNameStartsWith("").size());
     }
@@ -88,15 +83,11 @@ public class PeopleBaseTest {
     @Test
     public void showPeopleWhichNameStartsWithNull() throws SQLException {
 
-        savePersons(ivan, ivelin, krasimir);
-
         assertEquals("Returns an empty list", new ArrayList<Person>(), peopleBase.getAllPeopleWhichNameStartsWith(null));
     }
 
     @Test
     public void deletePersonFromDatabase() throws SQLException {
-
-        savePersons(ivan, ivelin, krasimir);
 
         peopleBase.deletePerson(ivan.getId());
 
@@ -106,8 +97,7 @@ public class PeopleBaseTest {
     
     @Test
     public void showAllPeopleInTheSameCityAtTheSameTime() throws SQLException {
-        
-        savePersons(ivan, ivelin, krasimir);
+
         saveTrips(first, second, third);
 
         assertEquals(ivan, peopleBase.getAllPeopleInTheSameCityAtTheSameDate("2012-01-18", "Paris").get(0));
@@ -116,8 +106,7 @@ public class PeopleBaseTest {
 
     @Test
     public void showAllPeopleInTheSameCityAtTheSameTime2() throws SQLException {
-        
-        savePersons(ivan, ivelin, krasimir);
+
         saveTrips(first, second, third);
 
         assertEquals("No persons are registered for this date & city", 0, peopleBase.getAllPeopleInTheSameCityAtTheSameDate("2012-09-20", "New York").size());
