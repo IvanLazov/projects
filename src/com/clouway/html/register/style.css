@@ -1,0 +1,32 @@
+#divLayout {
+
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f3f3f3;
+    border: solid 1px #a1a1a1;
+    width: 300px;
+
+}
+
+#form label, #form input {
+
+    width: 122px;
+    float: left;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+
+#form label {
+
+    text-align: right;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+
+br {
+
+    clear: both;
+
+}
