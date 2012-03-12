@@ -74,4 +74,35 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     return password;
   }
+
+  public void logIn(String userName) {
+
+    try {
+      databaseHelper.executeQuery("INSERT INTO onlineUser(userName) VALUES(?)", userName);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public void logOut(String userName) {
+
+    try {
+      databaseHelper.executeQuery("DELETE FROM onlineUser WHERE userName=?", userName);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public int numberOfLoggedUsers() {
+
+    int count = 0;
+
+    try {
+      count = Integer.parseInt(databaseHelper.executeQueryResult("SELECT count(userName) FROM onlineUser"));
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return count;
+  }
 }

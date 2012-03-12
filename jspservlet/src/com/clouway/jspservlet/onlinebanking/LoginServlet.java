@@ -27,9 +27,13 @@ public class LoginServlet extends HttpServlet {
 
     try {
       userService.login(userName, password);
+      databaseService.logIn(userName);
+
       HttpSession session = request.getSession();
       session.setAttribute("userName", userName);
+
       response.sendRedirect("onlinebanking/home.jsp");
+
     } catch (UserNotRegisteredException exception) {
       response.sendRedirect("onlinebanking/login.jsp");
       return;

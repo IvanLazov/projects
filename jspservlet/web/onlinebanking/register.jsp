@@ -6,11 +6,17 @@
 <head>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Register Page</title>
+
+    <%
+        if (session.getAttribute("userName") != null) {
+            response.sendRedirect("home.jsp");
+        }
+    %>
+
 </head>
 <body>
-
     <!-- Register Form -->
-    <div id="form">
+    <div class="form">
         <p id="centerBold">Register Form</p>
         <form action="../register" method="post">
             <table>

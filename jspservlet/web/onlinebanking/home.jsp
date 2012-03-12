@@ -12,7 +12,7 @@
 
     <%
         if (session.getAttribute("userName") == null) {
-            response.sendRedirect("register.jsp");
+            response.sendRedirect("login.jsp");
         }
     %>
 
@@ -24,12 +24,16 @@
 </head>
 <body>
 
-    <!-- BankAccount Form -->
-    <div id="form">
+    <!-- Deposit / Withdraw  Form -->
+    <div class="form">
         <p id="centerBold">Bank Account</p>
 
         <form action="../deposit" method="post">
             <table>
+                <tr class="bottomMargin">
+                    <td>Active Users:</td>
+                    <td><%= databaseService.numberOfLoggedUsers() %></td>
+                </tr>
                 <tr class="bottomMargin">
                     <td>User: </td>
                     <td><%= session.getAttribute("userName").toString() %></td>
@@ -48,6 +52,13 @@
                     <td><input type="submit" name="withdraw" value="Withdraw" /></td>
                 </tr>
             </table>
+        </form>
+    </div>
+
+    <!-- Logout Form -->
+    <div id="logoutForm">
+        <form action="../logout" method="post">
+            <td><input type="submit" name="logout" value="Logout"/></td>
         </form>
     </div>
 

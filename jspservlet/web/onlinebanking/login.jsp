@@ -6,11 +6,19 @@
 <head>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Login Page</title>
+
+    <%
+        if (session.getAttribute("userName") != null) {
+            response.sendRedirect("home.jsp");
+        }
+    %>
+
+
 </head>
 <body>
 
     <!-- Login Form -->
-    <div id="form">
+    <div class="form">
         <p id="centerBold">Login Form</p>
         <form action="../login" method="post">
             <table>
@@ -25,6 +33,10 @@
                 <tr>
                     <td></td>
                     <td><input type="submit" value="Login" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><a href="register.jsp">Create a new account</a></td>
                 </tr>
             </table>
         </form>

@@ -16,4 +16,10 @@ public interface DatabaseService {
   String getUserName(String userName);
 
   String getPassword(String userName);
+  
+  void logIn(String userName);
+  
+  void logOut(String userName);
+  
+  int numberOfLoggedUsers();
 }

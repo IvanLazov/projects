@@ -21,6 +21,7 @@ public class DatabaseServiceTest {
     databaseService = new DatabaseServiceImpl(databaseHelper);
     databaseHelper.executeQuery("DELETE FROM account");
     databaseHelper.executeQuery("DELETE FROM user");
+    databaseHelper.executeQuery("DELETE FROM onlineUser");
   }
 
   @Test
@@ -45,6 +46,30 @@ public class DatabaseServiceTest {
   }
 
   @Test
+  public void logInUser() throws SQLException {
+    
+    databaseService.logIn("Ivan");
+    assertEquals("Ivan", databaseHelper.executeQueryResult("SELECT userName FROM onlineUser WHERE userName=?", "Ivan"));
+  }
+  
+  @Test
+  public void logOutUser() throws SQLException {
+    
+    databaseService.logIn("Ivan");
+    databaseService.logIn("Misho");
+    databaseService.logOut("Ivan");
+    assertEquals("1", databaseHelper.executeQueryResult("SELECT count(userName) FROM onlineUser"));
+    assertEquals("Misho", databaseHelper.executeQueryResult("SELECT userName FROM onlineUser WHERE userName=?", "Misho"));
+  }
+
+  @Test
+  public void numberOfLoggedUsers() throws SQLException {
+    
+    databaseService.logIn("Ivan");
+    assertEquals(databaseService.numberOfLoggedUsers(), Integer.parseInt(databaseHelper.executeQueryResult("SELECT count(userName) FROM onlineUser")));
+  }
+  
+  @Test
   public void newRegisteredUserHaveZeroBalanceInAccount() throws SQLException {
 
     databaseService.save("Ivan", "123456");
@@ -65,7 +90,7 @@ public class DatabaseServiceTest {
     databaseService.save("Ivan", "123456");
     databaseService.updateBalance("Ivan", 260.00);
     assertEquals(260.00, databaseService.getBalance("Ivan"));
-  }  
+  }
   
   @Test
   public void getUserName() throws SQLException {

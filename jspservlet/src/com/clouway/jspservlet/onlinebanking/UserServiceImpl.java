@@ -35,8 +35,8 @@ public class UserServiceImpl implements UserService {
     if (!isSumValid(sum)) {
       throw new InvalidDataException();
     }
-    
-    databaseService.updateBalance(userName, Double.parseDouble(sum));
+
+    databaseService.updateBalance(userName, databaseService.getBalance(userName) + Double.parseDouble(sum));
   }
 
   public void withdraw(String userName, String sum) {
@@ -45,10 +45,10 @@ public class UserServiceImpl implements UserService {
       throw new InvalidDataException();
     }
 
-    double currentBalance = databaseService.getBalance(userName);
-
-    if ((currentBalance - Double.parseDouble(sum)) > 0) {
-      databaseService.updateBalance(userName, Double.parseDouble(sum));
+    Double currentBalance = databaseService.getBalance(userName) - Double.parseDouble(sum);
+    
+    if (currentBalance  >= 0) {
+      databaseService.updateBalance(userName, currentBalance);
     }
   }
 

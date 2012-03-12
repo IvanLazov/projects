@@ -23,7 +23,7 @@ public class UserServiceTest {
   
   @Before
   public void setUp() {
-    userService = new UserServiceImpl(databaseService);
+    userService = new UserServiceImpl(databaseService);    
   }
 
   @Test
@@ -100,6 +100,7 @@ public class UserServiceTest {
 
     context.checking(new Expectations(){{
       oneOf(databaseService).updateBalance("Ivan", 100);
+      oneOf(databaseService).getBalance("Ivan");
     }});
 
     userService.deposit("Ivan", "100");
@@ -110,6 +111,7 @@ public class UserServiceTest {
 
     context.checking(new Expectations(){{
       oneOf(databaseService).updateBalance("Ivan", 150.22);
+      oneOf(databaseService).getBalance("Ivan");
     }});
 
     userService.deposit("Ivan", "150.22");
@@ -141,13 +143,14 @@ public class UserServiceTest {
   
   @Test
   public void withdrawMoney() {
-    
+
     context.checking(new Expectations(){{
-      oneOf(databaseService).getBalance("Ivan"); will(returnValue(1000.00));
-      oneOf(databaseService).updateBalance("Ivan", 100);
+      oneOf(databaseService).getBalance("Ivan");
+      will(returnValue(100.00));
+      oneOf(databaseService).updateBalance("Ivan", 50.00);
     }});
 
-    userService.withdraw("Ivan", "100");
+    userService.withdraw("Ivan", "50.00");
   }
 
   @Test(expected = InvalidDataException.class)
@@ -164,7 +167,7 @@ public class UserServiceTest {
 
   @Test
   public void shouldNotWithdrawMoneyIfCurrentUserBalanceIsNotEnough() {
-    
+
     context.checking(new Expectations(){{
       oneOf(databaseService).getBalance("Ivan");
       will(returnValue(100.00));

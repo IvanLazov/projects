@@ -12,6 +12,7 @@ CREATE TABLE account (
   FOREIGN KEY (userId) REFERENCES user(userId)
 ) ENGINE = InnoDB;
 
-DELETE FROM account WHERE userId = (SELECT userId FROM user WHERE userName='Ivan');
-
-DELETE FROM user WHERE userName ='Ivan';
+CREATE TABLE onlineUser (
+  userId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  userName VARCHAR(20) NOT NULL
+) ENGINE = InnoDB;
