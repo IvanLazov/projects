@@ -1,0 +1,17 @@
+CREATE TABLE user (
+  userId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  userName VARCHAR(20) NOT NULL,
+  password VARCHAR(20) NOT NULL,
+  UNIQUE KEY (userName)
+) ENGINE = InnoDB;
+
+CREATE TABLE account (
+  accountId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  userId INT NOT NULL,
+  balance DOUBLE NOT NULL,
+  FOREIGN KEY (userId) REFERENCES user(userId)
+) ENGINE = InnoDB;
+
+DELETE FROM account WHERE userId = (SELECT userId FROM user WHERE userName='Ivan');
+
+DELETE FROM user WHERE userName ='Ivan';
