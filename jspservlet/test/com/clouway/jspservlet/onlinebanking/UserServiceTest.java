@@ -117,25 +117,25 @@ public class UserServiceTest {
     userService.deposit("Ivan", "150.22");
   }
 
-  @Test(expected = InvalidDataException.class)
+  @Test(expected = InvalidFormatException.class)
   public void shouldNotDepositMoneyIfEnteredSumHasCommaInsteadOfDecimalPoint() {
 
     userService.deposit("Ivan", "540,30");
   }
 
-  @Test(expected = InvalidDataException.class)
+  @Test(expected = InvalidFormatException.class)
   public void shouldNotDepositMoneyIfEnteredSumLengthIsMoreThanFiveCharacters() {
 
     userService.deposit("Ivan", "850666.00");
   }
   
-  @Test(expected = InvalidDataException.class)
+  @Test(expected = InvalidFormatException.class)
   public void shouldNotDepositMoneyIfEnteredSumDoesNotContainsNumbers() {
 
     userService.deposit("Ivan", "abc");
   }
 
-  @Test(expected = InvalidDataException.class)
+  @Test(expected = InvalidFormatException.class)
   public void shouldNotDepositMoneyIfSumIsNegative() {
 
     userService.deposit("Ivan", "-10");
@@ -153,13 +153,13 @@ public class UserServiceTest {
     userService.withdraw("Ivan", "50.00");
   }
 
-  @Test(expected = InvalidDataException.class)
+  @Test(expected = InvalidFormatException.class)
   public void shouldNotWithdrawMoneyIfEnteredSumDoesNotContainsNumbers() {
 
     userService.withdraw("Ivan", "abc");
   }
 
-  @Test(expected = InvalidDataException.class)
+  @Test(expected = InvalidFormatException.class)
   public void shouldNotWithdrawMoneyIfEnteredSumIsNegative() {
 
     userService.withdraw("Ivan", "-10");

@@ -1,6 +1,6 @@
 package com.clouway.jspservlet.onlinebanking;
 
-import com.clouway.jspservlet.onlinebanking.exceptions.InvalidDataException;
+import com.clouway.jspservlet.onlinebanking.exceptions.InvalidFormatException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,8 +24,7 @@ public class WithdrawServlet extends HttpServlet {
     try {
       HttpSession session = request.getSession();
       userService.withdraw(session.getAttribute("userName").toString(), request.getParameter("sum").toString());
-    } catch (InvalidDataException exception) {
-
+    } catch (InvalidFormatException exception) {
     }
 
     response.sendRedirect("onlinebanking/home.jsp");

@@ -5,22 +5,22 @@
   Created by Ivan Lazov (darkpain1989@gmail.com)
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    if (session.getAttribute("userName") == null) {
+        response.sendRedirect("login.jsp");
+    }
+%>
+
+<%!
+    DatabaseHelper databaseHelper = new DatabaseHelper();
+    DatabaseService databaseService = new DatabaseServiceImpl(databaseHelper);
+%>
+
 <html>
 <head>
     <title>Home Page</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
-
-    <%
-        if (session.getAttribute("userName") == null) {
-            response.sendRedirect("login.jsp");
-        }
-    %>
-
-    <%!
-        DatabaseHelper databaseHelper = new DatabaseHelper();
-        DatabaseService databaseService = new DatabaseServiceImpl(databaseHelper);
-    %>
-
 </head>
 <body>
 
@@ -30,24 +30,24 @@
 
         <form action="../deposit" method="post">
             <table>
-                <tr class="bottomMargin">
-                    <td>Active Users:</td>
-                    <td><%= databaseService.numberOfLoggedUsers() %></td>
+                <tr>
+                    <td>Active Users: </td>
+                    <td><%= databaseService.getNumberOfLoggedUsers() %></td>
                 </tr>
-                <tr class="bottomMargin">
+                <tr>
                     <td>User: </td>
                     <td><%= session.getAttribute("userName").toString() %></td>
                 </tr>
-                <tr class="bottomMargin">
+                <tr>
                     <td>Balance: </td>
                     <td><%= databaseService.getBalance(session.getAttribute("userName").toString()) %></td>
                 </tr>
-                <tr class="bottomMargin">
+                <tr>
                     <td>Enter sum:</td>
                     <td colspan="2"><input type="text" name="sum" /></td>
                 </tr>
                 <tr>
-                    <td>&nbsp;</td>
+                    <td></td>
                     <td><input type="submit" name="deposit" value="Deposit" /></td>
                     <td><input type="submit" name="withdraw" value="Withdraw" /></td>
                 </tr>

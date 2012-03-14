@@ -1,6 +1,7 @@
 package com.clouway.jspservlet.onlinebanking;
 
 import com.clouway.jspservlet.onlinebanking.exceptions.DuplicateEntryException;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,10 +19,8 @@ public class DatabaseServiceTest {
 
   @Before
   public void setUp() throws SQLException {
+
     databaseService = new DatabaseServiceImpl(databaseHelper);
-    databaseHelper.executeQuery("DELETE FROM account");
-    databaseHelper.executeQuery("DELETE FROM user");
-    databaseHelper.executeQuery("DELETE FROM onlineUser");
   }
 
   @Test
@@ -32,10 +31,13 @@ public class DatabaseServiceTest {
   }
   
   @Test
-  public void saveAnotherUser() throws SQLException {
-    
+  public void saveTwoUsers() throws SQLException {
+
+    databaseService.save("Ivan", "123456");
     databaseService.save("Misho", "654321");
     assertEquals("Misho", databaseHelper.executeQueryResult("SELECT userName FROM user WHERE userName=?", "Misho"));
+    assertEquals("Misho", databaseHelper.executeQueryResult("SELECT userName FROM user WHERE userName=?", "Misho"));
+    assertEquals("2", databaseHelper.executeQueryResult("SELECT COUNT(*) FROM user"));
   }
 
   @Test(expected = DuplicateEntryException.class)
@@ -44,36 +46,12 @@ public class DatabaseServiceTest {
     databaseService.save("Ivan", "123456");
     databaseService.save("Ivan", "888888");
   }
-
-  @Test
-  public void logInUser() throws SQLException {
-    
-    databaseService.logIn("Ivan");
-    assertEquals("Ivan", databaseHelper.executeQueryResult("SELECT userName FROM onlineUser WHERE userName=?", "Ivan"));
-  }
-  
-  @Test
-  public void logOutUser() throws SQLException {
-    
-    databaseService.logIn("Ivan");
-    databaseService.logIn("Misho");
-    databaseService.logOut("Ivan");
-    assertEquals("1", databaseHelper.executeQueryResult("SELECT count(userName) FROM onlineUser"));
-    assertEquals("Misho", databaseHelper.executeQueryResult("SELECT userName FROM onlineUser WHERE userName=?", "Misho"));
-  }
-
-  @Test
-  public void numberOfLoggedUsers() throws SQLException {
-    
-    databaseService.logIn("Ivan");
-    assertEquals(databaseService.numberOfLoggedUsers(), Integer.parseInt(databaseHelper.executeQueryResult("SELECT count(userName) FROM onlineUser")));
-  }
   
   @Test
   public void newRegisteredUserHaveZeroBalanceInAccount() throws SQLException {
 
     databaseService.save("Ivan", "123456");
-    assertEquals(0.0, Double.parseDouble(databaseHelper.executeQueryResult("SELECT balance FROM account WHERE userId = (SELECT userId FROM user WHERE userName=?)", "Ivan")));
+    assertEquals("0", databaseHelper.executeQueryResult("SELECT balance FROM account WHERE userId = (SELECT userId FROM user WHERE userName=?)", "Ivan"));
   }
 
   @Test
@@ -81,7 +59,7 @@ public class DatabaseServiceTest {
     
     databaseService.save("Ivan", "123456");
     databaseService.updateBalance("Ivan", 150.00);
-    assertEquals(150.00, Double.parseDouble(databaseHelper.executeQueryResult("SELECT balance FROM account WHERE userId = (SELECT userId FROM user WHERE userName=?)","Ivan")));
+    assertEquals("150", databaseHelper.executeQueryResult("SELECT balance FROM account WHERE userId = (SELECT userId FROM user WHERE userName=?)", "Ivan"));
   }
   
   @Test
@@ -96,25 +74,57 @@ public class DatabaseServiceTest {
   public void getUserName() throws SQLException {
     
     databaseService.save("Ivan", "123456");
-    assertEquals(databaseService.getUserName("Ivan"), databaseHelper.executeQueryResult("SELECT userName FROM user WHERE userName=?", "Ivan"));
+    assertEquals("Ivan", databaseService.getUserName("Ivan"));
   }
 
   @Test
   public void getEmptyUserName() throws SQLException {
 
-    assertEquals(databaseService.getUserName("Misho"), databaseHelper.executeQueryResult("SELECT userName FROM user WHERE userName=?", "Misho"));
+    assertEquals("", databaseService.getUserName("Misho"));
   }
 
   @Test
   public void getUserPassword() throws SQLException {
 
     databaseService.save("Ivan", "123456");
-    assertEquals(databaseService.getPassword("Ivan"), databaseHelper.executeQueryResult("SELECT password FROM user WHERE userName=?", "Ivan"));
+    assertEquals("123456", databaseService.getPassword("Ivan"));
   }
   
   @Test
   public void getEmptyPassword() throws SQLException {
     
-    assertEquals(databaseService.getPassword("Misho"), databaseHelper.executeQueryResult("SELECT password FROM user WHERE userName=?", "Misho"));
+    assertEquals("", databaseService.getPassword("Misho"));
+  }
+  
+  @Test
+  public void setUserOnline() throws SQLException {
+    
+    databaseService.setUserOnline("Ivan", "QWERTY");
+    assertEquals("Ivan", databaseHelper.executeQueryResult("SELECT userName FROM onlineUser WHERE sessionId=?", "QWERTY"));
+  }
+  
+  @Test
+  public void setUserOffline() throws SQLException {
+
+    databaseService.setUserOnline("Ivan", "QWERTY");
+    databaseService.setUserOffline("QWERTY");
+    assertEquals("", databaseHelper.executeQueryResult("SELECT userName FROM onlineUser WHERE sessionId=?", "QWERTY"));
+  }
+  
+  @Test
+  public void getNumberOfLoggedUsers() throws SQLException {
+    
+    databaseService.setUserOnline("Ivan", "QWERTY");
+    databaseService.setUserOnline("Ivan", "QWERTY2");
+    databaseService.setUserOnline("Misho", "QWERTY3");
+    assertEquals(2, databaseService.getNumberOfLoggedUsers());
+  }
+
+  @After
+  public void tearDown() throws SQLException {
+
+    databaseHelper.executeQuery("DELETE FROM account");
+    databaseHelper.executeQuery("DELETE FROM user");
+    databaseHelper.executeQuery("DELETE FROM onlineUser");
   }
 }

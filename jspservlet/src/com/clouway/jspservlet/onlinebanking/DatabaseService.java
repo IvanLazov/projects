@@ -8,7 +8,7 @@ import com.clouway.jspservlet.onlinebanking.exceptions.DuplicateEntryException;
 public interface DatabaseService {
   
   void save(String userName, String password) throws DuplicateEntryException;
-  
+
   void updateBalance(String userName, double sum);
   
   double getBalance(String userName);
@@ -17,9 +17,9 @@ public interface DatabaseService {
 
   String getPassword(String userName);
   
-  void logIn(String userName);
+  void setUserOnline(String userName, String sessionId);
   
-  void logOut(String userName);
+  void setUserOffline(String sessionId);
   
-  int numberOfLoggedUsers();
+  int getNumberOfLoggedUsers();
 }

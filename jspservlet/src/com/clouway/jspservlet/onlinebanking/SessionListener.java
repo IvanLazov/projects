@@ -16,8 +16,6 @@ public class SessionListener implements HttpSessionListener {
   }
 
   public void sessionDestroyed(HttpSessionEvent sessionEvent) {
-
-    databaseService.logOut(sessionEvent.getSession().getAttribute("userName").toString());
-    sessionEvent.getSession().removeAttribute("userName");
+    databaseService.setUserOffline(sessionEvent.getSession().getId());
   }
 }

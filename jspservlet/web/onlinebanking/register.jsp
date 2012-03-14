@@ -2,19 +2,21 @@
   Created by Ivan Lazov (darkpain1989@gmail.com)
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    if (session.getAttribute("userName") != null) {
+        response.sendRedirect("home.jsp");
+        return;
+    }
+%>
+
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Register Page</title>
-
-    <%
-        if (session.getAttribute("userName") != null) {
-            response.sendRedirect("home.jsp");
-        }
-    %>
-
 </head>
 <body>
+
     <!-- Register Form -->
     <div class="form">
         <p id="centerBold">Register Form</p>

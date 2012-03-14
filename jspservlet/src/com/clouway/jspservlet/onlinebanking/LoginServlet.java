@@ -21,25 +21,24 @@ public class LoginServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    
+
     String userName = request.getParameter("userName");
     String password = request.getParameter("password");
 
     try {
+
       userService.login(userName, password);
-      databaseService.logIn(userName);
 
       HttpSession session = request.getSession();
       session.setAttribute("userName", userName);
+      databaseService.setUserOnline(userName, session.getId());
 
       response.sendRedirect("onlinebanking/home.jsp");
 
     } catch (UserNotRegisteredException exception) {
       response.sendRedirect("onlinebanking/login.jsp");
-      return;
     } catch (WrongUserNameOrPasswordException exception) {
       response.sendRedirect("onlinebanking/login.jsp");
-      return;
     }
   }
 }

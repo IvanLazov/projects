@@ -1,8 +1,7 @@
 package com.clouway.jspservlet.onlinebanking;
 
-import com.clouway.jspservlet.onlinebanking.exceptions.InvalidDataException;
+import com.clouway.jspservlet.onlinebanking.exceptions.InvalidFormatException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,16 +26,14 @@ public class DepositServlet extends HttpServlet {
       try {
         HttpSession session = request.getSession();
         userService.deposit(session.getAttribute("userName").toString(), request.getParameter("sum"));
-      } catch (InvalidDataException exception) {
-
+      } catch (InvalidFormatException exception) {
       }
 
       response.sendRedirect("onlinebanking/home.jsp");
     }
 
     if (request.getParameter("withdraw") != null) {
-      RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/withdraw");
-      dispatcher.forward(request, response);
+      getServletContext().getRequestDispatcher("/withdraw").forward(request, response);
     }
   }
 }

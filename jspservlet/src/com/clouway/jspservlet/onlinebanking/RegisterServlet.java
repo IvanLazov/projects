@@ -28,10 +28,10 @@ public class RegisterServlet extends HttpServlet {
     try {
 
       userService.register(userName, password);
-      databaseService.logIn(userName);
 
       HttpSession session = request.getSession();
       session.setAttribute("userName", userName);
+      databaseService.setUserOnline(userName, session.getId());
 
       response.sendRedirect("onlinebanking/home.jsp");
 
