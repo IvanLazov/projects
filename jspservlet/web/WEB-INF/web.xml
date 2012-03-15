@@ -77,7 +77,7 @@
   <!-- ONLINE BANKING -->
   <servlet>
     <servlet-name>RegisterServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.onlinebanking.RegisterServlet</servlet-class>
+    <servlet-class>com.clouway.jspservlet.onlinebanking.controllers.RegisterServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RegisterServlet</servlet-name>
@@ -86,7 +86,7 @@
   
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.onlinebanking.LoginServlet</servlet-class>
+    <servlet-class>com.clouway.jspservlet.onlinebanking.controllers.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
@@ -95,7 +95,7 @@
 
   <servlet>
     <servlet-name>DepositServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.onlinebanking.DepositServlet</servlet-class>
+    <servlet-class>com.clouway.jspservlet.onlinebanking.controllers.DepositServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>DepositServlet</servlet-name>
@@ -104,7 +104,7 @@
 
   <servlet>
     <servlet-name>WithdrawServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.onlinebanking.WithdrawServlet</servlet-class>
+    <servlet-class>com.clouway.jspservlet.onlinebanking.controllers.WithdrawServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>WithdrawServlet</servlet-name>
@@ -113,7 +113,7 @@
 
   <servlet>
     <servlet-name>LogoutServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.onlinebanking.LogoutServlet</servlet-class>
+    <servlet-class>com.clouway.jspservlet.onlinebanking.controllers.LogoutServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LogoutServlet</servlet-name>
@@ -125,7 +125,7 @@
   </session-config>
 
   <listener>
-    <listener-class>com.clouway.jspservlet.onlinebanking.SessionListener</listener-class>
+    <listener-class>com.clouway.jspservlet.onlinebanking.controllers.SessionListener</listener-class>
   </listener>
 
   <!-- REGISTRATION FORM -->
