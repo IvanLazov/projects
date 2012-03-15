@@ -18,7 +18,7 @@
 <body>
 
     <!-- Login Form -->
-    <div class="form">
+    <div id="form">
         <p id="centerBold">Login Form</p>
         <form action="../login" method="post">
             <table>

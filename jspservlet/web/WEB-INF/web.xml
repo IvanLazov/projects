@@ -6,18 +6,16 @@
            version="3.0">
 
   <!-- TASK 1 -->
-
   <servlet>
-    <servlet-name>ClickCounterServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.task1.ClickCounterServlet</servlet-class>
+    <servlet-name>CounterServlet</servlet-name>
+    <servlet-class>com.clouway.jspservlet.task1.CounterServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ClickCounterServlet</servlet-name>
-    <url-pattern>/clickCounterServlet</url-pattern>
+    <servlet-name>CounterServlet</servlet-name>
+    <url-pattern>/counterServlet</url-pattern>
   </servlet-mapping>
 
   <!-- TASK 2 -->
-
   <servlet>
     <servlet-name>RedirectServlet</servlet-name>
     <servlet-class>com.clouway.jspservlet.task2.RedirectServlet</servlet-class>
@@ -29,7 +27,6 @@
 
 
   <!-- TASK 3 -->
-
   <servlet>
     <servlet-name>RedirectServletTwo</servlet-name>
     <servlet-class>com.clouway.jspservlet.task3.RedirectServletTwo</servlet-class>
@@ -41,7 +38,6 @@
 
 
   <!-- TASK 4 -->
-
   <servlet>
     <servlet-name>Servlet1</servlet-name>
     <servlet-class>com.clouway.jspservlet.task4.Servlet1</servlet-class>
@@ -125,11 +121,21 @@
   </servlet-mapping>
 
   <session-config>
-    <session-timeout>3</session-timeout>
+    <session-timeout>15</session-timeout>
   </session-config>
 
   <listener>
     <listener-class>com.clouway.jspservlet.onlinebanking.SessionListener</listener-class>
   </listener>
 
+  <!-- REGISTRATION FORM -->
+  <servlet>
+    <servlet-name>RegistrationServlet</servlet-name>
+    <servlet-class>com.clouway.jspservlet.registrationform.RegistrationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegistrationServlet</servlet-name>
+    <url-pattern>/registration</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

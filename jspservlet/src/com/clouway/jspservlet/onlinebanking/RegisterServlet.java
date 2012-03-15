@@ -4,6 +4,7 @@ import com.clouway.jspservlet.onlinebanking.exceptions.InvalidPasswordException;
 import com.clouway.jspservlet.onlinebanking.exceptions.InvalidUserNameException;
 import com.clouway.jspservlet.onlinebanking.exceptions.UserNameAlreadyExistsException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,11 +37,11 @@ public class RegisterServlet extends HttpServlet {
       response.sendRedirect("onlinebanking/home.jsp");
 
     } catch (InvalidUserNameException exception) {
-      response.sendRedirect("onlinebanking/register.jsp");
+      response.sendRedirect("onlinebanking/register.jsp?error=Username must contain only letters.Length from 3 to 20 characters.");
     } catch (InvalidPasswordException exception) {
-      response.sendRedirect("onlinebanking/register.jsp");
+      response.sendRedirect("onlinebanking/register.jsp?error=Password can contain letters and digits. Length from 6 to 20 characters");
     } catch (UserNameAlreadyExistsException exception) {
-      response.sendRedirect("onlinebanking/register.jsp");
+      response.sendRedirect("onlinebanking/register.jsp?error=Username already registered. Try with another one.");
     }
   }
 }

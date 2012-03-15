@@ -25,7 +25,7 @@
 <body>
 
     <!-- Deposit / Withdraw  Form -->
-    <div class="form">
+    <div id="form">
         <p id="centerBold">Bank Account</p>
 
         <form action="../deposit" method="post">

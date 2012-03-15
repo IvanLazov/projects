@@ -18,13 +18,17 @@
 <body>
 
     <!-- Register Form -->
-    <div class="form">
+    <div id="form">
         <p id="centerBold">Register Form</p>
         <form action="../register" method="post">
             <table>
                 <tr>
                     <td>Username: </td>
                     <td><input type="text" name="userName" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Password: </td>
@@ -36,6 +40,10 @@
                 </tr>
             </table>
         </form>
+    </div>
+
+    <div id="error">
+        <%= request.getParameter("error") == null ? "" : request.getParameter("error")%>
     </div>
 
 </body>
