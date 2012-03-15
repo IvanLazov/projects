@@ -43,7 +43,7 @@
     </div>
 
     <div id="error">
-        <%= request.getParameter("error") == null ? "" : request.getParameter("error")%>
+        <%= request.getParameter("error") == null ? "" : request.getParameter("error") %>
     </div>
 
 </body>
