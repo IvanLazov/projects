@@ -33,12 +33,12 @@ public class LoginServlet extends HttpServlet {
       session.setAttribute("userName", userName);
       databaseService.setUserOnline(userName, session.getId());
 
-      response.sendRedirect("onlinebanking/home.jsp");
+      response.sendRedirect("onlinebanking/index.jsp");
 
     } catch (UserNotRegisteredException exception) {
-      response.sendRedirect("onlinebanking/login.jsp");
+      response.sendRedirect("onlinebanking/login.jsp?error=Username is not registered.");
     } catch (WrongUserNameOrPasswordException exception) {
-      response.sendRedirect("onlinebanking/login.jsp");
+      response.sendRedirect("onlinebanking/login.jsp?error=Wrong username or password.");
     }
   }
 }

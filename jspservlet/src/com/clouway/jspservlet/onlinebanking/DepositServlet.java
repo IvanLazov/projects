@@ -29,7 +29,7 @@ public class DepositServlet extends HttpServlet {
       } catch (InvalidFormatException exception) {
       }
 
-      response.sendRedirect("onlinebanking/home.jsp");
+      response.sendRedirect("onlinebanking/index.jsp");
     }
 
     if (request.getParameter("withdraw") != null) {

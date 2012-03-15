@@ -36,7 +36,7 @@
                 </tr>
                 <tr>
                     <td>User: </td>
-                    <td><%= session.getAttribute("userName").toString() %></td>
+                    <td><%= session.getAttribute("userName") %></td>
                 </tr>
                 <tr>
                     <td>Balance: </td>

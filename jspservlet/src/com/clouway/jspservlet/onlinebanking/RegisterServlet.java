@@ -34,14 +34,14 @@ public class RegisterServlet extends HttpServlet {
       session.setAttribute("userName", userName);
       databaseService.setUserOnline(userName, session.getId());
 
-      response.sendRedirect("onlinebanking/home.jsp");
+      response.sendRedirect("onlinebanking/index.jsp");
 
     } catch (InvalidUserNameException exception) {
-      response.sendRedirect("onlinebanking/register.jsp?error=Username must contain only letters.Length from 3 to 20 characters.");
+      response.sendRedirect("onlinebanking/register.jsp?error=Invalid username! Username must contain only letters. Length from 3 to 20 characters.");
     } catch (InvalidPasswordException exception) {
-      response.sendRedirect("onlinebanking/register.jsp?error=Password can contain letters and digits. Length from 6 to 20 characters");
+      response.sendRedirect("onlinebanking/register.jsp?error=Invalid password! Password can contain letters and digits. Length from 6 to 20 characters");
     } catch (UserNameAlreadyExistsException exception) {
-      response.sendRedirect("onlinebanking/register.jsp?error=Username already registered. Try with another one.");
+      response.sendRedirect("onlinebanking/register.jsp?error=Username already exists! Try with another username.");
     }
   }
 }

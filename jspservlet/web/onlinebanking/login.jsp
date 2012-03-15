@@ -5,7 +5,7 @@
 
 <%
     if (session.getAttribute("userName") != null) {
-        response.sendRedirect("home.jsp");
+        response.sendRedirect("index.jsp");
         return;
     }
 %>
@@ -40,6 +40,10 @@
                 </tr>
             </table>
         </form>
+    </div>
+
+    <div id="error">
+        <%= request.getParameter("error") == null ? "" : request.getParameter("error") %>
     </div>
 
 </body>

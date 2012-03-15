@@ -27,6 +27,6 @@ public class WithdrawServlet extends HttpServlet {
     } catch (InvalidFormatException exception) {
     }
 
-    response.sendRedirect("onlinebanking/home.jsp");
+    response.sendRedirect("onlinebanking/index.jsp");
   }
 }
