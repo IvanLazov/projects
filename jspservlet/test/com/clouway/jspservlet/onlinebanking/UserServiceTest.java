@@ -191,17 +191,6 @@ public class UserServiceTest {
 
     userService.login("Ivan", "123456");
   }
-  
-  @Test(expected = UserNotRegisteredException.class)
-  public void cannotLoginUserIfUserIsNotRegistered() {
-    
-    context.checking(new Expectations(){{
-      oneOf(databaseService).getUserName("Ivan");
-      will(returnValue(""));
-    }});
-
-    userService.login("Ivan", "123456");
-  }
 
   @Test(expected = WrongUserNameOrPasswordException.class)
   public void cannotLoginUserIfPasswordIsWrong() {
