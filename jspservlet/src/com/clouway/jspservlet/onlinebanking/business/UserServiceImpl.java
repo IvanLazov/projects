@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
   public void login(String userName, String password) {
 
     if (databaseService.getUserName(userName).equals("")) {
-      throw new UserNotRegisteredException();
+      throw new WrongUserNameOrPasswordException();
     }
     
     if (!password.equals(databaseService.getPassword(userName))) {
