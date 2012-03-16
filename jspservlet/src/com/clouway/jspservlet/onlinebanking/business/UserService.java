@@ -4,7 +4,6 @@ import com.clouway.jspservlet.onlinebanking.exceptions.InvalidFormatException;
 import com.clouway.jspservlet.onlinebanking.exceptions.InvalidPasswordException;
 import com.clouway.jspservlet.onlinebanking.exceptions.InvalidUserNameException;
 import com.clouway.jspservlet.onlinebanking.exceptions.UserNameAlreadyExistsException;
-import com.clouway.jspservlet.onlinebanking.exceptions.UserNotRegisteredException;
 import com.clouway.jspservlet.onlinebanking.exceptions.WrongUserNameOrPasswordException;
 
 /**
@@ -14,7 +13,7 @@ public interface UserService {
 
   void register(String userName, String password) throws InvalidUserNameException, InvalidPasswordException, UserNameAlreadyExistsException;
 
-  void login(String userName, String password) throws UserNotRegisteredException, WrongUserNameOrPasswordException;
+  void login(String userName, String password) throws WrongUserNameOrPasswordException;
 
   void deposit(String userName, String sum) throws InvalidFormatException;
   
