@@ -52,7 +52,7 @@
     <!-- Logout Form -->
     <div id="logoutForm">
         <form action="../logout" method="post">
-            <td><input type="submit" name="logout" value="Logout"/></td>
+            <input type="submit" name="logout" value="Logout"/>
         </form>
     </div>
 

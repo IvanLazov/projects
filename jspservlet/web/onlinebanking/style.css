@@ -7,7 +7,13 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
-    margin-bottom: 100px;
+}
+
+#logoutForm {
+
+    width: 260px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #error {
@@ -17,14 +23,6 @@
     margin-right: auto;
     color: #ff290c;
     text-align: center;
-}
-
-#logoutForm {
-
-    width: 260px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
 }
 
 #centerBold {

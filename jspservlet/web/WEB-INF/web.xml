@@ -130,7 +130,7 @@
   
   <filter>
     <filter-name>LoginFilter</filter-name>
-    <filter-class>com.clouway.jspservlet.onlinebanking.controllers.LoginFilter</filter-class>
+    <filter-class>com.clouway.jspservlet.onlinebanking.controllers.UserServiceFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>
@@ -140,7 +140,10 @@
     <filter-name>LoginFilter</filter-name>
     <url-pattern>/onlinebanking/</url-pattern>
   </filter-mapping>
-  
+  <filter-mapping>
+    <filter-name>LoginFilter</filter-name>
+    <servlet-name>DepositServlet</servlet-name>
+  </filter-mapping>
 
   <!-- REGISTRATION FORM -->
   <servlet>

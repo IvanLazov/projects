@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * Created by Ivan Lazov (darkpain1989@gmail.com)
  */
-public class LoginFilter implements Filter {
+public class UserServiceFilter implements Filter {
 
   public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -25,13 +25,10 @@ public class LoginFilter implements Filter {
     HttpSession session = ((HttpServletRequest) req).getSession();
     HttpServletResponse response = (HttpServletResponse) resp;
     if (session.getAttribute("userName") == null) {
-
       response.sendRedirect("login.jsp");
     } else {
-      response.sendRedirect("index.jsp");
+      chain.doFilter(req, resp);
     }
-
-
   }
 
   public void destroy() {

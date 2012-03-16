@@ -66,12 +66,12 @@ public class UserServiceImpl implements UserService {
 
   private boolean isPasswordValid(String password) {
 
-    return password.matches("[a-zA-z0-9]{6,20}");
+    return password.matches("[a-zA-Z0-9]{6,20}");
   }
   
   private boolean isUserNameValid(String userName) {
 
-    return userName.matches("[a-zA-z]{3,20}");
+    return userName.matches("[a-zA-Z]{3,20}");
   }
   
   private boolean isSumValid(String sum) {
