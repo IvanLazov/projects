@@ -5,7 +5,6 @@ import com.clouway.jspservlet.onlinebanking.business.UserServiceImpl;
 import com.clouway.jspservlet.onlinebanking.persistance.DatabaseHelper;
 import com.clouway.jspservlet.onlinebanking.persistance.DatabaseService;
 import com.clouway.jspservlet.onlinebanking.persistance.DatabaseServiceImpl;
-import com.clouway.jspservlet.onlinebanking.exceptions.UserNotRegisteredException;
 import com.clouway.jspservlet.onlinebanking.exceptions.WrongUserNameOrPasswordException;
 
 import javax.servlet.ServletException;
@@ -40,8 +39,6 @@ public class LoginServlet extends HttpServlet {
 
       response.sendRedirect("onlinebanking/index.jsp");
 
-    } catch (UserNotRegisteredException exception) {
-      response.sendRedirect("onlinebanking/login.jsp?error=Username is not registered.");
     } catch (WrongUserNameOrPasswordException exception) {
       response.sendRedirect("onlinebanking/login.jsp?error=Wrong username or password.");
     }
