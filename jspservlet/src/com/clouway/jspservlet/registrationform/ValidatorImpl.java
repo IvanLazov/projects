@@ -23,10 +23,9 @@ public class ValidatorImpl implements Validator {
   public boolean age(String age) {
 
     boolean result = false;
-    int userAge;
 
     try {
-      userAge = Integer.parseInt(age);
+      int userAge = Integer.parseInt(age);
 
       if ((userAge >= 18) && (userAge <= 118)) {
         result = true;

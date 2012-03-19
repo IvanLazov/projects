@@ -1,10 +1,10 @@
 package com.clouway.jspservlet.registrationform;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,24 +14,24 @@ import java.util.Map;
  */
 public class RegistrationServlet extends HttpServlet {
 
-  private String[] field = new String[]{"firstName", "lastName", "egn", "age", "address", "password", "confirmPassword"};
-  private Map<String, String> fieldToValue;
-  private RegistrationService registrationService;
+  private Resources resources = new Resources();
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    fieldToValue = new HashMap<String, String>();
+    Map<String, String> fieldToValues = new HashMap<String, String>();
 
-    for (int i = 0; i < field.length; i++) {
-      fieldToValue.put(field[i], request.getParameter(field[i]));
+    for (int i = 0; i < resources.getNumberOfFields(); i++) {
+      fieldToValues.put(resources.getFieldName(i), request.getParameter(resources.getFieldName(i)));
     }
-    
-    registrationService = new RegistrationService(fieldToValue);
-    registrationService.checkFormData();
 
-    request.setAttribute("error", registrationService.getErrors());
-    RequestDispatcher requestDispatcher = request.getRequestDispatcher("registrationform/index.jsp");
-    requestDispatcher.forward(request, response);
-    //response.sendRedirect("registrationform/index.jsp");
+    ValidatorService validatorService = new ValidatorService();
+    validatorService.checkFieldValues(fieldToValues);
+
+    HttpSession session = request.getSession();
+
+    session.setAttribute("fieldToValues", fieldToValues);
+    session.setAttribute("errors", validatorService.getErrors());
+
+    response.sendRedirect("registrationform/index.jsp");
   }
 }
