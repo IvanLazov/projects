@@ -28,9 +28,9 @@ public class ValidatorService {
       for (int i = 0; i < resources.getNumberOfFields() - 1; i++) {
 
         Method method = validatorClass.getMethod(resources.getFieldName(i), String.class);
-        Object returnValue = method.invoke(validator, fieldToValues.get(resources.getFieldName(i)));
+        Object value = method.invoke(validator, fieldToValues.get(resources.getFieldName(i)));
 
-        if (!(Boolean) returnValue) {
+        if (!(Boolean) value) {
           errorMessages.put(resources.getFieldName(i), resources.getMessage(resources.getFieldName(i)));
         }
       }

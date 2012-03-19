@@ -13,7 +13,6 @@ public class CalculatorServlet extends HttpServlet {
 
   private Calculator calculator = new Calculator();
 
-  @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     String expression = request.getParameter("input");

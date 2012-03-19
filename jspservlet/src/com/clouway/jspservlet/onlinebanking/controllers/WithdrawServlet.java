@@ -23,7 +23,6 @@ public class WithdrawServlet extends HttpServlet {
   private DatabaseService databaseService = new DatabaseServiceImpl(databaseHelper);
   private UserService userService = new UserServiceImpl(databaseService);
 
-  @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     try {
