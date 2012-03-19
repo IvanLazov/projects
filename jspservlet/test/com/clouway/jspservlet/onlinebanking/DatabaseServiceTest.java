@@ -23,6 +23,9 @@ public class DatabaseServiceTest {
   @Before
   public void setUp() throws SQLException {
 
+    databaseHelper.executeQuery("DELETE FROM account");
+    databaseHelper.executeQuery("DELETE FROM user");
+    databaseHelper.executeQuery("DELETE FROM onlineUser");
     databaseService = new DatabaseServiceImpl(databaseHelper);
   }
 
