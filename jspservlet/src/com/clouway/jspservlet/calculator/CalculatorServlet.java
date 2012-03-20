@@ -17,9 +17,8 @@ public class CalculatorServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     String expression = request.getParameter("input");
-    //request.getSession().setAttribute("result", calculator.calculate(expression));
-    //response.sendRedirect("calculator/calculator.jsp");
     request.setAttribute("result", calculator.calculate(expression));
+
     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/calculator/calculator.jsp");
     dispatcher.forward(request, response);
   }
