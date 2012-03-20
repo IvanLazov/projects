@@ -2,17 +2,24 @@
   Created by Ivan Lazov (darkpain1989@gmail.com)
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%!
+    String getPath() {
+        return getServletConfig().getServletContext().getContextPath();
+    }
+%>
+
 <html>
 <head>
 
     <title>Calculator</title>
-    <script type="text/javascript" src="javascript.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type="text/javascript" src="<%=getPath()%>/calculator/javascript.js"></script>
+    <link rel="stylesheet" type="text/css" href="<%=getPath()%>/calculator/style.css" />
 
 </head>
 <body>
 
-    <form id="form" method="post" action="../calculator">
+    <form id="form" method="post" action="<%=getPath()%>/calculator">
 
         <input type="text" name="input" id="input" readonly="readonly" value="<%= request.getAttribute("result") == null ? "" : request.getAttribute("result") %>"/><br />
 
