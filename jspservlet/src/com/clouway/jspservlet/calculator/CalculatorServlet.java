@@ -1,5 +1,6 @@
 package com.clouway.jspservlet.calculator;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,10 @@ public class CalculatorServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     String expression = request.getParameter("input");
-    request.getSession().setAttribute("result", calculator.calculate(expression));
-    response.sendRedirect("calculator/calculator.jsp");
+    //request.getSession().setAttribute("result", calculator.calculate(expression));
+    //response.sendRedirect("calculator/calculator.jsp");
+    request.setAttribute("result", calculator.calculate(expression));
+    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/calculator/calculator.jsp");
+    dispatcher.forward(request, response);
   }
 }

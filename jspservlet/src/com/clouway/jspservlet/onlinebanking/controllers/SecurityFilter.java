@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * Created by Ivan Lazov (darkpain1989@gmail.com)
  */
-public class UserServiceFilter implements Filter {
+public class SecurityFilter implements Filter {
 
   public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -27,7 +27,10 @@ public class UserServiceFilter implements Filter {
     if (session.getAttribute("userName") == null) {
       response.sendRedirect("login.jsp");
     } else {
+
+
       chain.doFilter(req, resp);
+
     }
   }
 

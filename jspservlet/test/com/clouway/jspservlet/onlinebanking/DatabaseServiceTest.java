@@ -11,6 +11,9 @@ import org.junit.Test;
 import java.sql.SQLException;
 
 import static junit.framework.Assert.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by Ivan Lazov (darkpain1989@gmail.com)
@@ -64,8 +67,11 @@ public class DatabaseServiceTest {
   public void increaseUserBalance() throws SQLException {
     
     databaseService.save("Ivan", "123456");
+
     databaseService.updateBalance("Ivan", 150.00);
-    assertEquals("150", databaseHelper.executeQueryResult("SELECT balance FROM account WHERE userId = (SELECT userId FROM user WHERE userName=?)", "Ivan"));
+
+    Double balance = databaseService.getBalance("Ivan");
+    assertThat(balance, is(equalTo(150.00)));
   }
   
   @Test

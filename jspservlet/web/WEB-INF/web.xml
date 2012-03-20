@@ -130,7 +130,7 @@
   
   <filter>
     <filter-name>LoginFilter</filter-name>
-    <filter-class>com.clouway.jspservlet.onlinebanking.controllers.UserServiceFilter</filter-class>
+    <filter-class>com.clouway.jspservlet.onlinebanking.controllers.SecurityFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>LoginFilter</filter-name>

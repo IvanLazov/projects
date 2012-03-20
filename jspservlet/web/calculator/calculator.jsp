@@ -14,7 +14,7 @@
 
     <form id="form" method="post" action="../calculator">
 
-        <input type="text" name="input" id="input" readonly="readonly" value="<%= session.getAttribute("result") == null ? "" : session.getAttribute("result") %>"/><br />
+        <input type="text" name="input" id="input" readonly="readonly" value="<%= request.getAttribute("result") == null ? "" : request.getAttribute("result") %>"/><br />
 
         <button type="button" id="ce" onclick="clearInput()"/>CE</button>
         <button type="button" id="delete" onclick="deleteLastDigit()"/><</button><br />

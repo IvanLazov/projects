@@ -1,5 +1,6 @@
 package com.clouway.jspservlet.registrationform;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,16 +24,14 @@ public class Resources {
     messageMap.put("confirmPassword", "Password don't match");
   }
   
-  public String getMessage(String fieldName) {
+     
+  public Map<String, String> populateValues(HttpServletRequest request) {
+    Map<String, String> fieldToValueMap = new HashMap<String, String>();
+    for (String field : fieldNames) {
+      String fieldValue = request.getParameter(field);
 
-    return messageMap.get(fieldName);
-  }
-  
-  public int getNumberOfFields() {
-    return fieldNames.length;
-  }
-  
-  public String getFieldName(int index) {
-    return fieldNames[index];
+      fieldToValueMap.put(field, fieldValue);
+    }
+    return fieldToValueMap;
   }
 }

@@ -29,8 +29,11 @@ public class DatabaseHelper {
     PreparedStatement preparedStatement = connection.prepareStatement(query);
 
     fillParameters(preparedStatement, params);
-
+    // what if fails ??
     preparedStatement.execute();
+
+    // try / catch / finally !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
     connection.close();
   }
   
