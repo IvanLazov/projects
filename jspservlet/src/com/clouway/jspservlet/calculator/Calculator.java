@@ -27,14 +27,9 @@ public class Calculator {
 
       if (expression.contains(sign)) {
 
-        try {
-
-          int firstNumber = Integer.parseInt(expression.substring(0, expression.indexOf(sign)));
-          int secondNumber = Integer.parseInt(expression.substring(expression.indexOf(sign) + 1, expression.length()));
-          result = operationMap.get(sign).calculate(firstNumber, secondNumber);
-        } catch (NumberFormatException exception) {
-
-        }
+        int firstNumber = Integer.parseInt(expression.substring(0, expression.indexOf(sign)));
+        int secondNumber = Integer.parseInt(expression.substring(expression.indexOf(sign) + 1, expression.length()));
+        result = operationMap.get(sign).calculate(firstNumber, secondNumber);
       }
     }
 
