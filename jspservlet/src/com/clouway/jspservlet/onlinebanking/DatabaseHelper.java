@@ -23,32 +23,55 @@ public class DatabaseHelper {
     dataSource.setPassword("clouway.com");
   }
 
-  public void executeQuery(String query, Object... params) throws SQLException {
+  public void executeQuery(String query, Object... params) {
 
-    Connection connection = dataSource.getConnection();
-    PreparedStatement preparedStatement = connection.prepareStatement(query);
-
-    fillParameters(preparedStatement, params);
-    // what if fails ??
-    preparedStatement.execute();
-
-    // try / catch / finally !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-    connection.close();
+    Connection connection = null;
+    PreparedStatement preparedStatement;
+    
+    try {
+      connection = dataSource.getConnection();
+      preparedStatement = connection.prepareStatement(query);
+      fillParameters(preparedStatement, params);
+      preparedStatement.execute();      
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (connection != null) {
+          connection.close();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }        
   }
   
-  public String executeQueryResult(String query, String... params) throws SQLException {
+  public String executeQueryResult(String query, String... params) {
 
-    Connection connection = dataSource.getConnection();
-    PreparedStatement preparedStatement = connection.prepareStatement(query);
-
-    fillParameters(preparedStatement, params);
+    Connection connection = null;
+    PreparedStatement preparedStatement;
+    ResultSet resultSet;
 
     String result = "";
-    ResultSet resultSet = preparedStatement.executeQuery();
-
-    while (resultSet.next()) {
-      result = resultSet.getString(1);
+    
+    try {
+      connection = dataSource.getConnection();
+      preparedStatement = connection.prepareStatement(query);
+      fillParameters(preparedStatement, params);
+      resultSet = preparedStatement.executeQuery();
+      while (resultSet.next()) {
+        result = resultSet.getString(1);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (connection != null) {
+          connection.close();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
     }
 
     return result;
