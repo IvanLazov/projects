@@ -147,12 +147,12 @@
 
   <!-- REGISTRATION FORM -->
   <servlet>
-    <servlet-name>RegistrationServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.registrationform.RegistrationServlet</servlet-class>
+    <servlet-name>ValidatorServlet</servlet-name>
+    <servlet-class>com.clouway.jspservlet.registrationform.ValidatorServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>RegistrationServlet</servlet-name>
-    <url-pattern>/registration</url-pattern>
+    <servlet-name>ValidatorServlet</servlet-name>
+    <url-pattern>/validate</url-pattern>
   </servlet-mapping>
   
   <!-- CALCULATOR -->
