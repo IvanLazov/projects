@@ -1,11 +1,5 @@
 package com.clouway.jspservlet.onlinebanking;
 
-import com.clouway.jspservlet.onlinebanking.exceptions.InvalidFormatException;
-import com.clouway.jspservlet.onlinebanking.exceptions.InvalidPasswordException;
-import com.clouway.jspservlet.onlinebanking.exceptions.InvalidUserNameException;
-import com.clouway.jspservlet.onlinebanking.exceptions.UserNameAlreadyExistsException;
-import com.clouway.jspservlet.onlinebanking.exceptions.WrongUserNameOrPasswordException;
-
 /**
  * Created by Ivan Lazov (darkpain1989@gmail.com)
  */

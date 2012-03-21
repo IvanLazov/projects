@@ -1,7 +1,5 @@
 package com.clouway.jspservlet.onlinebanking;
 
-import com.clouway.jspservlet.onlinebanking.exceptions.DuplicateEntryException;
-
 /**
  * Created by Ivan Lazov (darkpain1989@gmail.com)
  */
@@ -17,9 +15,9 @@ public interface DatabaseService {
 
   String getPassword(String userName);
   
-  void setUserOnline(String userName, String sessionId);
+  //void setUserOnline(String userName, String sessionId);
   
-  void setUserOffline(String sessionId);
+  //void setUserOffline(String sessionId);
   
   int getNumberOfLoggedUsers();
 }

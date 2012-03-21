@@ -1,7 +1,5 @@
 package com.clouway.jspservlet.onlinebanking;
 
-import com.clouway.jspservlet.onlinebanking.exceptions.*;
-
 /**
  * Created by Ivan Lazov (darkpain1989@gmail.com)
  */

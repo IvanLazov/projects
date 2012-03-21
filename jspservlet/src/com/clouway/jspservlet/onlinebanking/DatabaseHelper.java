@@ -1,6 +1,5 @@
 package com.clouway.jspservlet.onlinebanking;
 
-import com.clouway.jspservlet.onlinebanking.exceptions.DuplicateEntryException;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 import java.sql.Connection;
@@ -49,7 +48,7 @@ public class DatabaseHelper {
           connection.close();
         }
       } catch (SQLException e) {
-
+        e.printStackTrace();
       }
     }
   }

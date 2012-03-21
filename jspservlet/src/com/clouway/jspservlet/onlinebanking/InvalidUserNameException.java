@@ -1,4 +1,4 @@
-package com.clouway.jspservlet.onlinebanking.exceptions;
+package com.clouway.jspservlet.onlinebanking;
 
 /**
  * Created by Ivan Lazov (darkpain1989@gmail.com)

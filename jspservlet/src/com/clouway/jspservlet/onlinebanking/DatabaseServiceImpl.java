@@ -43,13 +43,13 @@ public class DatabaseServiceImpl implements DatabaseService {
     return password;
   }
 
-  public void setUserOnline(String userName, String sessionId) {
-    databaseHelper.executeQuery("INSERT INTO onlineUser(sessionId, userName) VALUES(?,?)", sessionId, userName);
-  }
+  //public void setUserOnline(String userName, String sessionId) {
+  //  databaseHelper.executeQuery("INSERT INTO onlineUser(sessionId, userName) VALUES(?,?)", sessionId, userName);
+  //}
 
-  public void setUserOffline(String sessionId) {
-    databaseHelper.executeQuery("DELETE FROM onlineUser WHERE sessionId=?", sessionId);
-  }
+  //public void setUserOffline(String sessionId) {
+  //  databaseHelper.executeQuery("DELETE FROM onlineUser WHERE sessionId=?", sessionId);
+  //}
 
   public int getNumberOfLoggedUsers() {
     
