@@ -1,9 +1,6 @@
 package com.clouway.jspservlet.onlinebanking;
 
-import com.clouway.jspservlet.onlinebanking.business.UserService;
-import com.clouway.jspservlet.onlinebanking.business.UserServiceImpl;
 import com.clouway.jspservlet.onlinebanking.exceptions.*;
-import com.clouway.jspservlet.onlinebanking.persistance.DatabaseService;
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.integration.junit4.JMock;

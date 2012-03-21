@@ -1,8 +1,4 @@
-package com.clouway.jspservlet.onlinebanking.controllers;
-
-import com.clouway.jspservlet.onlinebanking.persistance.DatabaseHelper;
-import com.clouway.jspservlet.onlinebanking.persistance.DatabaseService;
-import com.clouway.jspservlet.onlinebanking.persistance.DatabaseServiceImpl;
+package com.clouway.jspservlet.onlinebanking;
 
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;

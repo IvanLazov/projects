@@ -1,7 +1,6 @@
-package com.clouway.jspservlet.onlinebanking.business;
+package com.clouway.jspservlet.onlinebanking;
 
 import com.clouway.jspservlet.onlinebanking.exceptions.*;
-import com.clouway.jspservlet.onlinebanking.persistance.DatabaseService;
 
 /**
  * Created by Ivan Lazov (darkpain1989@gmail.com)

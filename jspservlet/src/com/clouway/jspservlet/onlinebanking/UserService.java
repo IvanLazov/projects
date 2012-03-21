@@ -1,4 +1,4 @@
-package com.clouway.jspservlet.onlinebanking.business;
+package com.clouway.jspservlet.onlinebanking;
 
 import com.clouway.jspservlet.onlinebanking.exceptions.InvalidFormatException;
 import com.clouway.jspservlet.onlinebanking.exceptions.InvalidPasswordException;

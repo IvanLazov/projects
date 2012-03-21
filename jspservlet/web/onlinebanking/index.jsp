@@ -1,6 +1,6 @@
-<%@ page import="com.clouway.jspservlet.onlinebanking.persistance.DatabaseHelper" %>
-<%@ page import="com.clouway.jspservlet.onlinebanking.persistance.DatabaseService" %>
-<%@ page import="com.clouway.jspservlet.onlinebanking.persistance.DatabaseServiceImpl" %>
+<%@ page import="com.clouway.jspservlet.onlinebanking.DatabaseHelper" %>
+<%@ page import="com.clouway.jspservlet.onlinebanking.DatabaseService" %>
+<%@ page import="com.clouway.jspservlet.onlinebanking.DatabaseServiceImpl" %>
 <%--
   Created by Ivan Lazov (darkpain1989@gmail.com)
 --%>

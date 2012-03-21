@@ -1,4 +1,4 @@
-package com.clouway.jspservlet.onlinebanking.controllers;
+package com.clouway.jspservlet.onlinebanking;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

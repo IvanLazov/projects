@@ -1,4 +1,4 @@
-package com.clouway.jspservlet.onlinebanking.controllers;
+package com.clouway.jspservlet.onlinebanking;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

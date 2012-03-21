@@ -1,10 +1,5 @@
-package com.clouway.jspservlet.onlinebanking.controllers;
+package com.clouway.jspservlet.onlinebanking;
 
-import com.clouway.jspservlet.onlinebanking.business.UserService;
-import com.clouway.jspservlet.onlinebanking.business.UserServiceImpl;
-import com.clouway.jspservlet.onlinebanking.persistance.DatabaseHelper;
-import com.clouway.jspservlet.onlinebanking.persistance.DatabaseService;
-import com.clouway.jspservlet.onlinebanking.persistance.DatabaseServiceImpl;
 import com.clouway.jspservlet.onlinebanking.exceptions.InvalidFormatException;
 
 import javax.servlet.ServletException;
@@ -27,7 +22,7 @@ public class WithdrawServlet extends HttpServlet {
 
     try {
       HttpSession session = request.getSession();
-      userService.withdraw(session.getAttribute("userName").toString(), request.getParameter("sum").toString());
+      userService.withdraw(session.getAttribute("userName").toString(), request.getParameter("sum"));
     } catch (InvalidFormatException exception) {
     }
 
