@@ -3,6 +3,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%!
+    private String getPath() {
+        return getServletConfig().getServletContext().getContextPath();
+    }
+%>
+
 <%
     if (session.getAttribute("userName") != null) {
         response.sendRedirect("index.jsp");
@@ -20,7 +26,7 @@
     <!-- Register Form -->
     <div id="form">
         <p id="centerBold">Register Form</p>
-        <form action="../register" method="post">
+        <form action="<%=getPath()%>/register" method="post">
             <table>
                 <tr>
                     <td>Username: </td>

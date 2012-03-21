@@ -1,9 +1,5 @@
 package com.clouway.jspservlet.onlinebanking;
 
-import com.clouway.jspservlet.onlinebanking.exceptions.DuplicateEntryException;
-
-import java.sql.SQLException;
-
 /**
  * Created by Ivan Lazov (darkpain1989@gmail.com)
  */
@@ -17,91 +13,49 @@ public class DatabaseServiceImpl implements DatabaseService {
 
   public void save(String userName, String password) {
 
-    try {
-      databaseHelper.executeQuery("INSERT INTO user(userName,password) VALUES (?,?)", userName, password);
-      databaseHelper.executeQuery("INSERT INTO account(userId, balance) VALUES ((SELECT userId FROM user WHERE userName=?), 0.00)", userName);
-    } catch (SQLException e) {
-      if (e.getErrorCode() == 1062) {
-        throw new DuplicateEntryException();
-      }
-    }
+    databaseHelper.executeQuery("INSERT INTO user(userName,password) VALUES (?,?)", userName, password);
+    databaseHelper.executeQuery("INSERT INTO account(userId, balance) VALUES ((SELECT userId FROM user WHERE userName=?), 0.00)", userName);
   }
 
   public void updateBalance(String userName, double sum) {
 
-    try {
-      databaseHelper.executeQuery("UPDATE account SET balance=? WHERE userId=(SELECT userId FROM user WHERE userName=?)", sum, userName);
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+    databaseHelper.executeQuery("UPDATE account SET balance=? WHERE userId=(SELECT userId FROM user WHERE userName=?)", sum, userName);
   }
 
   public double getBalance(String userName) {
     
-    double balance = 0;
-    
-    try {
-      balance = Double.parseDouble(databaseHelper.executeQueryResult("SELECT balance FROM account WHERE userId=(SELECT userId FROM user WHERE userName=?)", userName));
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-
+    double balance;
+    balance = Double.parseDouble(databaseHelper.executeQueryResult("SELECT balance FROM account WHERE userId=(SELECT userId FROM user WHERE userName=?)", userName));
     return balance;
   }
 
   public String getUserName(String userName) {
     
-    String user = "";
-    
-    try {
-      user = databaseHelper.executeQueryResult("SELECT userName FROM user WHERE userName=?", userName);
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    
+    String user;
+    user = databaseHelper.executeQueryResult("SELECT userName FROM user WHERE userName=?", userName);
     return user;
   }
 
   public String getPassword(String userName) {
     
-    String password = "";
-    
-    try {
-      password = databaseHelper.executeQueryResult("SELECT password FROM user WHERE userName=?", userName);
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-
+    String password;
+    password = databaseHelper.executeQueryResult("SELECT password FROM user WHERE userName=?", userName);
     return password;
   }
 
   public void setUserOnline(String userName, String sessionId) {
-
-    try {
-      databaseHelper.executeQuery("INSERT INTO onlineUser(sessionId, userName) VALUES(?,?)", sessionId, userName);
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+    databaseHelper.executeQuery("INSERT INTO onlineUser(sessionId, userName) VALUES(?,?)", sessionId, userName);
   }
 
   public void setUserOffline(String sessionId) {
-
-    try {
-      databaseHelper.executeQuery("DELETE FROM onlineUser WHERE sessionId=?", sessionId);
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+    databaseHelper.executeQuery("DELETE FROM onlineUser WHERE sessionId=?", sessionId);
   }
 
   public int getNumberOfLoggedUsers() {
     
-    int count = 0;
+    int count;
 
-    try {
-      count = Integer.parseInt(databaseHelper.executeQueryResult("SELECT COUNT(DISTINCT userName) FROM onlineUser"));
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+    count = Integer.parseInt(databaseHelper.executeQueryResult("SELECT COUNT(DISTINCT userName) FROM onlineUser"));
 
     return count;
   }

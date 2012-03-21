@@ -7,8 +7,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%!
-    DatabaseHelper databaseHelper = new DatabaseHelper();
-    DatabaseService databaseService = new DatabaseServiceImpl(databaseHelper);
+    private DatabaseHelper databaseHelper = new DatabaseHelper();
+    private DatabaseService databaseService = new DatabaseServiceImpl(databaseHelper);
+    
+    private String getPath() {
+        return getServletConfig().getServletContext().getContextPath();
+    }
 %>
 
 <html>
@@ -22,7 +26,7 @@
     <div id="form">
         <p id="centerBold">Bank Account</p>
 
-        <form action="../deposit" method="post">
+        <form action="<%=getPath()%>/deposit" method="post">
             <table>
                 <tr>
                     <td>Active Users: </td>
@@ -51,7 +55,7 @@
 
     <!-- Logout Form -->
     <div id="logoutForm">
-        <form action="../logout" method="post">
+        <form action="<%=getPath()%>/logout" method="post">
             <input type="submit" name="logout" value="Logout"/>
         </form>
     </div>

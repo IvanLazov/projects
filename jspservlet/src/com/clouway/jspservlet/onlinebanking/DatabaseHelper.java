@@ -1,5 +1,6 @@
 package com.clouway.jspservlet.onlinebanking;
 
+import com.clouway.jspservlet.onlinebanking.exceptions.DuplicateEntryException;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 import java.sql.Connection;
@@ -29,21 +30,28 @@ public class DatabaseHelper {
     PreparedStatement preparedStatement;
     
     try {
+
       connection = dataSource.getConnection();
       preparedStatement = connection.prepareStatement(query);
       fillParameters(preparedStatement, params);
-      preparedStatement.execute();      
+      preparedStatement.execute();
+
     } catch (SQLException e) {
-      e.printStackTrace();
+
+      if (e.getErrorCode() == 1062) {
+        throw new DuplicateEntryException();
+      }
+
     } finally {
+
       try {
         if (connection != null) {
           connection.close();
         }
       } catch (SQLException e) {
-        e.printStackTrace();
+
       }
-    }        
+    }
   }
   
   public String executeQueryResult(String query, String... params) {
@@ -53,7 +61,7 @@ public class DatabaseHelper {
     ResultSet resultSet;
 
     String result = "";
-    
+
     try {
       connection = dataSource.getConnection();
       preparedStatement = connection.prepareStatement(query);
@@ -73,7 +81,7 @@ public class DatabaseHelper {
         e.printStackTrace();
       }
     }
-
+    
     return result;
   }
   

@@ -5,8 +5,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.sql.SQLException;
-
 import static junit.framework.Assert.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -21,7 +19,7 @@ public class DatabaseServiceTest {
   private DatabaseService databaseService;
 
   @Before
-  public void setUp() throws SQLException {
+  public void setUp() {
 
     databaseHelper.executeQuery("DELETE FROM account");
     databaseHelper.executeQuery("DELETE FROM user");
@@ -30,14 +28,14 @@ public class DatabaseServiceTest {
   }
 
   @Test
-  public void happyPath() throws SQLException {
+  public void happyPath() {
 
     databaseService.save("Ivan","123456");
     assertEquals("Ivan", databaseHelper.executeQueryResult("SELECT userName FROM user WHERE userName=?", "Ivan"));
   }
   
   @Test
-  public void saveTwoUsers() throws SQLException {
+  public void saveTwoUsers() {
 
     databaseService.save("Ivan", "123456");
     databaseService.save("Misho", "654321");
@@ -54,14 +52,14 @@ public class DatabaseServiceTest {
   }
   
   @Test
-  public void newRegisteredUserHaveZeroBalanceInAccount() throws SQLException {
+  public void newRegisteredUserHaveZeroBalanceInAccount() {
 
     databaseService.save("Ivan", "123456");
     assertEquals("0", databaseHelper.executeQueryResult("SELECT balance FROM account WHERE userId = (SELECT userId FROM user WHERE userName=?)", "Ivan"));
   }
 
   @Test
-  public void increaseUserBalance() throws SQLException {
+  public void increaseUserBalance() {
     
     databaseService.save("Ivan", "123456");
 
@@ -72,7 +70,7 @@ public class DatabaseServiceTest {
   }
   
   @Test
-  public void getUserBalance() throws SQLException {
+  public void getUserBalance() {
     
     databaseService.save("Ivan", "123456");
     databaseService.updateBalance("Ivan", 260.00);
@@ -80,40 +78,40 @@ public class DatabaseServiceTest {
   }
   
   @Test
-  public void getUserName() throws SQLException {
+  public void getUserName() {
     
     databaseService.save("Ivan", "123456");
     assertEquals("Ivan", databaseService.getUserName("Ivan"));
   }
 
   @Test
-  public void getEmptyUserName() throws SQLException {
+  public void getEmptyUserName() {
 
     assertEquals("", databaseService.getUserName("Misho"));
   }
 
   @Test
-  public void getUserPassword() throws SQLException {
+  public void getUserPassword() {
 
     databaseService.save("Ivan", "123456");
     assertEquals("123456", databaseService.getPassword("Ivan"));
   }
   
   @Test
-  public void getEmptyPassword() throws SQLException {
+  public void getEmptyPassword() {
     
     assertEquals("", databaseService.getPassword("Misho"));
   }
   
   @Test
-  public void setUserOnline() throws SQLException {
+  public void setUserOnline() {
     
     databaseService.setUserOnline("Ivan", "QWERTY");
     assertEquals("Ivan", databaseHelper.executeQueryResult("SELECT userName FROM onlineUser WHERE sessionId=?", "QWERTY"));
   }
   
   @Test
-  public void setUserOffline() throws SQLException {
+  public void setUserOffline() {
 
     databaseService.setUserOnline("Ivan", "QWERTY");
     databaseService.setUserOffline("QWERTY");
@@ -121,7 +119,7 @@ public class DatabaseServiceTest {
   }
   
   @Test
-  public void getNumberOfLoggedUsers() throws SQLException {
+  public void getNumberOfLoggedUsers() {
     
     databaseService.setUserOnline("Ivan", "QWERTY");
     databaseService.setUserOnline("Ivan", "QWERTY2");
@@ -130,7 +128,7 @@ public class DatabaseServiceTest {
   }
 
   @After
-  public void tearDown() throws SQLException {
+  public void tearDown() {
 
     databaseHelper.executeQuery("DELETE FROM account");
     databaseHelper.executeQuery("DELETE FROM user");
