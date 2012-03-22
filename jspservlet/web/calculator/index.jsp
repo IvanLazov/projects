@@ -4,7 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%!
-    String getPath() {
+    private String getPath() {
         return getServletConfig().getServletContext().getContextPath();
     }
 %>

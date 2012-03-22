@@ -18,12 +18,8 @@ public class DepositServlet extends HttpServlet {
 
     if (request.getParameter("deposit") != null) {
 
-      try {
         HttpSession session = request.getSession();
         userService.deposit((String) session.getAttribute("userName"), request.getParameter("sum"));
-      } catch (InvalidFormatException exception) {
-        exception.printStackTrace();
-      }
 
       response.sendRedirect("onlinebanking/index.jsp");
     }

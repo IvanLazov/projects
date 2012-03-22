@@ -16,12 +16,8 @@ public class WithdrawServlet extends HttpServlet {
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    try {
-      HttpSession session = request.getSession();
-      userService.withdraw(session.getAttribute("userName").toString(), request.getParameter("sum"));
-    } catch (InvalidFormatException exception) {
-      exception.printStackTrace();
-    }
+    HttpSession session = request.getSession();
+    userService.withdraw(session.getAttribute("userName").toString(), request.getParameter("sum"));
 
     response.sendRedirect("onlinebanking/index.jsp");
   }

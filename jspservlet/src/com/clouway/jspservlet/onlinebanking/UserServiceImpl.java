@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
   public void deposit(String userName, String sum) {
     
     if (!isSumValid(sum)) {
-      throw new InvalidFormatException();
+      //throw new InvalidFormatException();
     }
 
     databaseService.updateBalance(userName, databaseService.getBalance(userName) + Double.parseDouble(sum));
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
   public void withdraw(String userName, String sum) {
 
     if (!isSumValid(sum)) {
-      throw new InvalidFormatException();
+      //throw new InvalidFormatException();
     }
 
     Double currentBalance = databaseService.getBalance(userName) - Double.parseDouble(sum);
