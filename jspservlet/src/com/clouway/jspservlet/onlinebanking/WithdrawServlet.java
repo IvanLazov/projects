@@ -4,7 +4,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -16,9 +15,21 @@ public class WithdrawServlet extends HttpServlet {
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    HttpSession session = request.getSession();
-    userService.withdraw(session.getAttribute("userName").toString(), request.getParameter("sum"));
+    try {
+      double sum = Double.parseDouble(request.getParameter("sum"));
 
-    response.sendRedirect("onlinebanking/index.jsp");
+      if (sum < 0) {
+        request.setAttribute("error", "Cannot withdraw negative sum!");
+      } else {
+        userService.withdraw(String.valueOf(request.getSession().getAttribute("userName")), sum);
+      }
+
+    } catch (NumberFormatException e) {
+      request.setAttribute("error", "Cannot deposit! Invalid sum entered!");
+    } catch (InsufficientBalanceException e) {
+      request.setAttribute("error", "Cannot withdraw! Insufficient balance!");
+    }
+
+    request.getRequestDispatcher("onlinebanking/index.jsp").forward(request, response);
   }
 }

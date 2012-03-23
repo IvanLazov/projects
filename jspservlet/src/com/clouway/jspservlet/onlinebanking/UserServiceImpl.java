@@ -28,17 +28,19 @@ public class UserServiceImpl implements UserService {
     }
   }
   
-  public void deposit(String userName, Double sum) {
+  public void deposit(String userName, double sum) {
 
     databaseService.updateBalance(userName, databaseService.getBalance(userName) + sum);
   }
 
-  public void withdraw(String userName, String sum) {
+  public void withdraw(String userName, double sum) {
 
-    Double currentBalance = databaseService.getBalance(userName) - Double.parseDouble(sum);
+    Double currentBalance = databaseService.getBalance(userName) - sum;
     
     if (currentBalance >= 0) {
       databaseService.updateBalance(userName, currentBalance);
+    } else {
+      throw new InsufficientBalanceException();
     }
   }
 

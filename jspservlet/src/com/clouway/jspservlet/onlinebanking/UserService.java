@@ -9,7 +9,7 @@ public interface UserService {
 
   void login(String userName, String password) throws WrongUserNameOrPasswordException;
 
-  void deposit(String userName, Double sum);
+  void deposit(String userName, double sum);
   
-  void withdraw(String userName, String sum);
+  void withdraw(String userName, double sum);
 }

@@ -132,12 +132,12 @@ public class UserServiceTest {
       oneOf(databaseService).updateBalance("Ivan", 50.00);
     }});
 
-    userService.withdraw("Ivan", "50.00");
+    userService.withdraw("Ivan", 50.00);
   }
 
 
 
-  @Test
+  @Test(expected = InsufficientBalanceException.class)
   public void shouldNotWithdrawMoneyIfCurrentUserBalanceIsNotEnough() {
 
     context.checking(new Expectations(){{
@@ -145,7 +145,7 @@ public class UserServiceTest {
       will(returnValue(100.00));
     }});
 
-    userService.withdraw("Ivan", "200");
+    userService.withdraw("Ivan", 200);
   }
   
   @Test

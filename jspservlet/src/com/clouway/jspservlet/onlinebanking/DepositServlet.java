@@ -18,6 +18,7 @@ public class DepositServlet extends HttpServlet {
     if (request.getParameter("deposit") != null) {
 
       try {
+
         double sum = Double.parseDouble(request.getParameter("sum"));
 
         if (sum < 0) {
