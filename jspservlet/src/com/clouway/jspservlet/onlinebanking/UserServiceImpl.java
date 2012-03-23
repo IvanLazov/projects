@@ -28,20 +28,12 @@ public class UserServiceImpl implements UserService {
     }
   }
   
-  public void deposit(String userName, String sum) {
-    
-    if (!isSumValid(sum)) {
-      //throw new InvalidFormatException();
-    }
+  public void deposit(String userName, Double sum) {
 
-    databaseService.updateBalance(userName, databaseService.getBalance(userName) + Double.parseDouble(sum));
+    databaseService.updateBalance(userName, databaseService.getBalance(userName) + sum);
   }
 
   public void withdraw(String userName, String sum) {
-
-    if (!isSumValid(sum)) {
-      //throw new InvalidFormatException();
-    }
 
     Double currentBalance = databaseService.getBalance(userName) - Double.parseDouble(sum);
     
@@ -65,10 +57,5 @@ public class UserServiceImpl implements UserService {
   private boolean isUserNameValid(String userName) {
 
     return userName.matches("[a-zA-Z]{3,20}");
-  }
-  
-  private boolean isSumValid(String sum) {
-
-    return sum.matches("[0-9]{1,5}[.][0-9]{2}") || sum.matches("[0-9]{1,5}");
   }
 }

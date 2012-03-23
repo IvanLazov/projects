@@ -98,11 +98,11 @@ public class UserServiceTest {
   public void depositMoney() {
 
     context.checking(new Expectations(){{
-      oneOf(databaseService).updateBalance("Ivan", 100);
+      oneOf(databaseService).updateBalance("Ivan", 100.00);
       oneOf(databaseService).getBalance("Ivan");
     }});
 
-    userService.deposit("Ivan", "100");
+    userService.deposit("Ivan", 100.00);
   }
   
   @Test
@@ -113,7 +113,7 @@ public class UserServiceTest {
       oneOf(databaseService).getBalance("Ivan");
     }});
 
-    userService.deposit("Ivan", "150.22");
+    userService.deposit("Ivan", 150.22);
   }
 
 

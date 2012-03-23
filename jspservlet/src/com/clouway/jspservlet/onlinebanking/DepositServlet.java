@@ -4,7 +4,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -18,14 +17,23 @@ public class DepositServlet extends HttpServlet {
 
     if (request.getParameter("deposit") != null) {
 
-        HttpSession session = request.getSession();
-        userService.deposit((String) session.getAttribute("userName"), request.getParameter("sum"));
+      try {
+        double sum = Double.parseDouble(request.getParameter("sum"));
 
-      response.sendRedirect("onlinebanking/index.jsp");
+        if (sum < 0) {
+          request.setAttribute("error", "Cannot deposit negative sum!");
+        } else {
+          userService.deposit(String.valueOf(request.getSession().getAttribute("userName")), sum);
+        }
+      } catch (NumberFormatException e) {
+        request.setAttribute("error", "Cannot deposit! Invalid sum entered!");
+      }
+
+      request.getRequestDispatcher("onlinebanking/index.jsp").forward(request, response);
     }
 
     if (request.getParameter("withdraw") != null) {
-      getServletContext().getRequestDispatcher("/withdraw").forward(request, response);
+      request.getRequestDispatcher("/withdraw").forward(request, response);
     }
   }
 }
