@@ -12,6 +12,7 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
 
   private UserService userService = Injector.injectUserService(Injector.injectDatabaseService(Injector.injectDatabaseHelper()));
+  private DatabaseService databaseService = Injector.injectDatabaseService(Injector.injectDatabaseHelper());
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -21,8 +22,10 @@ public class LoginServlet extends HttpServlet {
     try {
 
       userService.login(userName, password);
+      databaseService.setUserOnline(request.getSession().getId(), String.valueOf(request.getSession().getAttribute("userName")));
       request.getSession().setAttribute("userName", userName);
       request.getRequestDispatcher("onlinebanking/index.jsp").forward(request, response);
+
     } catch (WrongUserNameOrPasswordException exception) {
 
       request.setAttribute("error", "Wrong username/password");

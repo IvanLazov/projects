@@ -21,8 +21,7 @@ public class RegisterServlet extends HttpServlet {
     try {
 
       userService.register(userName, password);
-      request.getSession().setAttribute("userName", userName);
-      request.getRequestDispatcher("onlinebanking/index.jsp");
+      request.setAttribute("success", "You can now log in!");
 
     } catch (InvalidUserNameException exception) {
       request.setAttribute("error", "Invalid username! Username must contain only letters. Length from 3 to 20 characters.");

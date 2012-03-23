@@ -3,9 +3,9 @@ package com.clouway.jspservlet.onlinebanking;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.Assert.*;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -72,7 +72,7 @@ public class DatabaseServiceTest {
     
     databaseService.save("Ivan", "123456");
     databaseService.updateBalance("Ivan", 260.00);
-    assertEquals(260.00, databaseService.getBalance("Ivan"));
+    assertThat(260.00, is(equalTo(databaseService.getBalance("Ivan"))));
   }
   
   @Test
@@ -94,10 +94,29 @@ public class DatabaseServiceTest {
     databaseService.save("Ivan", "123456");
     assertEquals("123456", databaseService.getPassword("Ivan"));
   }
-  
+
   @Test
-  public void getEmptyPassword() {
+  public void setUserIsOnline() {
     
-    assertEquals("", databaseService.getPassword("Misho"));
+    databaseService.setUserOnline("123456QWERTY", "Ivan");
+    assertEquals("Ivan", databaseHelper.executeQueryResult("SELECT userName FROM onlineUser WHERE userName=?", "Ivan"));
+    assertEquals("123456QWERTY", databaseHelper.executeQueryResult("SELECT sessionId FROM onlineUser WHERE userName=?", "Ivan"));
+  }
+
+  @Test
+  public void setUserOffline() {
+
+    databaseService.setUserOnline("123456QWERTY", "Ivan");
+    databaseService.setUserOnline("987654AZERTY", "Misho");
+    databaseService.setUserOffline("123456QWERTY");
+    assertEquals("987654AZERTY", databaseHelper.executeQueryResult("SELECT sessionId FROM onlineUser WHERE userName=?", "Misho"));
+  }
+
+  @Test
+  public void getNumberOfOnlineUsers() {
+
+    databaseService.setUserOnline("123456QWERTY", "Ivan");
+    databaseService.setUserOnline("987654AZERTY", "Misho");
+    assertEquals(2, databaseService.getNumberOfOnlineUsers());
   }
 }

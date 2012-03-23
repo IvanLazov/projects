@@ -46,6 +46,14 @@
     </form>
 </div>
 
+<div id="info">
+<%
+    if (request.getAttribute("success") != null) {
+        out.println("<a href='onlinebanking/login.jsp'>You can now log in </a>");
+    }
+%>
+</div>
+
 <div id="error">
     <%= request.getAttribute("error") == null ? "" : request.getAttribute("error") %>
 </div>

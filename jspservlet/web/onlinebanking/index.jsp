@@ -20,12 +20,8 @@
     <form action="<%=getPath()%>/deposit" method="post">
         <table>
             <tr>
-                <td>Active Users:</td>
-            </tr>
-            <tr>
                 <td>User:</td>
-                <td><%= session.getAttribute("userName") %>
-                </td>
+                <td><%= session.getAttribute("userName") %></td>
             </tr>
             <tr>
                 <td>Balance:</td>
@@ -44,7 +40,7 @@
 </div>
 
 <!-- Logout Form -->
-<div id="logout">
+<div id="info">
     <form action="<%=getPath()%>/logout" method="post">
         <input type="submit" name="logout" value="Logout"/>
     </form>

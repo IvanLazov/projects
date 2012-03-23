@@ -137,6 +137,19 @@
     <url-pattern>/onlinebanking/</url-pattern>
   </filter-mapping>
 
+  <filter>
+    <filter-name>OnlineUsersFilter</filter-name>
+    <filter-class>com.clouway.jspservlet.onlinebanking.OnlineUsersFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>OnlineUsersFilter</filter-name>
+    <url-pattern>/onlinebanking/login.jsp</url-pattern>
+  </filter-mapping>
+
+  <listener>
+    <listener-class>com.clouway.jspservlet.onlinebanking.SessionListener</listener-class>
+  </listener>
+
   <!-- REGISTRATION FORM -->
   <servlet>
     <servlet-name>ValidatorServlet</servlet-name>

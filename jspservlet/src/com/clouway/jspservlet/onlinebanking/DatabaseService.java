@@ -14,4 +14,10 @@ public interface DatabaseService {
   String getUserName(String userName);
 
   String getPassword(String userName);
+
+  void setUserOnline(String sessionId, String userName);
+
+  void setUserOffline(String sessionId);
+  
+  int getNumberOfOnlineUsers();
 }

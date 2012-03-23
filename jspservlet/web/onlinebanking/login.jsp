@@ -44,6 +44,10 @@
     </form>
 </div>
 
+<div id="info">
+    Number of online users: <%=request.getAttribute("numberOfOnlineUsers")==null ? "" : request.getAttribute("numberOfOnlineUsers")%>
+</div>
+
 <div id="error">
     <%= request.getAttribute("error") == null ? "" : request.getAttribute("error") %>
 </div>
