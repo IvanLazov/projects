@@ -25,6 +25,7 @@
             </tr>
             <tr>
                 <td>Balance:</td>
+                <td><%= request.getAttribute("userBalance")%></td>
             </tr>
             <tr>
                 <td>Enter sum:</td>

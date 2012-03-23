@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
       userService.login(userName, password);
       databaseService.setUserOnline(request.getSession().getId(), String.valueOf(request.getSession().getAttribute("userName")));
       request.getSession().setAttribute("userName", userName);
-      request.getRequestDispatcher("onlinebanking/index.jsp").forward(request, response);
+      response.sendRedirect("onlinebanking/index.jsp");
 
     } catch (WrongUserNameOrPasswordException exception) {
 
