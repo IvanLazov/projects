@@ -45,18 +45,14 @@ public class UserServiceImpl implements UserService {
 
     Double currentBalance = databaseService.getBalance(userName) - Double.parseDouble(sum);
     
-    if (currentBalance  >= 0) {
+    if (currentBalance >= 0) {
       databaseService.updateBalance(userName, currentBalance);
     }
   }
 
   public void login(String userName, String password) {
 
-    if (databaseService.getUserName(userName).equals("")) {
-      throw new WrongUserNameOrPasswordException();
-    }
-    
-    if (!password.equals(databaseService.getPassword(userName))) {
+    if (databaseService.getUserName(userName).equals("") || !password.equals(databaseService.getPassword(userName))) {
       throw new WrongUserNameOrPasswordException();
     }
   }

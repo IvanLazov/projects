@@ -1,15 +1,6 @@
-<%@ page import="com.clouway.jspservlet.onlinebanking.DatabaseHelper" %>
-<%@ page import="com.clouway.jspservlet.onlinebanking.DatabaseService" %>
-<%@ page import="com.clouway.jspservlet.onlinebanking.DatabaseServiceImpl" %>
-<%--
-  Created by Ivan Lazov (darkpain1989@gmail.com)
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%!
-    private DatabaseHelper databaseHelper = new DatabaseHelper();
-    private DatabaseService databaseService = new DatabaseServiceImpl(databaseHelper);
-    
     private String getPath() {
         return getServletConfig().getServletContext().getContextPath();
     }
@@ -18,7 +9,7 @@
 <html>
 <head>
     <title>Home Page</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="<%=getPath()%>/onlinebanking/style.css" />
 </head>
 <body>
 
@@ -30,7 +21,7 @@
             <table>
                 <tr>
                     <td>Active Users: </td>
-                    <td><%= databaseService.getNumberOfLoggedUsers() %></td>
+                    <%--<td><%= databaseService.getNumberOfLoggedUsers() %></td>--%>
                 </tr>
                 <tr>
                     <td>User: </td>
@@ -38,7 +29,7 @@
                 </tr>
                 <tr>
                     <td>Balance: </td>
-                    <td><%= databaseService.getBalance(session.getAttribute("userName").toString()) %></td>
+                    <%--<td><%= databaseService.getBalance(session.getAttribute("userName").toString()) %></td>--%>
                 </tr>
                 <tr>
                     <td>Enter sum:</td>

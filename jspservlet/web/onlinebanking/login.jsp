@@ -1,7 +1,10 @@
-<%--
-  Created by Ivan Lazov (darkpain1989@gmail.com)
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    if (session.getAttribute("userName") != null) {
+        response.sendRedirect("index.jsp");
+    }
+%>
 
 <%!
     private String getPath() {
@@ -9,48 +12,41 @@
     }
 %>
 
-<%
-    if (session.getAttribute("userName") != null) {
-        response.sendRedirect("index.jsp");
-        return;
-    }
-%>
-
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="<%=getPath()%>/onlinebanking/style.css"/>
     <title>Login Page</title>
 </head>
 <body>
 
-    <!-- Login Form -->
-    <div id="form">
-        <p id="centerBold">Login Form</p>
-        <form action="<%=getPath()%>/login" method="post">
-            <table>
-                <tr>
-                    <td>Username: </td>
-                    <td><input type="text" name="userName" /></td>
-                </tr>
-                <tr>
-                    <td>Password: </td>
-                    <td><input type="password" name="password" /></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="Login" /></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><a href="register.jsp">Create a new account</a></td>
-                </tr>
-            </table>
-        </form>
-    </div>
+<div id="form">
+    <p id="centerBold">Login Form</p>
 
-    <div id="error">
-        <%= request.getParameter("error") == null ? "" : request.getParameter("error") %>
-    </div>
+    <form action="<%=getPath()%>/login" method="post">
+        <table>
+            <tr>
+                <td>Username:</td>
+                <td><input type="text" name="userName"/></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" name="password"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Login"/></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><a href="<%=getPath()%>/onlinebanking/register.jsp">Create a new account</a></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="error">
+    <%= request.getAttribute("error") == null ? "" : request.getAttribute("error") %>
+</div>
 
 </body>
 </html>

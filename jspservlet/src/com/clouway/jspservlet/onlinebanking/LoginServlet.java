@@ -4,7 +4,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -22,15 +21,12 @@ public class LoginServlet extends HttpServlet {
     try {
 
       userService.login(userName, password);
-
-      HttpSession session = request.getSession();
-      session.setAttribute("userName", userName);
-      //databaseService.setUserOnline(userName, session.getId());
-
-      response.sendRedirect("onlinebanking/index.jsp");
-
+      request.getSession().setAttribute("userName", userName);
+      request.getRequestDispatcher("onlinebanking/index.jsp").forward(request, response);
     } catch (WrongUserNameOrPasswordException exception) {
-      response.sendRedirect("onlinebanking/login.jsp?error=Wrong username or password.");
+
+      request.setAttribute("error", "Wrong username/password");
+      request.getRequestDispatcher("onlinebanking/login.jsp").forward(request, response);
     }
   }
 }
