@@ -19,5 +19,5 @@ public interface DatabaseService {
   
   //void setUserOffline(String sessionId);
   
-  int getNumberOfLoggedUsers();
+  //int getNumberOfLoggedUsers();
 }
