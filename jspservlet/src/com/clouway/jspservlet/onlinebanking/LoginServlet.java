@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by Ivan Lazov (darkpain1989@gmail.com)
+ * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class LoginServlet extends HttpServlet {
 

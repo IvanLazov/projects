@@ -1,7 +1,7 @@
 package com.clouway.jspservlet.onlinebanking;
 
 /**
- * Created by Ivan Lazov (darkpain1989@gmail.com)
+ * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class UserServiceImpl implements UserService {
 

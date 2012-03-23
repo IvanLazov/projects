@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Created by Ivan Lazov (darkpain1989@gmail.com)
+ * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class DatabaseHelper {
 
