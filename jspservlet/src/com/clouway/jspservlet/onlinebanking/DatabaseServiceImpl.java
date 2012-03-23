@@ -51,12 +51,12 @@ public class DatabaseServiceImpl implements DatabaseService {
   //  databaseHelper.executeQuery("DELETE FROM onlineUser WHERE sessionId=?", sessionId);
   //}
 
-  public int getNumberOfLoggedUsers() {
-    
-    int count;
-
-    count = Integer.parseInt(databaseHelper.executeQueryResult("SELECT COUNT(DISTINCT userName) FROM onlineUser"));
-
-    return count;
-  }
+  //public int getNumberOfLoggedUsers() {
+  //
+  //  int count;
+  //
+  //  count = Integer.parseInt(databaseHelper.executeQueryResult("SELECT COUNT(DISTINCT userName) FROM onlineUser"));
+  //
+  //  return count;
+  //}
 }
