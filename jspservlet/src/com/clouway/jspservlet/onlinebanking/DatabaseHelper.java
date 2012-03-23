@@ -40,7 +40,6 @@ public class DatabaseHelper {
       if (e.getErrorCode() == 1062) {
         throw new DuplicateEntryException();
       }
-
     } finally {
 
       try {

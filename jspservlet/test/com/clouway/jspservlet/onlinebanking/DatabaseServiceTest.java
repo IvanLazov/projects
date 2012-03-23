@@ -1,6 +1,5 @@
 package com.clouway.jspservlet.onlinebanking;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -100,37 +99,5 @@ public class DatabaseServiceTest {
   public void getEmptyPassword() {
     
     assertEquals("", databaseService.getPassword("Misho"));
-  }
-  
-  //@Test
-  //public void setUserOnline() {
-  //
-  //  databaseService.setUserOnline("Ivan", "QWERTY");
-  //  assertEquals("Ivan", databaseHelper.executeQueryResult("SELECT userName FROM onlineUser WHERE sessionId=?", "QWERTY"));
-  //}
-  
-  //@Test
-  //public void setUserOffline() {
-  //
-  //  databaseService.setUserOnline("Ivan", "QWERTY");
-  //  databaseService.setUserOffline("QWERTY");
-  //  assertEquals("", databaseHelper.executeQueryResult("SELECT userName FROM onlineUser WHERE sessionId=?", "QWERTY"));
-  //}
-  
-  //@Test
-  //public void getNumberOfLoggedUsers() {
-  //
-  //  databaseService.setUserOnline("Ivan", "QWERTY");
-  //  databaseService.setUserOnline("Ivan", "QWERTY2");
-  //  databaseService.setUserOnline("Misho", "QWERTY3");
-  //  assertEquals(2, databaseService.getNumberOfLoggedUsers());
-  //}
-
-  @After
-  public void tearDown() {
-
-    databaseHelper.executeQuery("DELETE FROM account");
-    databaseHelper.executeQuery("DELETE FROM user");
-    databaseHelper.executeQuery("DELETE FROM onlineUser");
   }
 }

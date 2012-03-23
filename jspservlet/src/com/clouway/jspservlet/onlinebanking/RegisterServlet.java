@@ -4,7 +4,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -22,19 +21,17 @@ public class RegisterServlet extends HttpServlet {
     try {
 
       userService.register(userName, password);
-
-      HttpSession session = request.getSession();
-      session.setAttribute("userName", userName);
-      //databaseService.setUserOnline(userName, session.getId());
-
-      response.sendRedirect("onlinebanking/index.jsp");
+      request.getSession().setAttribute("userName", userName);
+      request.getRequestDispatcher("onlinebanking/index.jsp");
 
     } catch (InvalidUserNameException exception) {
-      response.sendRedirect("onlinebanking/register.jsp?error=Invalid username! Username must contain only letters. Length from 3 to 20 characters.");
+      request.setAttribute("error", "Invalid username! Username must contain only letters. Length from 3 to 20 characters.");
     } catch (InvalidPasswordException exception) {
-      response.sendRedirect("onlinebanking/register.jsp?error=Invalid password! Password can contain letters and digits. Length from 6 to 20 characters");
+      request.setAttribute("error", "Invalid password! Password can contain letters and digits. Length from 6 to 20 characters.");
     } catch (UserNameAlreadyExistsException exception) {
-      response.sendRedirect("onlinebanking/register.jsp?error=Username already exists! Try with another username.");
+      request.setAttribute("error", "Username already taken! Try with another one.");
     }
+
+    request.getRequestDispatcher("onlinebanking/register.jsp").forward(request, response);
   }
 }

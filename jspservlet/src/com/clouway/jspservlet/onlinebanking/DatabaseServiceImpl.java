@@ -42,21 +42,4 @@ public class DatabaseServiceImpl implements DatabaseService {
     password = databaseHelper.executeQueryResult("SELECT password FROM user WHERE userName=?", userName);
     return password;
   }
-
-  //public void setUserOnline(String userName, String sessionId) {
-  //  databaseHelper.executeQuery("INSERT INTO onlineUser(sessionId, userName) VALUES(?,?)", sessionId, userName);
-  //}
-
-  //public void setUserOffline(String sessionId) {
-  //  databaseHelper.executeQuery("DELETE FROM onlineUser WHERE sessionId=?", sessionId);
-  //}
-
-  //public int getNumberOfLoggedUsers() {
-  //
-  //  int count;
-  //
-  //  count = Integer.parseInt(databaseHelper.executeQueryResult("SELECT COUNT(DISTINCT userName) FROM onlineUser"));
-  //
-  //  return count;
-  //}
 }

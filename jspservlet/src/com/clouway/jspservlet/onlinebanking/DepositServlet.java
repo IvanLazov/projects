@@ -16,9 +16,7 @@ public class DepositServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     if (request.getParameter("deposit") != null) {
-
       try {
-
         double sum = Double.parseDouble(request.getParameter("sum"));
 
         if (sum < 0) {
@@ -29,7 +27,6 @@ public class DepositServlet extends HttpServlet {
       } catch (NumberFormatException e) {
         request.setAttribute("error", "Cannot deposit! Invalid sum entered!");
       }
-
       request.getRequestDispatcher("onlinebanking/index.jsp").forward(request, response);
     }
 

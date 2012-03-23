@@ -15,7 +15,7 @@
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="<%=getPath()%>/onlinebanking/style.css"/>
     <title>Register Page</title>
 </head>
 <body>
@@ -47,7 +47,7 @@
 </div>
 
 <div id="error">
-    <%= request.getParameter("error") == null ? "" : request.getParameter("error") %>
+    <%= request.getAttribute("error") == null ? "" : request.getAttribute("error") %>
 </div>
 
 </body>

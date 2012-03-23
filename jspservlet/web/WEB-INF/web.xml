@@ -125,20 +125,16 @@
   </session-config>
   
   <filter>
-    <filter-name>LoginFilter</filter-name>
+    <filter-name>SecurityFilter</filter-name>
     <filter-class>com.clouway.jspservlet.onlinebanking.SecurityFilter</filter-class>
   </filter>
   <filter-mapping>
-    <filter-name>LoginFilter</filter-name>
+    <filter-name>SecurityFilter</filter-name>
     <url-pattern>/onlinebanking/index.jsp</url-pattern>
   </filter-mapping>
   <filter-mapping>
-    <filter-name>LoginFilter</filter-name>
+    <filter-name>SecurityFilter</filter-name>
     <url-pattern>/onlinebanking/</url-pattern>
-  </filter-mapping>
-  <filter-mapping>
-    <filter-name>LoginFilter</filter-name>
-    <servlet-name>DepositServlet</servlet-name>
   </filter-mapping>
 
   <!-- REGISTRATION FORM -->
