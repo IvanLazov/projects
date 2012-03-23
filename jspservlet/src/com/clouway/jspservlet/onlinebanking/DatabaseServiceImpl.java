@@ -23,24 +23,18 @@ public class DatabaseServiceImpl implements DatabaseService {
   }
 
   public double getBalance(String userName) {
-    
-    double balance;
-    balance = Double.parseDouble(databaseHelper.executeQueryResult("SELECT balance FROM account WHERE userId=(SELECT userId FROM user WHERE userName=?)", userName));
-    return balance;
+
+    return Double.parseDouble(databaseHelper.executeQueryResult("SELECT balance FROM account WHERE userId=(SELECT userId FROM user WHERE userName=?)", userName));
   }
 
   public String getUserName(String userName) {
-    
-    String user;
-    user = databaseHelper.executeQueryResult("SELECT userName FROM user WHERE userName=?", userName);
-    return user;
+
+    return databaseHelper.executeQueryResult("SELECT userName FROM user WHERE userName=?", userName);
   }
 
   public String getPassword(String userName) {
-    
-    String password;
-    password = databaseHelper.executeQueryResult("SELECT password FROM user WHERE userName=?", userName);
-    return password;
+
+    return databaseHelper.executeQueryResult("SELECT password FROM user WHERE userName=?", userName);
   }
 
   public void setUserOnline(String sessionId, String userName) {
@@ -54,9 +48,7 @@ public class DatabaseServiceImpl implements DatabaseService {
   }
 
   public int getNumberOfOnlineUsers() {
-    
-    int numberOfOnlineUsers;
-    numberOfOnlineUsers = Integer.parseInt(databaseHelper.executeQueryResult("SELECT COUNT(DISTINCT userName) FROM onlineUser"));
-    return numberOfOnlineUsers;
+
+    return Integer.parseInt(databaseHelper.executeQueryResult("SELECT COUNT(DISTINCT userName) FROM onlineUser"));
   }
 }
