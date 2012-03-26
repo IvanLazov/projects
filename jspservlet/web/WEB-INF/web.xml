@@ -156,6 +156,7 @@
   <filter-mapping>
     <filter-name>OnlineUsersFilter</filter-name>
     <url-pattern>/onlinebanking/login.jsp</url-pattern>
+    <url-pattern>/login</url-pattern>
   </filter-mapping>
 
 
