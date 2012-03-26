@@ -12,7 +12,7 @@ import java.io.IOException;
  */
 public class CalculatorServlet extends HttpServlet {
 
-  private Calculator calculator = new Calculator();
+  private final Calculator calculator = new Calculator();
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -22,6 +22,8 @@ public class CalculatorServlet extends HttpServlet {
       request.setAttribute("result", calculator.calculate(expression));
     } catch (ArithmeticException e) {
       request.setAttribute("result", "Infinity");
+    } catch (InvalidExpressionException e) {
+      request.setAttribute("result", request.getParameter("input"));
     }
 
     RequestDispatcher dispatcher = request.getRequestDispatcher("/calculator/index.jsp");
