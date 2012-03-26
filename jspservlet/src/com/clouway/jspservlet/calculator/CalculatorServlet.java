@@ -17,7 +17,12 @@ public class CalculatorServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     String expression = request.getParameter("input");
-    request.setAttribute("result", calculator.calculate(expression));
+
+    try {
+      request.setAttribute("result", calculator.calculate(expression));
+    } catch (ArithmeticException e) {
+      request.setAttribute("result", "Infinity");
+    }
 
     RequestDispatcher dispatcher = request.getRequestDispatcher("/calculator/index.jsp");
     dispatcher.forward(request, response);

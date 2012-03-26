@@ -29,8 +29,8 @@ public class Calculator {
 
         try {
 
-          int firstNumber = Integer.parseInt(expression.substring(0, expression.indexOf(sign)));
-          int secondNumber = Integer.parseInt(expression.substring(expression.indexOf(sign) + 1, expression.length()));
+          int firstNumber = Integer.parseInt(expression.substring(0, expression.lastIndexOf(sign)));
+          int secondNumber = Integer.parseInt(expression.substring(expression.lastIndexOf(sign) + 1, expression.length()));
           result = operationMap.get(sign).calculate(firstNumber, secondNumber);
         } catch (NumberFormatException exception) {
 
