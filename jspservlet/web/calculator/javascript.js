@@ -1,5 +1,8 @@
 function writeNumber(number) {
 
+    if (document.getElementById('input').value == "0") {
+        document.getElementById('input').value = "";
+    }
     document.getElementById('input').value += number;
 }
 
@@ -19,5 +22,5 @@ function operation(operator) {
 
 function clearInput() {
 
-    document.getElementById('input').value = "";
+    document.getElementById('input').value = "0";
 }
