@@ -13,6 +13,10 @@ public final class Injector {
     return new DatabaseServiceImpl(databaseHelper);
   }
 
+  public static RegisterService injectRegisterService(DatabaseHelper databaseHelper) {
+    return new RegisterServiceImpl(databaseHelper);
+  }
+
   public static UserService injectUserService(DatabaseService databaseService) {
     return new UserServiceImpl(databaseService);
   }
