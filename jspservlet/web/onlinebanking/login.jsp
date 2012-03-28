@@ -2,7 +2,7 @@
 
 <%
     if (session.getAttribute("userName") != null) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("userPage.jsp");
     }
 %>
 

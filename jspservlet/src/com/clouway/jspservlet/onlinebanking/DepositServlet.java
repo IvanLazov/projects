@@ -30,20 +30,17 @@ public class DepositServlet extends HttpServlet {
           User user = (User) request.getSession().getAttribute("user");
           balanceService = new BalanceServiceImpl(Injector.injectDatabaseHelper(), user);
           balanceService.updateBalance(balanceService.getBalance() + sum);
+          request.setAttribute("userBalance", balanceService.getBalance());
         }
       } catch (NumberFormatException e) {
         request.setAttribute("error", "Cannot deposit! Invalid sum entered!");
       }
 
-      request.getRequestDispatcher("onlinebanking/index.jsp").forward(request, response);
+      request.getRequestDispatcher("onlinebanking/userPage.jsp").forward(request, response);
     }
-
-
 
     if (request.getParameter("withdraw") != null) {
       request.getRequestDispatcher("/withdraw").forward(request, response);
     }
-
-
   }
 }

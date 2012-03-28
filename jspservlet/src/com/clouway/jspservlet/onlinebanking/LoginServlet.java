@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
       User user = loginService.login(userName, password);
       //request.getSession().setAttribute("userName", userName);
       request.getSession().setAttribute("user", user);
-      response.sendRedirect("onlinebanking/index.jsp");
+      response.sendRedirect("onlinebanking/userPage.jsp");
 
     } catch (WrongUserNameOrPasswordException exception) {
       request.setAttribute("error", "Wrong username/password");

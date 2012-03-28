@@ -26,7 +26,7 @@ public class CalculatorServlet extends HttpServlet {
       request.setAttribute("result", request.getParameter("input"));
     }
 
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/calculator/index.jsp");
+    RequestDispatcher dispatcher = request.getRequestDispatcher("/calculator/userPage.jsp");
     dispatcher.forward(request, response);
   }
 }

@@ -40,7 +40,7 @@ public class ValidatorServlet extends HttpServlet {
 
     request.setAttribute("fieldToValues", fieldToValues);
     request.setAttribute("errors", errors);
-    RequestDispatcher dispatcher = request.getRequestDispatcher("/registrationform/index.jsp");
+    RequestDispatcher dispatcher = request.getRequestDispatcher("/registrationform/userPage.jsp");
     dispatcher.forward(request, response);
   }
 }

@@ -133,8 +133,9 @@
   </filter>
   <filter-mapping>
     <filter-name>SecurityFilter</filter-name>
-    <url-pattern>/onlinebanking/index.jsp</url-pattern>
+    <url-pattern>/onlinebanking/userPage.jsp</url-pattern>
     <url-pattern>/onlinebanking/</url-pattern>
+    <url-pattern>/deposit</url-pattern>
   </filter-mapping>
 
   <!-- UserBalanceFilter -->
@@ -144,9 +145,9 @@
   </filter>
   <filter-mapping>
     <filter-name>UserBalanceFilter</filter-name>
-    <url-pattern>/onlinebanking/index.jsp</url-pattern>
+    <url-pattern>/onlinebanking/userPage.jsp</url-pattern>
     <!--<url-pattern>/onlinebanking/</url-pattern>-->
-    <!--<url-pattern>/deposit</url-pattern>-->
+    <url-pattern>/deposit</url-pattern>
   </filter-mapping>
 
   <!-- OnlineUsersFilter -->

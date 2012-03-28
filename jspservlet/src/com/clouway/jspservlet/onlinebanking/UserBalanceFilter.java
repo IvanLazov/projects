@@ -28,12 +28,12 @@ public class UserBalanceFilter implements Filter {
     //HttpServletRequest request = (HttpServletRequest) req;
     HttpSession session = ((HttpServletRequest) req).getSession();
 
-    if (session.getAttribute("user") != null) {
+    //if (session.getAttribute("user") != null) {
 
       User user = (User) session.getAttribute("user");
       balanceService = new BalanceServiceImpl(Injector.injectDatabaseHelper(), user);
       req.setAttribute("userBalance", balanceService.getBalance());
-    }
+    //}
 
     chain.doFilter(req, resp);
   }

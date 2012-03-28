@@ -30,6 +30,6 @@ public class WithdrawServlet extends HttpServlet {
       request.setAttribute("error", "Cannot withdraw! Insufficient balance!");
     }
 
-    request.getRequestDispatcher("onlinebanking/index.jsp").forward(request, response);
+    request.getRequestDispatcher("onlinebanking/userPage.jsp").forward(request, response);
   }
 }
