@@ -6,7 +6,7 @@ import java.sql.SQLException;
 /**
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
-public interface Provider {
+public interface Provider<T> {
 
-  User getCurrentUser(ResultSet resultSet) throws SQLException;
+  T get(ResultSet resultSet) throws SQLException;
 }
