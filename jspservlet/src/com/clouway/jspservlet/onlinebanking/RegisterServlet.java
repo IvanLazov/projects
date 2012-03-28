@@ -11,18 +11,19 @@ import java.io.IOException;
  */
 public class RegisterServlet extends HttpServlet {
 
-  private UserService userService = Injector.injectUserService(Injector.injectDatabaseService(Injector.injectDatabaseHelper()));
+  private RegisterService registerService = Injector.injectRegisterService(Injector.injectDatabaseHelper());
+  private Validator validator = new Validator();
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     String userName = request.getParameter("userName");
     String password = request.getParameter("password");
-    
+
     try {
 
-      userService.register(userName, password);
+      validator.validate(userName, password);
+      registerService.register(userName, password);
       request.setAttribute("success", "You can now log in!");
-
     } catch (InvalidUserNameException exception) {
       request.setAttribute("error", "Invalid username! Username must contain only letters. Length from 3 to 20 characters.");
     } catch (InvalidPasswordException exception) {
