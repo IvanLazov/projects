@@ -26,20 +26,18 @@ public class DatabaseHelper {
   public void executeQuery(String query, Object... params) {
 
     Connection connection = null;
-    PreparedStatement preparedStatement;
-    
-    try {
 
+    try {
       connection = dataSource.getConnection();
-      preparedStatement = connection.prepareStatement(query);
+      PreparedStatement preparedStatement = connection.prepareStatement(query);
       fillParameters(preparedStatement, params);
       preparedStatement.execute();
-
     } catch (SQLException e) {
 
       if (e.getErrorCode() == 1062) {
         throw new DuplicateEntryException();
       }
+
     } finally {
 
       try {
@@ -83,32 +81,41 @@ public class DatabaseHelper {
     return result;
   }
   
-  public User executeQuery(String query, UserProvider provider, String... params) {
+  public <T> T executeQuery(String query, Provider<T> provider, Object... params) {
 
-    Connection connection;
-    PreparedStatement preparedStatement;
-    ResultSet resultSet;
-
-    User user = null;
+    Connection connection = null;
+    T returnedObject = null;
     
     try {
+
       connection = dataSource.getConnection();
-      preparedStatement = connection.prepareStatement(query);
+      PreparedStatement preparedStatement = connection.prepareStatement(query);
       fillParameters(preparedStatement, params);
-      resultSet = preparedStatement.executeQuery();
-      while (resultSet.next()) {
-        user = provider.getCurrentUser(resultSet);
+      ResultSet resultSet = preparedStatement.executeQuery();
+
+      while(resultSet.next()) {
+        System.out.println("while...");
+        returnedObject = provider.get(resultSet);
       }
+
     } catch (SQLException e) {
       e.printStackTrace();
+    } finally {
+
+      if (connection != null) {
+        try {
+          connection.close();
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
     }
 
-    return user;
+    return returnedObject;
   }
   
   
   private void fillParameters(PreparedStatement preparedStatement, Object[] params) throws SQLException {
-
     for (int i = 0; i < params.length; i++) {
       preparedStatement.setObject(i + 1, params[i]);
     }
