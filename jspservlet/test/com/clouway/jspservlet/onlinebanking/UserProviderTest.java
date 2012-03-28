@@ -3,8 +3,6 @@ package com.clouway.jspservlet.onlinebanking;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.sql.ResultSet;
-
 import static junit.framework.Assert.assertEquals;
 
 /**

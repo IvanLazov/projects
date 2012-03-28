@@ -5,7 +5,7 @@ package com.clouway.jspservlet.onlinebanking;
  */
 public interface DatabaseService {
   
-  void save(String userName, String password) throws DuplicateEntryException;
+  //void save(String userName, String password) throws DuplicateEntryException;
 
   void updateBalance(String userName, double sum);
   

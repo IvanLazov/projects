@@ -11,22 +11,22 @@ public class UserServiceImpl implements UserService {
     this.databaseService = databaseService;
   }
 
-  public void register(String userName, String password) {
-
-    if (!isUserNameValid(userName)) {
-      throw new InvalidUserNameException();
-    }
-
-    if (!isPasswordValid(password)) {
-      throw new InvalidPasswordException();
-    }
-
-    try {
-      databaseService.save(userName, password);
-    } catch (DuplicateEntryException exception) {
-      throw new UserNameAlreadyExistsException();
-    }
-  }
+//  public void register(String userName, String password) {
+//
+//    if (!isUserNameValid(userName)) {
+//      throw new InvalidUserNameException();
+//    }
+//
+//    if (!isPasswordValid(password)) {
+//      throw new InvalidPasswordException();
+//    }
+//
+//    try {
+//      databaseService.save(userName, password);
+//    } catch (DuplicateEntryException exception) {
+//      throw new UserNameAlreadyExistsException();
+//    }
+//  }
   
   public void deposit(String userName, double sum) {
 
@@ -51,13 +51,13 @@ public class UserServiceImpl implements UserService {
     }
   }
 
-  private boolean isPasswordValid(String password) {
-
-    return password.matches("[a-zA-Z0-9]{6,20}");
-  }
-  
-  private boolean isUserNameValid(String userName) {
-
-    return userName.matches("[a-zA-Z]{3,20}");
-  }
+//  private boolean isPasswordValid(String password) {
+//
+//    return password.matches("[a-zA-Z0-9]{6,20}");
+//  }
+//
+//  private boolean isUserNameValid(String userName) {
+//
+//    return userName.matches("[a-zA-Z]{3,20}");
+//  }
 }

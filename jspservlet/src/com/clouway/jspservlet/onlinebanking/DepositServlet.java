@@ -11,27 +11,39 @@ import java.io.IOException;
  */
 public class DepositServlet extends HttpServlet {
 
-  private UserService userService = Injector.injectUserService(Injector.injectDatabaseService(Injector.injectDatabaseHelper()));
+  //private UserService userService = Injector.injectUserService(Injector.injectDatabaseService(Injector.injectDatabaseHelper()));
+
+  private BalanceService balanceService;
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     if (request.getParameter("deposit") != null) {
+
       try {
+
         double sum = Double.parseDouble(request.getParameter("sum"));
 
         if (sum < 0) {
           request.setAttribute("error", "Cannot deposit negative sum!");
         } else {
-          userService.deposit(String.valueOf(request.getSession().getAttribute("userName")), sum);
+          
+          User user = (User) request.getSession().getAttribute("user");
+          balanceService = new BalanceServiceImpl(Injector.injectDatabaseHelper(), user);
+          balanceService.updateBalance(balanceService.getBalance() + sum);
         }
       } catch (NumberFormatException e) {
         request.setAttribute("error", "Cannot deposit! Invalid sum entered!");
       }
+
       request.getRequestDispatcher("onlinebanking/index.jsp").forward(request, response);
     }
+
+
 
     if (request.getParameter("withdraw") != null) {
       request.getRequestDispatcher("/withdraw").forward(request, response);
     }
+
+
   }
 }

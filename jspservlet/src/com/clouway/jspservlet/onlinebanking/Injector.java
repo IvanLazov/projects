@@ -5,11 +5,20 @@ package com.clouway.jspservlet.onlinebanking;
  */
 public final class Injector {
 
+  private static DatabaseHelper databaseHelper;
+
   public static DatabaseHelper injectDatabaseHelper() {
-    return new DatabaseHelper();
+
+    if (databaseHelper == null) {
+      databaseHelper = new DatabaseHelper();
+    }
+
+    return databaseHelper;
   }
 
   public static DatabaseService injectDatabaseService(DatabaseHelper databaseHelper) {
+
+
     return new DatabaseServiceImpl(databaseHelper);
   }
 

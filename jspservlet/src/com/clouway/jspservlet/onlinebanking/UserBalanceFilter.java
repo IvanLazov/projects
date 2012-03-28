@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -14,18 +15,25 @@ import java.io.IOException;
  */
 public class UserBalanceFilter implements Filter {
   
-  private DatabaseService databaseService = Injector.injectDatabaseService(Injector.injectDatabaseHelper());
+  //private DatabaseService databaseService = Injector.injectDatabaseService(Injector.injectDatabaseHelper());
+  
+  private BalanceService balanceService;
   
   public void init(FilterConfig filterConfig) throws ServletException {
     
   }
 
   public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+        
+    //HttpServletRequest request = (HttpServletRequest) req;
+    HttpSession session = ((HttpServletRequest) req).getSession();
 
-    HttpServletRequest request = (HttpServletRequest) req;
+    if (session.getAttribute("user") != null) {
 
-    String userName = String.valueOf(request.getSession().getAttribute("userName"));
-    request.setAttribute("userBalance", databaseService.getBalance(userName));
+      User user = (User) session.getAttribute("user");
+      balanceService = new BalanceServiceImpl(Injector.injectDatabaseHelper(), user);
+      req.setAttribute("userBalance", balanceService.getBalance());
+    }
 
     chain.doFilter(req, resp);
   }

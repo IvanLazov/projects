@@ -1,9 +1,18 @@
+<%@ page import="com.clouway.jspservlet.onlinebanking.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%!
     private String getPath() {
         return getServletConfig().getServletContext().getContextPath();
     }
+%>
+
+<%!
+    private User user = null;
+%>
+
+<%
+    user = (User) request.getSession().getAttribute("user");
 %>
 
 <html>
@@ -21,11 +30,11 @@
         <table>
             <tr>
                 <td>User:</td>
-                <td><%= session.getAttribute("userName") %></td>
+                <td><%= user.getUserName() %></td>
             </tr>
             <tr>
                 <td>Balance:</td>
-                <td><%= request.getAttribute("userBalance")%></td>
+                <td><%= request.getAttribute("userBalance") %></td>
             </tr>
             <tr>
                 <td>Enter sum:</td>
@@ -48,7 +57,7 @@
 </div>
 
 <div id="error">
-    <%= request.getAttribute("error")==null ? "" : request.getAttribute("error")%>
+    <%= request.getAttribute("error") == null ? "" : request.getAttribute("error")%>
 </div>
 
 </body>

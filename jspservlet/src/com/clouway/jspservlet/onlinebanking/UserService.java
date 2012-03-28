@@ -5,7 +5,7 @@ package com.clouway.jspservlet.onlinebanking;
  */
 public interface UserService {
 
-  void register(String userName, String password) throws InvalidUserNameException, InvalidPasswordException, UserNameAlreadyExistsException;
+  //void register(String userName, String password) throws InvalidUserNameException, InvalidPasswordException, UserNameAlreadyExistsException;
 
   void login(String userName, String password) throws WrongUserNameOrPasswordException;
 

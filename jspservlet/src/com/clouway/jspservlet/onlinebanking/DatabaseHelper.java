@@ -94,7 +94,6 @@ public class DatabaseHelper {
       ResultSet resultSet = preparedStatement.executeQuery();
 
       while(resultSet.next()) {
-        System.out.println("while...");
         returnedObject = provider.get(resultSet);
       }
 

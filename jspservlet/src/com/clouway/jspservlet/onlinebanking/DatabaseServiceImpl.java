@@ -11,11 +11,11 @@ public class DatabaseServiceImpl implements DatabaseService {
     this.databaseHelper = databaseHelper;
   }
 
-  public void save(String userName, String password) {
-
-    databaseHelper.executeQuery("INSERT INTO user(userName,password) VALUES (?,?)", userName, password);
-    databaseHelper.executeQuery("INSERT INTO account(userId, balance) VALUES ((SELECT userId FROM user WHERE userName=?), 0.00)", userName);
-  }
+  //public void save(String userName, String password) {
+  //
+  //  databaseHelper.executeQuery("INSERT INTO user(userName,password) VALUES (?,?)", userName, password);
+  //  databaseHelper.executeQuery("INSERT INTO account(userId, balance) VALUES ((SELECT userId FROM user WHERE userName=?), 0.00)", userName);
+  //}
 
   public void updateBalance(String userName, double sum) {
 
