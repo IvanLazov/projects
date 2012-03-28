@@ -83,6 +83,30 @@ public class DatabaseHelper {
     return result;
   }
   
+  public User executeQuery(String query, UserProvider provider, String... params) {
+
+    Connection connection;
+    PreparedStatement preparedStatement;
+    ResultSet resultSet;
+
+    User user = null;
+    
+    try {
+      connection = dataSource.getConnection();
+      preparedStatement = connection.prepareStatement(query);
+      fillParameters(preparedStatement, params);
+      resultSet = preparedStatement.executeQuery();
+      while (resultSet.next()) {
+        user = provider.getCurrentUser(resultSet);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return user;
+  }
+  
+  
   private void fillParameters(PreparedStatement preparedStatement, Object[] params) throws SQLException {
 
     for (int i = 0; i < params.length; i++) {
