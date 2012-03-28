@@ -27,7 +27,6 @@ public class Account {
     return balance;
   }
 
-  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
@@ -41,7 +40,6 @@ public class Account {
     return true;
   }
 
-  @Override
   public int hashCode() {
     int result;
     long temp;
