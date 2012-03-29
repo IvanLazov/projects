@@ -6,7 +6,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
@@ -22,8 +21,7 @@ public class OnlineUsersFilter implements Filter {
 
   public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
 
-    HttpServletRequest request = (HttpServletRequest) req;
-    request.setAttribute("numberOfOnlineUsers", databaseService.getNumberOfOnlineUsers());
+    req.setAttribute("numberOfOnlineUsers", databaseService.getNumberOfOnlineUsers());
     chain.doFilter(req, resp);
   }
 

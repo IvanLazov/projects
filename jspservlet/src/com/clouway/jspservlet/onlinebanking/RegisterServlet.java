@@ -11,8 +11,8 @@ import java.io.IOException;
  */
 public class RegisterServlet extends HttpServlet {
 
-  private RegisterService registerService = Injector.injectRegisterService(Injector.injectDatabaseHelper());
-  private Validator validator = new Validator();
+  private final RegisterService registerService = Injector.injectRegisterService(Injector.injectDatabaseHelper());
+  private final Validator validator = new Validator();
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -23,7 +23,7 @@ public class RegisterServlet extends HttpServlet {
 
       validator.validate(userName, password);
       registerService.register(userName, password);
-      request.setAttribute("success", "You can now log in!");
+      request.setAttribute("login", "You can now log in!");
     } catch (InvalidUserNameException exception) {
       request.setAttribute("error", "Invalid username! Username must contain only letters. Length from 3 to 20 characters.");
     } catch (InvalidPasswordException exception) {

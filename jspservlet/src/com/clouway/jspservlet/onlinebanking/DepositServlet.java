@@ -11,8 +11,6 @@ import java.io.IOException;
  */
 public class DepositServlet extends HttpServlet {
 
-  //private UserService userService = Injector.injectUserService(Injector.injectDatabaseService(Injector.injectDatabaseHelper()));
-
   private BalanceService balanceService;
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,13 +18,11 @@ public class DepositServlet extends HttpServlet {
     if (request.getParameter("deposit") != null) {
 
       try {
-
         double sum = Double.parseDouble(request.getParameter("sum"));
 
         if (sum < 0) {
           request.setAttribute("error", "Cannot deposit negative sum!");
         } else {
-          
           User user = (User) request.getSession().getAttribute("user");
           balanceService = new BalanceServiceImpl(Injector.injectDatabaseHelper(), user);
           balanceService.updateBalance(balanceService.getBalance() + sum);

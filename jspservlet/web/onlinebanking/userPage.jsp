@@ -7,20 +7,14 @@
     }
 %>
 
-<%!
-    private User user = null;
-%>
-
-<%
-    user = (User) request.getSession().getAttribute("user");
-%>
-
 <html>
 <head>
     <title>Home Page</title>
     <link rel="stylesheet" type="text/css" href="<%=getPath()%>/onlinebanking/style.css"/>
 </head>
 <body>
+
+
 
 <!-- Deposit / Withdraw  Form -->
 <div id="form">
@@ -30,7 +24,7 @@
         <table>
             <tr>
                 <td>User:</td>
-                <td><%= user.getUserName() %></td>
+                <td><%= ((User) request.getSession().getAttribute("user")).getUserName() %></td>
             </tr>
             <tr>
                 <td>Balance:</td>
@@ -49,6 +43,8 @@
     </form>
 </div>
 
+
+
 <!-- Logout Form -->
 <div id="info">
     <form action="<%=getPath()%>/logout" method="post">
@@ -56,6 +52,8 @@
     </form>
 </div>
 
+
+<%-- Error --%>
 <div id="error">
     <%= request.getAttribute("error") == null ? "" : request.getAttribute("error")%>
 </div>

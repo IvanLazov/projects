@@ -7,9 +7,8 @@
 %>
 
 <%
-    if (session.getAttribute("userName") != null) {
+    if (session.getAttribute("user") != null) {
         response.sendRedirect("userPage.jsp");
-        return;
     }
 %>
 
@@ -48,7 +47,7 @@
 
 <div id="info">
 <%
-    if (request.getAttribute("success") != null) {
+    if (request.getAttribute("login") != null) {
         out.println("<a href='onlinebanking/login.jsp'>You can now log in </a>");
     }
 %>

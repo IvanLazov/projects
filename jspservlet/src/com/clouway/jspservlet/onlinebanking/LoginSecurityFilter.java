@@ -7,30 +7,26 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
-public class SecurityFilter implements Filter {
+public class LoginSecurityFilter implements Filter {
 
   public void init(FilterConfig filterConfig) throws ServletException {
-
   }
 
   public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
 
-    HttpSession session = ((HttpServletRequest) req).getSession();
-
-    if (session.getAttribute("user") == null) {
-      req.getRequestDispatcher("login.jsp").forward(req, resp);
+    if (((HttpServletRequest) req).getSession().getAttribute("user") == null) {
+      ((HttpServletResponse) resp).sendRedirect("login.jsp");
     } else {
       chain.doFilter(req, resp);
     }
   }
 
   public void destroy() {
-
   }
 }

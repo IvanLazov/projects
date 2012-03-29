@@ -18,6 +18,6 @@ public class BalanceServiceImpl implements BalanceService {
   }
 
   public double getBalance() {
-    return Double.parseDouble(databaseHelper.executeQueryResult("SELECT balance FROM account WHERE userId=?", String.valueOf(user.getUserId())));
+    return Double.parseDouble(databaseHelper.executeQueryResult("SELECT balance FROM account WHERE userId=?", user.getUserId()));
   }
 }

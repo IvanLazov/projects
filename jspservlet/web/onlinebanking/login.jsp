@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    if (session.getAttribute("userName") != null) {
+    if (session.getAttribute("user") != null) {
         response.sendRedirect("userPage.jsp");
     }
 %>
@@ -20,7 +20,7 @@
 <body>
 
 <div id="form">
-    <p id="centerBold">Login Form</p>
+    <p id="centerBold">Login</p>
 
     <form action="<%=getPath()%>/login" method="post">
         <table>
@@ -45,7 +45,7 @@
 </div>
 
 <div id="info">
-    Number of online users: <%=request.getAttribute("numberOfOnlineUsers")==null ? "" : request.getAttribute("numberOfOnlineUsers")%>
+    Number of online users: <%= request.getAttribute("numberOfOnlineUsers") %>
 </div>
 
 <div id="error">

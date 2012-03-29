@@ -12,11 +12,10 @@ import java.sql.SQLException;
  */
 public class DatabaseHelper {
 
-  private MysqlDataSource dataSource;
+  private final MysqlDataSource dataSource = new MysqlDataSource();
 
   public DatabaseHelper() {
 
-    dataSource = new MysqlDataSource();
     dataSource.setServerName("localhost");
     dataSource.setDatabaseName("bankdb");
     dataSource.setUser("clouway");
@@ -50,25 +49,26 @@ public class DatabaseHelper {
     }
   }
   
-  public String executeQueryResult(String query, String... params) {
+  public String executeQueryResult(String query, Object... params) {
 
     Connection connection = null;
-    PreparedStatement preparedStatement;
-    ResultSet resultSet;
 
     String result = "";
 
     try {
       connection = dataSource.getConnection();
-      preparedStatement = connection.prepareStatement(query);
+      PreparedStatement preparedStatement = connection.prepareStatement(query);
       fillParameters(preparedStatement, params);
-      resultSet = preparedStatement.executeQuery();
+      ResultSet resultSet = preparedStatement.executeQuery();
+
       while (resultSet.next()) {
         result = resultSet.getString(1);
       }
+
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {
+
       try {
         if (connection != null) {
           connection.close();
@@ -87,7 +87,6 @@ public class DatabaseHelper {
     T returnedObject = null;
     
     try {
-
       connection = dataSource.getConnection();
       PreparedStatement preparedStatement = connection.prepareStatement(query);
       fillParameters(preparedStatement, params);
@@ -112,9 +111,9 @@ public class DatabaseHelper {
 
     return returnedObject;
   }
-  
-  
+
   private void fillParameters(PreparedStatement preparedStatement, Object[] params) throws SQLException {
+
     for (int i = 0; i < params.length; i++) {
       preparedStatement.setObject(i + 1, params[i]);
     }
