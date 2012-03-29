@@ -11,8 +11,6 @@ import java.io.IOException;
  */
 public class WithdrawServlet extends HttpServlet {
 
-  //private UserService userService = Injector.injectUserService(Injector.injectDatabaseService(Injector.injectDatabaseHelper()));
-
   private BalanceService balanceService;
   
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,9 +25,8 @@ public class WithdrawServlet extends HttpServlet {
         
         User user = (User) request.getSession().getAttribute("user");
         balanceService = new BalanceServiceImpl(Injector.injectDatabaseHelper(), user);
-
         double currentBalance = balanceService.getBalance();
-        
+
         if (currentBalance < sum) {
           request.setAttribute("error", "Cannot withdraw! Insufficient balance!");
         } else {
@@ -38,7 +35,7 @@ public class WithdrawServlet extends HttpServlet {
         }                
       }
     } catch (NumberFormatException e) {
-      request.setAttribute("error", "Cannot deposit! Invalid entered sum!");
+      request.setAttribute("error", "Cannot withdraw! Invalid entered sum!");
     } 
 
     request.getRequestDispatcher("onlinebanking/userPage.jsp").forward(request, response);

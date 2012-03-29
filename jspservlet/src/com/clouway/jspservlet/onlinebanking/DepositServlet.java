@@ -29,7 +29,7 @@ public class DepositServlet extends HttpServlet {
           request.setAttribute("userBalance", balanceService.getBalance());
         }
       } catch (NumberFormatException e) {
-        request.setAttribute("error", "Cannot deposit! Invalid sum entered!");
+        request.setAttribute("error", "Cannot deposit! Invalid entered sum!");
       }
 
       request.getRequestDispatcher("onlinebanking/userPage.jsp").forward(request, response);

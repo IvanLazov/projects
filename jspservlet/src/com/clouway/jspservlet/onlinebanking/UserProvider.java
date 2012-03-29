@@ -9,6 +9,11 @@ import java.sql.SQLException;
 public class UserProvider implements Provider<User> {
 
   public User get(ResultSet resultSet) throws SQLException {
-    return new User(Integer.parseInt(resultSet.getString("userId")), resultSet.getString("userName"), resultSet.getString("password"));
+
+    return new User(
+            Integer.parseInt(resultSet.getString("userId")),
+            resultSet.getString("userName"),
+            resultSet.getString("password")
+    );
   }
 }

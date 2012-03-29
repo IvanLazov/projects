@@ -5,8 +5,6 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
            version="3.0">
 
-
-
   <!-- TASK 1 -->
   <servlet>
     <servlet-name>CounterServlet</servlet-name>
@@ -16,8 +14,6 @@
     <servlet-name>CounterServlet</servlet-name>
     <url-pattern>/counterServlet</url-pattern>
   </servlet-mapping>
-
-
 
   <!-- TASK 2 -->
   <servlet>
@@ -29,8 +25,6 @@
     <url-pattern>/redirectServlet</url-pattern>
   </servlet-mapping>
 
-
-
   <!-- TASK 3 -->
   <servlet>
     <servlet-name>RedirectServletTwo</servlet-name>
@@ -40,8 +34,6 @@
     <servlet-name>RedirectServletTwo</servlet-name>
     <url-pattern>/redirectServletTwo</url-pattern>
   </servlet-mapping>
-
-
 
   <!-- TASK 4 -->
   <servlet>
@@ -79,10 +71,6 @@
     <servlet-name>ResultServlet</servlet-name>
     <url-pattern>/resultServlet</url-pattern>
   </servlet-mapping>
-
-
-
-
 
 
   <!-- ONLINE BANKING -->
@@ -140,10 +128,7 @@
     <session-timeout>15</session-timeout>
   </session-config>
 
-
-
   <!-- FILTERS -->
-
   <!-- LoginSecurityFilter -->
   <filter>
     <filter-name>LoginSecurityFilter</filter-name>
@@ -155,6 +140,14 @@
     <url-pattern>/onlinebanking/</url-pattern>
   </filter-mapping>
 
+  <filter>
+    <filter-name>RegisterSecurityFilter</filter-name>
+    <filter-class>com.clouway.jspservlet.onlinebanking.RegisterSecurityFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>RegisterSecurityFilter</filter-name>
+    <url-pattern>/onlinebanking/register.jsp</url-pattern>
+  </filter-mapping>
 
   <!-- OnlineUsersFilter -->
   <filter>

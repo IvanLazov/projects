@@ -6,12 +6,6 @@
     }
 %>
 
-<%
-    if (session.getAttribute("user") != null) {
-        response.sendRedirect("userPage.jsp");
-    }
-%>
-
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="<%=getPath()%>/onlinebanking/style.css"/>

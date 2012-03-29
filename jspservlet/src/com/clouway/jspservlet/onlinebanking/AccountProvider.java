@@ -9,6 +9,11 @@ import java.sql.SQLException;
 public class AccountProvider implements Provider<Account> {
 
   public Account get(ResultSet resultSet) throws SQLException {
-    return new Account(Integer.parseInt(resultSet.getString("accountId")), Integer.parseInt(resultSet.getString("userId")), Double.parseDouble(resultSet.getString("balance")));
+
+    return new Account(
+      Integer.parseInt(resultSet.getString("accountId")),
+      Integer.parseInt(resultSet.getString("userId")),
+      Double.parseDouble(resultSet.getString("balance"))
+    );
   }
 }

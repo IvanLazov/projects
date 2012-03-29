@@ -5,7 +5,7 @@ package com.clouway.jspservlet.onlinebanking;
  */
 public class RegisterServiceImpl implements RegisterService {
 
-  private DatabaseHelper databaseHelper;
+  private final DatabaseHelper databaseHelper;
 
   public RegisterServiceImpl(DatabaseHelper databaseHelper) {
     this.databaseHelper = databaseHelper;
@@ -14,7 +14,6 @@ public class RegisterServiceImpl implements RegisterService {
   public void register(String userName, String password) {
 
     try {
-
       databaseHelper.executeQuery("INSERT INTO user (userName, password) VALUES(?,?)", userName, password);
       String userId = databaseHelper.executeQueryResult("SELECT userId FROM user WHERE userName=?", userName);
       databaseHelper.executeQuery("INSERT INTO account (userId, balance) VALUES(?,?)", userId, 0.0);

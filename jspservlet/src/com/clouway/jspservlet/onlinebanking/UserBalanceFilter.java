@@ -18,7 +18,6 @@ public class UserBalanceFilter implements Filter {
   private BalanceService balanceService;
   
   public void init(FilterConfig filterConfig) throws ServletException {
-    
   }
 
   public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {

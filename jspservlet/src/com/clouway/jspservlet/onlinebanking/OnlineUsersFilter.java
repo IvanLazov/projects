@@ -13,19 +13,17 @@ import java.io.IOException;
  */
 public class OnlineUsersFilter implements Filter {
 
-  private DatabaseService databaseService = Injector.injectDatabaseService(Injector.injectDatabaseHelper());
-  
-  public void init(FilterConfig filterConfig) throws ServletException {
+  private final OnlineUserManager onlineUserManager = Injector.injectOnlineUserManager(Injector.injectDatabaseHelper());
 
+  public void init(FilterConfig filterConfig) throws ServletException {
   }
 
   public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
 
-    req.setAttribute("numberOfOnlineUsers", databaseService.getNumberOfOnlineUsers());
+    req.setAttribute("numberOfOnlineUsers", onlineUserManager.getNumberOfOnlineUsers());
     chain.doFilter(req, resp);
   }
 
   public void destroy() {
-
   }
 }

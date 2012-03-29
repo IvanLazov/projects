@@ -15,7 +15,6 @@ public class DatabaseHelper {
   private final MysqlDataSource dataSource = new MysqlDataSource();
 
   public DatabaseHelper() {
-
     dataSource.setServerName("localhost");
     dataSource.setDatabaseName("bankdb");
     dataSource.setUser("clouway");
@@ -32,13 +31,10 @@ public class DatabaseHelper {
       fillParameters(preparedStatement, params);
       preparedStatement.execute();
     } catch (SQLException e) {
-
       if (e.getErrorCode() == 1062) {
         throw new DuplicateEntryException();
       }
-
     } finally {
-
       try {
         if (connection != null) {
           connection.close();
@@ -52,7 +48,6 @@ public class DatabaseHelper {
   public String executeQueryResult(String query, Object... params) {
 
     Connection connection = null;
-
     String result = "";
 
     try {
@@ -64,11 +59,9 @@ public class DatabaseHelper {
       while (resultSet.next()) {
         result = resultSet.getString(1);
       }
-
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {
-
       try {
         if (connection != null) {
           connection.close();
@@ -77,7 +70,7 @@ public class DatabaseHelper {
         e.printStackTrace();
       }
     }
-    
+
     return result;
   }
   
@@ -95,11 +88,9 @@ public class DatabaseHelper {
       while(resultSet.next()) {
         returnedObject = provider.get(resultSet);
       }
-
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {
-
       if (connection != null) {
         try {
           connection.close();

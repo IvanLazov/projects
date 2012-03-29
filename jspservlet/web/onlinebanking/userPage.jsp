@@ -14,8 +14,6 @@
 </head>
 <body>
 
-
-
 <!-- Deposit / Withdraw  Form -->
 <div id="form">
     <p id="centerBold">Bank Account</p>

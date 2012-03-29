@@ -6,27 +6,27 @@ package com.clouway.jspservlet.onlinebanking;
 public final class Injector {
 
   private static DatabaseHelper databaseHelper;
+  private static OnlineUserManager onlineUserManager;
+  private static RegisterService registerService;
 
   public static DatabaseHelper injectDatabaseHelper() {
-
     if (databaseHelper == null) {
       databaseHelper = new DatabaseHelper();
     }
-
     return databaseHelper;
   }
 
-  public static DatabaseService injectDatabaseService(DatabaseHelper databaseHelper) {
-
-
-    return new DatabaseServiceImpl(databaseHelper);
-  }
-
   public static RegisterService injectRegisterService(DatabaseHelper databaseHelper) {
-    return new RegisterServiceImpl(databaseHelper);
+    if (registerService == null) {
+      registerService = new RegisterServiceImpl(databaseHelper);
+    }
+    return registerService;
   }
-
-  public static UserService injectUserService(DatabaseService databaseService) {
-    return new UserServiceImpl(databaseService);
+  
+  public static OnlineUserManager injectOnlineUserManager(DatabaseHelper databaseHelper) {
+    if (onlineUserManager == null) {
+      onlineUserManager = new OnlineUserManagerImpl(databaseHelper);
+    }
+    return onlineUserManager;
   }
 }

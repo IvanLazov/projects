@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
-public class LoginSecurityFilter implements Filter {
+public class RegisterSecurityFilter implements Filter {
 
   public void init(FilterConfig filterConfig) throws ServletException {
   }
@@ -23,8 +23,8 @@ public class LoginSecurityFilter implements Filter {
     HttpServletRequest request = (HttpServletRequest) servletRequest;
     HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-    if (request.getSession().getAttribute("user") == null) {
-      response.sendRedirect("login.jsp");
+    if (request.getSession().getAttribute("user") != null) {
+      response.sendRedirect("userPage.jsp");
     } else {
       chain.doFilter(servletRequest, servletResponse);
     }

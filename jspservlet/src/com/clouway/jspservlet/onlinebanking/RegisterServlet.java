@@ -24,11 +24,12 @@ public class RegisterServlet extends HttpServlet {
       validator.validate(userName, password);
       registerService.register(userName, password);
       request.setAttribute("login", "You can now log in!");
-    } catch (InvalidUserNameException exception) {
+
+    } catch (InvalidUserNameException e) {
       request.setAttribute("error", "Invalid username! Username must contain only letters. Length from 3 to 20 characters.");
-    } catch (InvalidPasswordException exception) {
+    } catch (InvalidPasswordException e) {
       request.setAttribute("error", "Invalid password! Password can contain letters and digits. Length from 6 to 20 characters.");
-    } catch (UserNameAlreadyExistsException exception) {
+    } catch (UserNameAlreadyExistsException e) {
       request.setAttribute("error", "Username already taken! Try with another one.");
     }
 

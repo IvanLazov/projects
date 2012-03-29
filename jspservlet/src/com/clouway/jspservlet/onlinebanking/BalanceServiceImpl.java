@@ -5,7 +5,7 @@ package com.clouway.jspservlet.onlinebanking;
  */
 public class BalanceServiceImpl implements BalanceService {
 
-  private DatabaseHelper databaseHelper;
+  private final DatabaseHelper databaseHelper;
   private User user;  
 
   public BalanceServiceImpl(DatabaseHelper databaseHelper, User user) {
