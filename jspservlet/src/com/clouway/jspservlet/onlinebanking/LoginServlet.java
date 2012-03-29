@@ -11,7 +11,7 @@ import java.io.IOException;
  */
 public class LoginServlet extends HttpServlet {
 
-  private LoginService loginService = new LoginServiceImpl(Injector.injectDatabaseHelper());
+  private final LoginService loginService = new LoginServiceImpl(Injector.injectDatabaseHelper());
   private final OnlineUserManager onlineUserManager = Injector.injectOnlineUserManager(Injector.injectDatabaseHelper());
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

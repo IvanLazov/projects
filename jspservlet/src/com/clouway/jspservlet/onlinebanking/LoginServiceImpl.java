@@ -5,7 +5,7 @@ package com.clouway.jspservlet.onlinebanking;
  */
 public class LoginServiceImpl implements LoginService {
 
-  private DatabaseHelper databaseHelper;
+  private final DatabaseHelper databaseHelper;
 
   public LoginServiceImpl(DatabaseHelper databaseHelper) {
     this.databaseHelper = databaseHelper;

@@ -16,8 +16,8 @@ public class RegisterServiceTest {
   @Before
   public void setUp() {
     
-    databaseHelper = Injector.injectDatabaseHelper();
-    registerService = Injector.injectRegisterService(databaseHelper);
+    databaseHelper = new DatabaseHelper();
+    registerService = new RegisterServiceImpl(databaseHelper);
     databaseHelper.executeQuery("DELETE FROM account");
     databaseHelper.executeQuery("DELETE FROM user");
   }
@@ -35,7 +35,7 @@ public class RegisterServiceTest {
   }
   
   @Test
-  public void registerUserAndSaveDataInUserTableAndAccountTable() {
+  public void registerUserAndSaveDataInAccountTable() {
 
     registerService.register("Ivan", "123456");        
     

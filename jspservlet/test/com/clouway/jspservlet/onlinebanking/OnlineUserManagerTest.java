@@ -1,5 +1,6 @@
 package com.clouway.jspservlet.onlinebanking;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,8 +13,8 @@ public class OnlineUserManagerTest {
 
   private DatabaseHelper databaseHelper;
   private OnlineUserManager onlineUserManager;
-  private String sessionId = "123456QWERTY";
-  private String userName = "Ivan";
+  private final String sessionId = "123456QWERTY";
+  private final String userName = "Ivan";
   
   @Before
   public void setUp() {
@@ -46,5 +47,10 @@ public class OnlineUserManagerTest {
     onlineUserManager.setUserOnline(sessionId, userName);
     onlineUserManager.setUserOnline(secondSessionId, secondUserName);
     assertEquals(2, onlineUserManager.getNumberOfOnlineUsers());    
+  }
+
+  @After
+  public void tearDown() {
+    databaseHelper.executeQuery("DELETE FROM onlineUser");
   }
 }
