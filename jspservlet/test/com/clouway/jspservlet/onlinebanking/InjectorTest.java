@@ -44,4 +44,10 @@ public class InjectorTest {
 
     assertEquals(Injector.injectOnlineUserManager(Injector.injectDatabaseHelper()), Injector.injectOnlineUserManager(Injector.injectDatabaseHelper()));
   }
+  
+  @Test
+  public void getBalanceServiceInstance() {
+    
+    assertNotNull(Injector.injectBalanceService(Injector.injectDatabaseHelper(), new User(1, "Ivan", "123456")));
+  }
 }

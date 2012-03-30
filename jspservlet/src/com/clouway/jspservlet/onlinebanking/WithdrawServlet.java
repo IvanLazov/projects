@@ -11,33 +11,29 @@ import java.io.IOException;
  */
 public class WithdrawServlet extends HttpServlet {
 
-  private BalanceService balanceService;
+  private WithdrawService withdrawService;
   
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     try {      
 
-      double sum = Double.parseDouble(request.getParameter("sum"));
+      double amount = Double.parseDouble(request.getParameter("amount"));
+      User user = (User) request.getAttribute("user");
+      
+      withdrawService = Injector.injectWithdrawService(Injector.injectBalanceService(Injector.injectDatabaseHelper(), user));
+      withdrawService.withdraw(amount);
 
-      if (sum < 0) {
-        request.setAttribute("error", "Cannot withdraw negative sum!");
-      } else {
-        
-        User user = (User) request.getSession().getAttribute("user");
-        balanceService = new BalanceServiceImpl(Injector.injectDatabaseHelper(), user);
-        double currentBalance = balanceService.getBalance();
+      response.sendRedirect("onlinebanking/userPage.jsp");
 
-        if (currentBalance < sum) {
-          request.setAttribute("error", "Cannot withdraw! Insufficient balance!");
-        } else {
-          balanceService.updateBalance(balanceService.getBalance() - sum);
-          request.setAttribute("userBalance", balanceService.getBalance());
-        }                
-      }
     } catch (NumberFormatException e) {
       request.setAttribute("error", "Cannot withdraw! Invalid entered sum!");
-    } 
-
-    request.getRequestDispatcher("onlinebanking/userPage.jsp").forward(request, response);
+      request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
+    } catch (InsufficientFundsException e) {
+      request.setAttribute("error", "Cannot withdraw! Insufficient Funds!");
+      request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
+    } catch (InvalidWithdrawAmountException e) {
+      request.setAttribute("error", "Cannot withdraw! Amount must be between $1 and $10,000");
+      request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
+    }
   }
 }

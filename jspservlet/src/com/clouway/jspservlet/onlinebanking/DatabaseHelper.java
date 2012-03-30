@@ -8,12 +8,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * DatabaseHelper class is used to connected to a DataSource and execute queries against it
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class DatabaseHelper {
 
   private final MysqlDataSource dataSource = new MysqlDataSource();
 
+  /**
+   * Constructor sets the properties we use to connect
+   * and execute queries against the DataSource
+   */
   public DatabaseHelper() {
     dataSource.setServerName("localhost");
     dataSource.setDatabaseName("bankdb");
@@ -21,6 +27,12 @@ public class DatabaseHelper {
     dataSource.setPassword("clouway.com");
   }
 
+  /**
+   * Execute query against the DataSource
+   *
+   * @param query - the query we will execute
+   * @param params - parameters we apply to the query
+   */
   public void executeQuery(String query, Object... params) {
 
     Connection connection = null;
@@ -44,7 +56,14 @@ public class DatabaseHelper {
       }
     }
   }
-  
+
+  /**
+   * Returns a String result from executing query
+   *
+   * @param query - the query we will execute
+   * @param params - parameters we apply to the query
+   * @return - String as a result from executing the query
+   */
   public String executeQueryResult(String query, Object... params) {
 
     Connection connection = null;
@@ -73,7 +92,16 @@ public class DatabaseHelper {
 
     return result;
   }
-  
+
+  /**
+   * Returns a T object from executing the query
+   *
+   * @param query - the query we execute
+   * @param provider - Provider object which creates the object T we will return
+   * @param params - parameters we apply to the query
+   * @param <T> - the type of Object we will return
+   * @return - return an object of type T
+   */
   public <T> T executeQuery(String query, Provider<T> provider, Object... params) {
 
     Connection connection = null;
@@ -103,6 +131,13 @@ public class DatabaseHelper {
     return returnedObject;
   }
 
+  /**
+   * Fill parameters in the preparedStatement used to execute the query
+   *
+   * @param preparedStatement - preparedStatement in which we set the parameters we will use
+   * @param params - parameters we apply to the query
+   * @throws SQLException - if an error occurs during filling the parameters of the preparedStatement
+   */
   private void fillParameters(PreparedStatement preparedStatement, Object[] params) throws SQLException {
 
     for (int i = 0; i < params.length; i++) {

@@ -11,28 +11,28 @@ import java.io.IOException;
  */
 public class DepositServlet extends HttpServlet {
 
-  private BalanceService balanceService;
+  private DepositService depositService;
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     if (request.getParameter("deposit") != null) {
-
       try {
-        double sum = Double.parseDouble(request.getParameter("sum"));
 
-        if (sum < 0) {
-          request.setAttribute("error", "Cannot deposit negative sum!");
-        } else {
-          User user = (User) request.getSession().getAttribute("user");
-          balanceService = new BalanceServiceImpl(Injector.injectDatabaseHelper(), user);
-          balanceService.updateBalance(balanceService.getBalance() + sum);
-          request.setAttribute("userBalance", balanceService.getBalance());
-        }
+        double amount = Double.parseDouble(request.getParameter("amount"));
+        User user = (User) request.getSession().getAttribute("user");
+
+        depositService = Injector.injectDepositService(Injector.injectBalanceService(Injector.injectDatabaseHelper(), user));
+        depositService.deposit(amount);
+
+        response.sendRedirect("onlinebanking/userPage.jsp");
+
       } catch (NumberFormatException e) {
-        request.setAttribute("error", "Cannot deposit! Invalid entered sum!");
+        request.setAttribute("error", "Cannot deposit! Invalid entered amount");
+        request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
+      } catch (InvalidDepositAmountException e) {
+        request.setAttribute("error", "Cannot deposit! Amount must be between $1 and $10,000");
+        request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
       }
-
-      request.getRequestDispatcher("onlinebanking/userPage.jsp").forward(request, response);
     }
 
     if (request.getParameter("withdraw") != null) {

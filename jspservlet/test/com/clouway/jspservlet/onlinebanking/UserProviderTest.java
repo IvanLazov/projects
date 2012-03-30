@@ -18,14 +18,15 @@ public class UserProviderTest {
   public void setUp() {
 
     databaseHelper = new DatabaseHelper();
+    databaseHelper.executeQuery("DELETE FROM account");
     databaseHelper.executeQuery("DELETE FROM user");
   }
 
   @Test
   public void getUser() {
     
-    databaseHelper.executeQuery("INSERT INTO user(userId,userName,password) VALUES(?,?,?)", 1, "Ivan", "159159");
-    User actualUser = databaseHelper.executeQuery("SELECT * FROM user WHERE userName=?", new UserProvider(), "Ivan");
+    databaseHelper.executeQuery("INSERT INTO user(userId,userName,password) VALUES(?,?,?)", expectedUser.getUserId(), expectedUser.getUserName(), expectedUser.getPassword());
+    User actualUser = databaseHelper.executeQuery("SELECT * FROM user WHERE userName=?", new UserProvider(), expectedUser.getUserName());
 
     assertEquals(expectedUser, actualUser);
   }
@@ -33,6 +34,7 @@ public class UserProviderTest {
   @After
   public void tearDown() {
 
+    databaseHelper.executeQuery("DELETE FROM account");
     databaseHelper.executeQuery("DELETE FROM user");
   }
 }

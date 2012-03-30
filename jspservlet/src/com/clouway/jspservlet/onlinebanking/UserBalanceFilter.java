@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -20,15 +19,15 @@ public class UserBalanceFilter implements Filter {
   public void init(FilterConfig filterConfig) throws ServletException {
   }
 
-  public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+  public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
 
-    HttpSession session = ((HttpServletRequest) req).getSession();
+    HttpServletRequest request = (HttpServletRequest) servletRequest;
+    User user = (User) request.getSession().getAttribute("user");
 
-    User user = (User) session.getAttribute("user");
-    balanceService = new BalanceServiceImpl(Injector.injectDatabaseHelper(), user);
-    req.setAttribute("userBalance", balanceService.getBalance());
+    balanceService = Injector.injectBalanceService(Injector.injectDatabaseHelper(), user);
+    servletRequest.setAttribute("userBalance", balanceService.getBalance());
 
-    chain.doFilter(req, resp);
+    chain.doFilter(servletRequest, servletResponse);
   }
 
   public void destroy() {

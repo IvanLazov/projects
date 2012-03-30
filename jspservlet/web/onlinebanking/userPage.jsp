@@ -26,11 +26,11 @@
             </tr>
             <tr>
                 <td>Balance:</td>
-                <td><%= request.getAttribute("userBalance") %></td>
+                <td><%= request.getAttribute("userBalance") %> $</td>
             </tr>
             <tr>
-                <td>Enter sum:</td>
-                <td colspan="2"><input type="text" name="sum"/></td>
+                <td>Enter amount:</td>
+                <td colspan="2"><input type="text" name="amount" maxlength="5"/></td>
             </tr>
             <tr>
                 <td></td>
@@ -41,15 +41,12 @@
     </form>
 </div>
 
-
-
 <!-- Logout Form -->
 <div id="info">
     <form action="<%=getPath()%>/logout" method="post">
         <input type="submit" name="logout" value="Logout"/>
     </form>
 </div>
-
 
 <%-- Error --%>
 <div id="error">

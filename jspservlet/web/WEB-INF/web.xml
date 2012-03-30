@@ -128,7 +128,6 @@
     <session-timeout>15</session-timeout>
   </session-config>
 
-  <!-- FILTERS -->
   <!-- LoginSecurityFilter -->
   <filter>
     <filter-name>LoginSecurityFilter</filter-name>
@@ -138,6 +137,17 @@
     <filter-name>LoginSecurityFilter</filter-name>
     <url-pattern>/onlinebanking/userPage.jsp</url-pattern>
     <url-pattern>/onlinebanking/</url-pattern>
+  </filter-mapping>
+
+  <!-- UserBalanceFilter -->
+  <filter>
+    <filter-name>UserBalanceFilter</filter-name>
+    <filter-class>com.clouway.jspservlet.onlinebanking.UserBalanceFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>UserBalanceFilter</filter-name>
+    <url-pattern>/onlinebanking/userPage.jsp</url-pattern>
+    <url-pattern>/deposit</url-pattern>
   </filter-mapping>
 
   <filter>
@@ -159,19 +169,7 @@
     <url-pattern>/onlinebanking/login.jsp</url-pattern>
   </filter-mapping>
 
-
-  <!-- UserBalanceFilter -->
-  <filter>
-    <filter-name>UserBalanceFilter</filter-name>
-    <filter-class>com.clouway.jspservlet.onlinebanking.UserBalanceFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>UserBalanceFilter</filter-name>
-    <url-pattern>/onlinebanking/userPage.jsp</url-pattern>
-    <url-pattern>/deposit</url-pattern>
-  </filter-mapping>
-
-  <!-- LISTENER -->
+  <!-- Listener -->
   <listener>
     <listener-class>com.clouway.jspservlet.onlinebanking.SessionListener</listener-class>
   </listener>
@@ -180,9 +178,7 @@
 
 
 
-
-
-  <!-- REGISTRATION FORM -->
+  <!-- Registration Form -->
   <servlet>
     <servlet-name>ValidatorServlet</servlet-name>
     <servlet-class>com.clouway.jspservlet.registrationform.ValidatorServlet</servlet-class>
@@ -196,7 +192,7 @@
 
 
 
-  <!-- CALCULATOR -->
+  <!-- Calculator -->
   <servlet>
     <servlet-name>CalculatorServlet</servlet-name>
     <servlet-class>com.clouway.jspservlet.calculator.CalculatorServlet</servlet-class>
