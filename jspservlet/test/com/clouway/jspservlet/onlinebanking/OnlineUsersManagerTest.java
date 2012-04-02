@@ -9,10 +9,10 @@ import static junit.framework.Assert.*;
 /**
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
-public class OnlineUserManagerTest {
+public class OnlineUsersManagerTest {
 
   private DatabaseHelper databaseHelper;
-  private OnlineUserManager onlineUserManager;
+  private OnlineUserManager onlineUsersManager;
   private final String sessionId = "123456QWERTY";
   private final String userName = "Ivan";
   
@@ -20,21 +20,21 @@ public class OnlineUserManagerTest {
   public void setUp() {
 
     databaseHelper = new DatabaseHelper();
-    onlineUserManager = new OnlineUserManagerImpl(databaseHelper);
+    onlineUsersManager = new OnlineUserManagerImpl(databaseHelper);
     databaseHelper.executeQuery("DELETE FROM onlineUser");
   }
 
   @Test
   public void setUserOnline() {
         
-    onlineUserManager.setUserOnline(sessionId, userName);
+    onlineUsersManager.setUserOnline(sessionId, userName);
     assertEquals(sessionId, databaseHelper.executeQueryResult("SELECT sessionId FROM onlineUser WHERE userName=?", userName));
   }
   
   @Test
   public void setUserOffline() {
     
-    onlineUserManager.setUserOffline(sessionId);
+    onlineUsersManager.setUserOffline(sessionId);
     assertEquals("", databaseHelper.executeQueryResult("SELECT sessionId FROM onlineUser WHERE userName=?", userName));
   }
   
@@ -44,9 +44,9 @@ public class OnlineUserManagerTest {
     String secondSessionId = "98765AZERTY";
     String secondUserName = "Misho";
         
-    onlineUserManager.setUserOnline(sessionId, userName);
-    onlineUserManager.setUserOnline(secondSessionId, secondUserName);
-    assertEquals(2, onlineUserManager.getNumberOfOnlineUsers());    
+    onlineUsersManager.setUserOnline(sessionId, userName);
+    onlineUsersManager.setUserOnline(secondSessionId, secondUserName);
+    assertEquals(2, onlineUsersManager.getNumberOfOnlineUsers());
   }
 
   @After
