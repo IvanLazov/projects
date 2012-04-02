@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * RegisterServlet is used to register new user
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class RegisterServlet extends HttpServlet {
