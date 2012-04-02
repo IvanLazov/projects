@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * WithdrawServlet is used to withdraw from user's account
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class WithdrawServlet extends HttpServlet {
@@ -18,22 +20,22 @@ public class WithdrawServlet extends HttpServlet {
     try {      
 
       double amount = Double.parseDouble(request.getParameter("amount"));
-      User user = (User) request.getAttribute("user");
+      User user = (User) request.getSession().getAttribute("user");
       
       withdrawService = Injector.injectWithdrawService(Injector.injectBalanceService(Injector.injectDatabaseHelper(), user));
       withdrawService.withdraw(amount);
 
       response.sendRedirect("onlinebanking/userPage.jsp");
+      return;
 
     } catch (NumberFormatException e) {
       request.setAttribute("error", "Cannot withdraw! Invalid entered sum!");
-      request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
     } catch (InsufficientFundsException e) {
       request.setAttribute("error", "Cannot withdraw! Insufficient Funds!");
-      request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
     } catch (InvalidWithdrawAmountException e) {
       request.setAttribute("error", "Cannot withdraw! Amount must be between $1 and $10,000");
-      request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
     }
+
+    request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
   }
 }
