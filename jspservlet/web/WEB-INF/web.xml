@@ -171,7 +171,7 @@
 
   <!-- Listener -->
   <listener>
-    <listener-class>com.clouway.jspservlet.onlinebanking.SessionListener</listener-class>
+    <listener-class>com.clouway.jspservlet.onlinebanking.EndSessionListener</listener-class>
   </listener>
 
 
