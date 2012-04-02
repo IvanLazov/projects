@@ -9,6 +9,8 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 /**
+ * OnlineUsersFilter is used to get the current number of online users
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class OnlineUsersFilter implements Filter {
