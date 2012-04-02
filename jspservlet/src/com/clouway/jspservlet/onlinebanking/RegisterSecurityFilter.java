@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * RegisterSecurityFilter is used to preserve the user from accessing the register.jsp
+ * if the user is already logged in
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class RegisterSecurityFilter implements Filter {
