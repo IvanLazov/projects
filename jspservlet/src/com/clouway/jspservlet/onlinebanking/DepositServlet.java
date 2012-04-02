@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * DepositServlet is used to deposit amount to user's account balance
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class DepositServlet extends HttpServlet {
@@ -16,8 +18,8 @@ public class DepositServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     if (request.getParameter("deposit") != null) {
-      try {
 
+      try {
         double amount = Double.parseDouble(request.getParameter("amount"));
         User user = (User) request.getSession().getAttribute("user");
 
@@ -25,14 +27,13 @@ public class DepositServlet extends HttpServlet {
         depositService.deposit(amount);
 
         response.sendRedirect("onlinebanking/userPage.jsp");
-
+        return;
       } catch (NumberFormatException e) {
         request.setAttribute("error", "Cannot deposit! Invalid entered amount");
-        request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
       } catch (InvalidDepositAmountException e) {
         request.setAttribute("error", "Cannot deposit! Amount must be between $1 and $10,000");
-        request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
       }
+      request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
     }
 
     if (request.getParameter("withdraw") != null) {
