@@ -1,6 +1,9 @@
 package com.clouway.jspservlet.onlinebanking;
 
 /**
+ * RegisterServiceImpl implements RegisterService methods.
+ * Used to register new user with specified username and password
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class RegisterServiceImpl implements RegisterService {
@@ -11,6 +14,12 @@ public class RegisterServiceImpl implements RegisterService {
     this.databaseHelper = databaseHelper;
   }
 
+  /**
+   * Register new user with specified userName and password
+   *
+   * @param userName - username we will use to register
+   * @param password - password we will use to register
+   */
   public void register(String userName, String password) {
 
     try {
