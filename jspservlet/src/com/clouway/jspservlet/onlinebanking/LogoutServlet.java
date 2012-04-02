@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * LogoutServlet is used to invalidate user's session
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class LogoutServlet extends HttpServlet {
