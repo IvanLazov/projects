@@ -9,21 +9,17 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 /**
- * OnlineUsersFilter is used to get the current number of online users
+ * OnlineUsersFilter is used to redirect to the OnlineUsersServlet
  *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class OnlineUsersFilter implements Filter {
 
-  private final OnlineUserManager onlineUserManager = Injector.injectOnlineUserManager(Injector.injectDatabaseHelper());
-
   public void init(FilterConfig filterConfig) throws ServletException {
   }
 
   public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
-
-    req.setAttribute("numberOfOnlineUsers", onlineUserManager.getNumberOfOnlineUsers());
-    chain.doFilter(req, resp);
+    req.getRequestDispatcher("/onlineUsers").forward(req, resp);
   }
 
   public void destroy() {
