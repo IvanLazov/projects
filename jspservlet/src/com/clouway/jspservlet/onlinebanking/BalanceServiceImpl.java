@@ -1,21 +1,21 @@
 package com.clouway.jspservlet.onlinebanking;
 
 /**
- * BalanceServiceImpl class implement BalanceService interface.
- * Provides implementation of the methods for updating and getting user's balance
+ * BalanceServiceImpl class implements BalanceService interface.
+ * Provides implementation of the methods for updating and getting user's account balance
  *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class BalanceServiceImpl implements BalanceService {
 
-  private final DatabaseHelper databaseHelper;
   private User user;
+  private final DatabaseHelper databaseHelper;
 
   /**
-   * Constructor creates BalanceServiceImpl
+   * Constructor creates BalanceServiceImpl object
    *
-   * @param databaseHelper - databaseHelper we used to execute queries to the database
-   * @param user - User object from which we extract user's data
+   * @param databaseHelper - databaseHelper we use to execute queries against the database
+   * @param user - User object from which we extract data
    */
   public BalanceServiceImpl(DatabaseHelper databaseHelper, User user) {
     this.databaseHelper = databaseHelper;
@@ -23,16 +23,16 @@ public class BalanceServiceImpl implements BalanceService {
   }
 
   /**
-   * Updates user balance
+   * Update user account balance
    *
-   * @param amount - the sum we add to the user's balance
+   * @param amount - the amount we add to the user's account balance
    */
   public void updateBalance(double amount) {
     databaseHelper.executeQuery("UPDATE account SET balance=? WHERE userId=?", amount, user.getUserId());
   }
 
   /**
-   * Returns user balance
+   * Return user's account balance
    *
    * @return - user balance
    */
