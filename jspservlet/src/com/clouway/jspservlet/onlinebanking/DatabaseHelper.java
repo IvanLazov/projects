@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * DatabaseHelper class is used to connected to a DataSource and execute queries against it
+ * DatabaseHelper class is used to connect to the database and execute queries against it
  *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
@@ -17,8 +17,7 @@ public class DatabaseHelper {
   private final MysqlDataSource dataSource = new MysqlDataSource();
 
   /**
-   * Constructor sets the properties we use to connect
-   * and execute queries against the DataSource
+   * Constructor sets the properties we need to connect and execute queries against the database
    */
   public DatabaseHelper() {
     dataSource.setServerName("localhost");
@@ -28,7 +27,7 @@ public class DatabaseHelper {
   }
 
   /**
-   * Execute query against the DataSource
+   * Execute query against the database
    *
    * @param query - the query we will execute
    * @param params - parameters we apply to the query
@@ -58,7 +57,7 @@ public class DatabaseHelper {
   }
 
   /**
-   * Returns a String result from executing query
+   * Return a String result from executing query
    *
    * @param query - the query we will execute
    * @param params - parameters we apply to the query
@@ -94,10 +93,10 @@ public class DatabaseHelper {
   }
 
   /**
-   * Returns a T object from executing the query
+   * Returns an object of type T after executing the query
    *
-   * @param query - the query we execute
-   * @param provider - Provider object which creates the object T we will return
+   * @param query - the query we will execute
+   * @param provider - Provider object which creates an object of type T
    * @param params - parameters we apply to the query
    * @param <T> - the type of Object we will return
    * @return - return an object of type T
@@ -132,11 +131,11 @@ public class DatabaseHelper {
   }
 
   /**
-   * Fill parameters in the preparedStatement used to execute the query
+   * Fill parameters in the preparedStatement used in the query
    *
-   * @param preparedStatement - preparedStatement in which we set the parameters we will use
-   * @param params - parameters we apply to the query
-   * @throws SQLException - if an error occurs during filling the parameters of the preparedStatement
+   * @param preparedStatement - preparedStatement in which we set parameters
+   * @param params - parameters we apply to the preparedStatement
+   * @throws SQLException - if an error occurs
    */
   private void fillParameters(PreparedStatement preparedStatement, Object[] params) throws SQLException {
 
