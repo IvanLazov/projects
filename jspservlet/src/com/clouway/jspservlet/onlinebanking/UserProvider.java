@@ -4,8 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * UserProvider implements Provider to be able
- * to get a User from a ResultSet
+ * UserProvider implements Provider to be able to get a User from a ResultSet
  *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
