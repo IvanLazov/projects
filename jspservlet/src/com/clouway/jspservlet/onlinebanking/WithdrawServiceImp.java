@@ -1,6 +1,9 @@
 package com.clouway.jspservlet.onlinebanking;
 
 /**
+ * WithdrawServiceImpl implements WithdrawService.
+ * Provides implementation of withdraw method
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class WithdrawServiceImp implements WithdrawService {
@@ -12,6 +15,11 @@ public class WithdrawServiceImp implements WithdrawService {
     this.balanceService = balanceService;
   }
 
+  /**
+   * Withdraw amount from user account
+   *
+   * @param amount - the amount we will withdraw
+   */
   public void withdraw(double amount) {
 
     if (amount <= 0 || amount > 10000) {
