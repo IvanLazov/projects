@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
+ * UserBalanceFilter is used to get the current balance of the user
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class UserBalanceFilter implements Filter {
