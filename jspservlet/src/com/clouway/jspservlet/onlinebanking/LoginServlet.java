@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * LoginServlet is used to log a user
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class LoginServlet extends HttpServlet {
