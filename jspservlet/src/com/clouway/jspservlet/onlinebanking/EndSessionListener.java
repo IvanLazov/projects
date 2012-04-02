@@ -4,9 +4,11 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 /**
+ * EndSessionListener is used to set user offline, after the session is destroyed
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
-public class SessionListener implements HttpSessionListener {
+public class EndSessionListener implements HttpSessionListener {
 
   private final OnlineUserManager onlineUserManager = Injector.injectOnlineUserManager(Injector.injectDatabaseHelper());
   
