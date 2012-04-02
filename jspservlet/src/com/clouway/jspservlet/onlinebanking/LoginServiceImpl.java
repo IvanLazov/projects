@@ -1,6 +1,8 @@
 package com.clouway.jspservlet.onlinebanking;
 
 /**
+ * LoginServiceImpl implements LoginService
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class LoginServiceImpl implements LoginService {
@@ -11,6 +13,13 @@ public class LoginServiceImpl implements LoginService {
     this.databaseHelper = databaseHelper;
   }
 
+  /**
+   * Login user and if login is successful, returns a User object
+   *
+   * @param userName - userName
+   * @param password - password
+   * @return - a User object
+   */
   public User login(String userName, String password) {
 
     User user = databaseHelper.executeQuery("SELECT * FROM user WHERE userName=? && password=?", new UserProvider(), userName, password);
