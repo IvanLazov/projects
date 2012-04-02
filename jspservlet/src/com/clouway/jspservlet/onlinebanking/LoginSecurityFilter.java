@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * LoginSecurityFilter is used to prevent unauthorized access to userPage.jsp
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class LoginSecurityFilter implements Filter {
