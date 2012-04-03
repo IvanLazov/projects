@@ -15,6 +15,10 @@
     <url-pattern>/counterServlet</url-pattern>
   </servlet-mapping>
 
+
+
+
+
   <!-- TASK 2 -->
   <servlet>
     <servlet-name>RedirectServlet</servlet-name>
@@ -25,6 +29,10 @@
     <url-pattern>/redirectServlet</url-pattern>
   </servlet-mapping>
 
+
+
+
+
   <!-- TASK 3 -->
   <servlet>
     <servlet-name>RedirectServletTwo</servlet-name>
@@ -34,6 +42,10 @@
     <servlet-name>RedirectServletTwo</servlet-name>
     <url-pattern>/redirectServletTwo</url-pattern>
   </servlet-mapping>
+
+
+
+
 
   <!-- TASK 4 -->
   <servlet>
@@ -73,7 +85,12 @@
   </servlet-mapping>
 
 
+
+
+
+
   <!-- ONLINE BANKING -->
+
   <!-- RegisterServlet -->
   <servlet>
     <servlet-name>RegisterServlet</servlet-name>
@@ -94,26 +111,6 @@
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
 
-  <!-- DepositServlet -->
-  <servlet>
-    <servlet-name>DepositServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.onlinebanking.DepositServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DepositServlet</servlet-name>
-    <url-pattern>/deposit</url-pattern>
-  </servlet-mapping>
-
-  <!-- WithdrawServlet -->
-  <servlet>
-    <servlet-name>WithdrawServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.onlinebanking.WithdrawServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>WithdrawServlet</servlet-name>
-    <url-pattern>/withdraw</url-pattern>
-  </servlet-mapping>
-
   <!-- LogoutServlet -->
   <servlet>
     <servlet-name>LogoutServlet</servlet-name>
@@ -124,6 +121,34 @@
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>DepositServlet</servlet-name>
+    <servlet-class>com.clouway.jspservlet.onlinebanking.DepositServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DepositServlet</servlet-name>
+    <url-pattern>/deposit</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>WithdrawServlet</servlet-name>
+    <servlet-class>com.clouway.jspservlet.onlinebanking.WithdrawServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>WithdrawServlet</servlet-name>
+    <url-pattern>/withdraw</url-pattern>
+  </servlet-mapping>
+
+  <!-- OnlineUsersServlet -->
+  <servlet>
+    <servlet-name>OnlineUsersServlet</servlet-name>
+    <servlet-class>com.clouway.jspservlet.onlinebanking.OnlineUsersServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OnlineUsersServlet</servlet-name>
+    <url-pattern>/onlineUsers</url-pattern>
+  </servlet-mapping>
+  
   <session-config>
     <session-timeout>15</session-timeout>
   </session-config>
@@ -150,6 +175,7 @@
     <url-pattern>/deposit</url-pattern>
   </filter-mapping>
 
+  <!-- RegisterSecurityFilter -->
   <filter>
     <filter-name>RegisterSecurityFilter</filter-name>
     <filter-class>com.clouway.jspservlet.onlinebanking.RegisterSecurityFilter</filter-class>
@@ -187,6 +213,7 @@
     <servlet-name>ValidatorServlet</servlet-name>
     <url-pattern>/validate</url-pattern>
   </servlet-mapping>
+
 
 
 

@@ -31,6 +31,7 @@
     <orderEntry type="library" scope="TEST" name="hamcrest-core-1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="mysql-connector-java-5.1.18-bin" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.18-bin" level="project" />
+    <orderEntry type="library" name="jsp-api-2.0" level="project" />
   </component>
 </module>
 
