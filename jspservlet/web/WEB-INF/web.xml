@@ -15,10 +15,6 @@
     <url-pattern>/counterServlet</url-pattern>
   </servlet-mapping>
 
-
-
-
-
   <!-- TASK 2 -->
   <servlet>
     <servlet-name>RedirectServlet</servlet-name>
@@ -29,10 +25,6 @@
     <url-pattern>/redirectServlet</url-pattern>
   </servlet-mapping>
 
-
-
-
-
   <!-- TASK 3 -->
   <servlet>
     <servlet-name>RedirectServletTwo</servlet-name>
@@ -42,10 +34,6 @@
     <servlet-name>RedirectServletTwo</servlet-name>
     <url-pattern>/redirectServletTwo</url-pattern>
   </servlet-mapping>
-
-
-
-
 
   <!-- TASK 4 -->
   <servlet>
@@ -88,9 +76,7 @@
 
 
 
-
   <!-- ONLINE BANKING -->
-
   <!-- RegisterServlet -->
   <servlet>
     <servlet-name>RegisterServlet</servlet-name>
@@ -203,7 +189,6 @@
 
 
 
-
   <!-- Registration Form -->
   <servlet>
     <servlet-name>ValidatorServlet</servlet-name>
@@ -218,7 +203,6 @@
 
 
 
-
   <!-- Calculator -->
   <servlet>
     <servlet-name>CalculatorServlet</servlet-name>
@@ -228,5 +212,5 @@
     <servlet-name>CalculatorServlet</servlet-name>
     <url-pattern>/calculator</url-pattern>
   </servlet-mapping>
-  
+
 </web-app>
