@@ -213,4 +213,27 @@
     <url-pattern>/calculator</url-pattern>
   </servlet-mapping>
 
+  
+  
+  
+  
+  <!-- Tag Library -->
+  <servlet>
+    <servlet-name>SimpleLoop</servlet-name>
+    <servlet-class>com.clouway.jspservlet.test.SimpleLoopServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SimpleLoop</servlet-name>
+    <url-pattern>/simpleLoop</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>ForEachServlet</servlet-name>
+    <servlet-class>com.clouway.jspservlet.test.ForEachServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ForEachServlet</servlet-name>
+    <url-pattern>/forEach</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
