@@ -3,26 +3,25 @@ package com.clouway.jspservlet.catalog;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class ForTag extends SimpleTagSupport {
 
-  private Object[] books;
-  private String bookName;
-
+  private List books;
+  private String book;
   private int currentPage;
   private int lastPage;
-  private int range;  
-  
+  private int range;
 
-  public void setBooks(Object[] books) {
+  public void setBooks(List books) {
     this.books = books;
   }
 
-  public void setBookName(String bookName) {
-    this.bookName = bookName;
+  public void setBook(String book) {
+    this.book = book;
   }
   
   public void setCurrentPage(String currentPage) {
@@ -39,19 +38,9 @@ public class ForTag extends SimpleTagSupport {
   
   public void doTag() throws JspException, IOException {
 
-    for (int i = 0; i < range; i++) {
-        getJspContext().setAttribute(bookName, books[(currentPage * range) - (range - i)]);
-        getJspBody().invoke(null);
+    for (int i = 0; i < books.size(); i++) {
+      getJspContext().setAttribute(book, books.get(i));
+      getJspBody().invoke(null);
     }
   }
-  
-//  private int getLastPage() {
-//
-//    if (books.length % range != 0) {
-//      lastPage = (books.length / range) + 1;
-//    } else {
-//      lastPage = books.length / range;
-//    }
-//    return lastPage;
-//  }
 }
