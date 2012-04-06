@@ -1,7 +1,7 @@
 #catalog {
 
     position: relative;
-    width: 500px;
+    width: 1000px;
 
     margin-top: 200px;
     margin-left: auto;
@@ -15,14 +15,22 @@
 }
 
 #catalog li {
-    margin-top: 10px;
+
+    text-align: center;
+    width: 800px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#catalog ol {
-    margin-top: 0px;
+#catalog ul {
+
+    margin-bottom: 50px;
 }
 
 #paging {
+
     position: relative;
     width: 250px;
 
@@ -30,12 +38,13 @@
     margin-bottom: 5px;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 a:link, a:visited, a:active, a:hover {
+
     text-decoration: none;
+    color: #6b6b6b;
+
     margin-left: 20px;
     margin-right: 20px;
-    color: #6b6b6b;
 }
