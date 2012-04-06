@@ -1,0 +1,41 @@
+#catalog {
+
+    position: relative;
+    width: 500px;
+
+    margin-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+
+    border-style: groove;
+    border-width: 1px;
+    background-color: #f0f0f0;
+
+    font-family: monospace;
+}
+
+#catalog li {
+    margin-top: 10px;
+}
+
+#catalog ol {
+    margin-top: 0px;
+}
+
+#paging {
+    position: relative;
+    width: 250px;
+
+    margin-top: -5px;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+a:link, a:visited, a:active, a:hover {
+    text-decoration: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #6b6b6b;
+}
