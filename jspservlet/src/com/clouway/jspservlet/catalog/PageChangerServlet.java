@@ -12,9 +12,11 @@ import java.io.IOException;
 public class PageChangerServlet extends HttpServlet {
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    
     request.setAttribute("currentPage", request.getParameter("currentPage"));
     request.setAttribute("range", request.getParameter("range"));
+    request.setAttribute("lastPage", request.getParameter("lastPage"));
+
     request.getRequestDispatcher("/catalogServlet").forward(request, response);
   }
 }
