@@ -16,12 +16,25 @@
 
     <div id="catalog">
 
-        <ul>
+        <table id="catalogTable">
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Released</th>
+            </tr>
+
             <test:for books="${books}" book="book" currentPage="${currentPage}" range="${range}" lastPage="${lastPage}">
-                <li>${book.title} .::. Author:${book.author} .::. ${book.released}</li>
+                <tr id="innerTr">
+                    <td>${book.bookId}.</td>
+                    <td>${book.title}</td>
+                    <td>${book.author}</td>
+                    <td>${book.released}</td>
+                </tr>
             </test:for>
-        </ul>
-        
+
+        </table>
+
         <div id="paging">
             <a href="<%=getPath()%>/pageChangerServlet?currentPage=1&lastPage=${lastPage}&range=${range}"> << </a>
             <a href="<%=getPath()%>/pageChangerServlet?currentPage=${currentPage - 1}&lastPage=${lastPage}&range=${range}"> < </a>
