@@ -21,4 +21,12 @@ public final class Injector {
   public static CatalogUserService injectCatalogUserService(CatalogDatabaseService catalogDatabaseService) {
     return new CatalogUserServiceImpl(catalogDatabaseService);
   }
+
+  public static CommentsDatabaseService injectCommentsDatabaseService(DatabaseHelper databaseHelper) {
+    return new CommentsDatabaseServiceImpl(databaseHelper);
+  }
+
+  public static CommentsUserService injectCommentsUserService(CommentsDatabaseService commentsDatabaseService) {
+    return new CommentsUserServiceImpl(commentsDatabaseService);
+  }
 }
