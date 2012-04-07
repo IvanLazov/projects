@@ -1,35 +1,46 @@
+html {
+    background-image: url("bookCatalog.png");
+    background-repeat: no-repeat;
+    background-color: #f0f0f0;
+}
+
 #catalog {
 
     position: relative;
-    width: 1000px;
 
-    margin-top: 200px;
+    margin-top: 265px;
     margin-left: auto;
     margin-right: auto;
-
-    border-style: groove;
-    border-width: 1px;
-    background-color: #f0f0f0;
 
     font-family: monospace;
 }
 
-#catalog li {
+#catalogTable {
 
-    text-align: center;
-    width: 800px;
-    margin-top: 30px;
-    margin-bottom: 30px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
-#catalog ul {
+#catalogTable th {
 
-    margin-bottom: 50px;
+    font-size: 14px;
+    text-align: left;
+
+    border-style: groove;
+    border-width: 8px;
+}
+
+#innerTr td{
+
+    font-size: 18px;
+    width: 250px;
 }
 
 #paging {
+
+    font-size: 14px;
 
     position: relative;
     width: 250px;
