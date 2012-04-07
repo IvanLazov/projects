@@ -189,6 +189,7 @@
 
 
 
+
   <!-- Registration Form -->
   <servlet>
     <servlet-name>ValidatorServlet</servlet-name>
@@ -213,27 +214,35 @@
     <url-pattern>/calculator</url-pattern>
   </servlet-mapping>
 
-  
-  
-  
-  
-  <!-- Tag Library -->
+
+
+
+  <!-- Book Catalog -->
+  <filter>
+    <filter-name>CatalogFilter</filter-name>
+    <filter-class>com.clouway.jspservlet.catalog.CatalogFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CatalogFilter</filter-name>
+    <url-pattern>/catalog/bookcatalog.jsp</url-pattern>
+  </filter-mapping>
+
   <servlet>
-    <servlet-name>SimpleLoop</servlet-name>
-    <servlet-class>com.clouway.jspservlet.test.SimpleLoopServlet</servlet-class>
+    <servlet-name>CatalogServlet</servlet-name>
+    <servlet-class>com.clouway.jspservlet.catalog.CatalogServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>SimpleLoop</servlet-name>
-    <url-pattern>/simpleLoop</url-pattern>
+    <servlet-name>CatalogServlet</servlet-name>
+    <url-pattern>/catalogServlet</url-pattern>
   </servlet-mapping>
-  
+
   <servlet>
-    <servlet-name>ForEachServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.test.ForEachServlet</servlet-class>
+    <servlet-name>PageChangerServlet</servlet-name>
+    <servlet-class>com.clouway.jspservlet.catalog.PageChangerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ForEachServlet</servlet-name>
-    <url-pattern>/forEach</url-pattern>
+    <servlet-name>PageChangerServlet</servlet-name>
+    <url-pattern>/pageChangerServlet</url-pattern>
   </servlet-mapping>
   
 </web-app>
