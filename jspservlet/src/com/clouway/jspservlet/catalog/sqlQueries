@@ -9,7 +9,7 @@ CREATE TABLE books (
 CREATE TABLE comments (
   commentId INT NOT NULL AUTO_INCREMENT,
   bookId INT NOT NULL,
-  userName VARCHAR(100) NOT NULL,
+  userName VARCHAR(20) NOT NULL,
   comment VARCHAR(255) NOT NULL,
   PRIMARY KEY(commentId),
   FOREIGN KEY(bookId) REFERENCES books(bookId)
@@ -44,3 +44,6 @@ VALUES ("Alice's Adventures In Wonderland","Lewis Carroll","2007-08-02","A story
 
 INSERT INTO books(title,author,released,description)
 VALUES ("Huckleberry Finn","Mark Twain","2003-01-30","Twain was a humorist, but this picture of Mississippi life is profoundly moral and still incredibly influential");
+
+INSERT INTO books(title,author,released,description)
+VALUES ("TEST","TEST","2010-10-24","TEST");
