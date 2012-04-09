@@ -105,9 +105,6 @@ public class CatalogUserServiceTest {
     assertEquals(expectedRequiredPages, catalogUserService.getNumberOfPages(range));
   }
 
-  // Test which books will be displayed on each page
-
-  // Display three books on each page
   @Test
   public void shouldGetNextThreeBooksStartingFromZeroIndex() {
     
@@ -150,7 +147,6 @@ public class CatalogUserServiceTest {
     catalogUserService.getListOfBooks(currentPage, range);
   }
 
-  // Display four books on each page
   @Test
   public void shouldGetNextFourBooksStartingFromZeroIndex() {
     
@@ -191,5 +187,15 @@ public class CatalogUserServiceTest {
     }});
 
     catalogUserService.getListOfBooks(currentPage, range);
+  }
+  
+  @Test
+  public void shouldGetBookById() {
+    
+    context.checking(new Expectations(){{
+      oneOf(catalogDatabaseService).getBook(1);
+    }});
+
+    catalogUserService.getRequestBook(1);
   }
 }
