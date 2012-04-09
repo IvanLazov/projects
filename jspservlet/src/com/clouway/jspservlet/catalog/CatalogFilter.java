@@ -9,6 +9,9 @@ import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 /**
+ * CatalogFilter is used to set the currentPage, range and lastPage,
+ * when user sends request for url - /catalog/bookcatalog.jsp
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class CatalogFilter implements Filter {
