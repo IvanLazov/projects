@@ -26,9 +26,9 @@ public class DisplayComments extends SimpleTagSupport {
   }
   
   public void doTag() throws JspException, IOException {
-    
-    for (int i = 0; i < comments.size(); i++) {
-      getJspContext().setAttribute(comment, comments.get(i));
+
+    for (Object comment : comments) {
+      getJspContext().setAttribute(this.comment, comment);
       getJspBody().invoke(null);
     }
   }
