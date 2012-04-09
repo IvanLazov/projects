@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * PageChangerServlet is used to navigate between the different pages
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class PageChangerServlet extends HttpServlet {
