@@ -10,9 +10,9 @@
   <uri>http://mycompany.com</uri>
 
   <tag>
-    <description>Loops all elements in an array</description>
-    <name>for</name>
-    <tag-class>com.clouway.jspservlet.catalog.ForTag</tag-class>
+    <description>Loops all books in a list</description>
+    <name>displayBooks</name>
+    <tag-class>com.clouway.jspservlet.catalog.DisplayBooks</tag-class>
     <body-content>scriptless</body-content>
     <attribute>
       <name>books</name>
@@ -36,6 +36,23 @@
     </attribute>
     <attribute>
       <name>lastPage</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <description>Loops all comments in a list</description>
+    <name>displayComments</name>
+    <tag-class>com.clouway.jspservlet.catalog.DisplayComments</tag-class>
+    <body-content>scriptless</body-content>
+    <attribute>
+      <name>comments</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>comment</name>
       <required>true</required>
       <rtexprvalue>true</rtexprvalue>
     </attribute>
