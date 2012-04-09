@@ -33,20 +33,16 @@ html {
 }
 
 #innerTr td{
-
     font-size: 18px;
     width: 250px;
 }
 
 #paging {
-
     font-size: 14px;
 
     position: relative;
     width: 250px;
 
-    margin-top: -5px;
-    margin-bottom: 5px;
     margin-left: auto;
     margin-right: auto;
 }
