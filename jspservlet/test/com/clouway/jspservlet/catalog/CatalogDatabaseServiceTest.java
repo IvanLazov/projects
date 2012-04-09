@@ -61,6 +61,13 @@ public class CatalogDatabaseServiceTest {
     assertEquals(expectedBooks, catalogDatabaseService.getBooks(0, 5));
   }
   
+  @Test
+  public void getBookById() {
+    
+    Book book = new Book(1, "Book1", "Author1", Date.valueOf("2010-10-01"), "Description1");
+    assertEquals(book, catalogDatabaseService.getBook(book.getBookId()));
+  }
+  
   @After
   public void tearDown() {
     databaseHelper.executeQuery("DELETE FROM books");
@@ -84,5 +91,5 @@ public class CatalogDatabaseServiceTest {
     }
 
     return expectedBooks;
-  }
+  }    
 }
