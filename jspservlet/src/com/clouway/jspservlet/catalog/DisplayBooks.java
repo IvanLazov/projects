@@ -6,9 +6,13 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * DisplayBooks class extends SimpleTagSupport.
+ * This way the class is able to display every book from the List of books
+ * when it encounters the "displayBooks" tag in a specified .jsp page
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
-public class ForTag extends SimpleTagSupport {
+public class DisplayBooks extends SimpleTagSupport {
 
   private List books;
   private String book;
@@ -38,8 +42,8 @@ public class ForTag extends SimpleTagSupport {
   
   public void doTag() throws JspException, IOException {
 
-    for (int i = 0; i < books.size(); i++) {
-      getJspContext().setAttribute(book, books.get(i));
+    for (Object book : books) {
+      getJspContext().setAttribute(this.book, book);
       getJspBody().invoke(null);
     }
   }
