@@ -1,6 +1,8 @@
 package com.clouway.jspservlet.catalog;
 
 /**
+ * Injector class is used to get an instance of objects when we need them.
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public final class Injector {
@@ -26,7 +28,7 @@ public final class Injector {
     return new CommentsDatabaseServiceImpl(databaseHelper);
   }
 
-  public static CommentsUserService injectCommentsUserService(CommentsDatabaseService commentsDatabaseService) {
-    return new CommentsUserServiceImpl(commentsDatabaseService);
+  public static CommentUserService injectCommentsUserService(CommentsDatabaseService commentsDatabaseService) {
+    return new CommentUserServiceImpl(commentsDatabaseService);
   }
 }
