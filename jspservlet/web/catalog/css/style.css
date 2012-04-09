@@ -5,7 +5,6 @@ html {
 }
 
 #catalog {
-
     position: relative;
 
     margin-top: 265px;
@@ -16,7 +15,6 @@ html {
 }
 
 #catalogTable {
-
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
@@ -24,7 +22,6 @@ html {
 }
 
 #catalogTable th {
-
     font-size: 14px;
     text-align: left;
 
@@ -33,8 +30,9 @@ html {
 }
 
 #innerTr td{
-    font-size: 18px;
     width: 250px;
+
+    font-size: 18px;
 }
 
 #paging {
@@ -48,7 +46,6 @@ html {
 }
 
 a:link, a:visited, a:active, a:hover {
-
     text-decoration: none;
     color: #6b6b6b;
 
