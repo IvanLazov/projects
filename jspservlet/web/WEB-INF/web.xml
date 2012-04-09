@@ -245,4 +245,31 @@
     <url-pattern>/pageChangerServlet</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>CommentServlet</servlet-name>
+    <servlet-class>com.clouway.jspservlet.catalog.CommentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CommentServlet</servlet-name>
+    <url-pattern>/commentServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SaveCommentServlet</servlet-name>
+    <servlet-class>com.clouway.jspservlet.catalog.SaveCommentServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SaveCommentServlet</servlet-name>
+    <url-pattern>/saveCommentServlet</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+    <filter-name>RedirectFilter</filter-name>
+    <filter-class>com.clouway.jspservlet.catalog.RedirectFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>RedirectFilter</filter-name>
+    <url-pattern>/catalog/bookcomments.jsp</url-pattern>
+  </filter-mapping>
+  
 </web-app>
