@@ -8,6 +8,10 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * CatalogServlet is used to process user's request.
+ * It gets as an attribute the page which the user wants to open and range (interval),
+ * then a request is send to the database to take the list of books in this range.
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class CatalogServlet extends HttpServlet {
