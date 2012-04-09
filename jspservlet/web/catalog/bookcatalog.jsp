@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="test" uri="/WEB-INF/taglibrary.tld" %>
+<%@ taglib prefix="tag" uri="/WEB-INF/taglibrary.tld" %>
+<%@ taglib prefix="path" tagdir="/WEB-INF/tags" %>
 
 <%!
     private String getPath() {
@@ -9,7 +10,7 @@
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="<%=getPath()%>/catalog/style.css">
+    <link rel="stylesheet" type="text/css" href="<%=getPath()%>/catalog/css/style.css">
     <title>Book Catalog</title>    
 </head>
 <body>
@@ -24,14 +25,14 @@
                 <th>Released</th>
             </tr>
 
-            <test:for books="${books}" book="book" currentPage="${currentPage}" range="${range}" lastPage="${lastPage}">
+            <tag:displayBooks books="${books}" book="book" currentPage="${currentPage}" range="${range}" lastPage="${lastPage}">
                 <tr id="innerTr">
                     <td>${book.bookId}.</td>
-                    <td>${book.title}</td>
+                    <td><a href="<path:getPath/>/commentServlet?bookId=${book.bookId}">${book.title}</a></td>
                     <td>${book.author}</td>
-                    <td>${book.released}</td>
+                    <td>${book.released}</td>                    
                 </tr>
-            </test:for>
+            </tag:displayBooks>
 
         </table>
 
