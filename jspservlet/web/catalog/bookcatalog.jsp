@@ -43,6 +43,7 @@
             <a href="<%=getPath()%>/pageChangerServlet?currentPage=${currentPage + 1}&lastPage=${lastPage}&range=${range}"> > </a>
             <a href="<%=getPath()%>/pageChangerServlet?currentPage=${lastPage}&lastPage=${lastPage}&range=${range}"> >> </a>
         </div>
+
     </div>
 
 </body>
