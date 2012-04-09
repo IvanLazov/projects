@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * DatabaseHelper class is used to executes queries against the database
+ *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 public class DatabaseHelper {
@@ -19,7 +21,6 @@ public class DatabaseHelper {
   public DatabaseHelper(String database) {
 
     dataSource.setServerName("localhost");
-    //dataSource.setDatabaseName("bookCatalogDB");
     dataSource.setDatabaseName(database);
     dataSource.setUser("clouway");
     dataSource.setPassword("clouway.com");
