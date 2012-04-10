@@ -33,12 +33,12 @@ public class CatalogDatabaseServiceImpl implements CatalogDatabaseService {
   /**
    * Returns a list of books within a certain range
    *
-   * @param currentPage - page on which the user is currently
-   * @param range - the number of books we want to get
+   * @param start - start index
+   * @param offset - offset
    * @return - list of books
    */
-  public List getBooks(int currentPage, int range) {
-    return databaseHelper.executeQuery("SELECT * FROM books LIMIT ?,?", new BookRowMapper(), currentPage, range);
+  public List getBooks(int start, int offset) {
+    return databaseHelper.executeQuery("SELECT * FROM books LIMIT ?,?", new BookRowMapper(), start, offset);
   }
 
   /**
