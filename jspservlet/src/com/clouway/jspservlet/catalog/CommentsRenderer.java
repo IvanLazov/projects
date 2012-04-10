@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * DisplayComments class extends SimpleTagSupport.
+ * CommentsRenderer class extends SimpleTagSupport.
  * This way the class is able to display every book from the List of books
  * when it encounters the "displayComments" tag in a specified .jsp page
  *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
-public class DisplayComments extends SimpleTagSupport {
+public class CommentsRenderer extends SimpleTagSupport {
   
   private List comments;
   private String comment;
