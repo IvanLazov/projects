@@ -17,26 +17,37 @@ import java.util.List;
 public class CatalogServlet extends HttpServlet {
 
   private CatalogUserService catalogUserService;
-  
+  private int currentPage;
+  private int range;
+  private int lastPage;
+
+  public void init() throws ServletException {
+    currentPage = 1;
+    range = 3;
+    lastPage = 0;
+  }
+
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    int currentPage = Integer.parseInt((String) request.getAttribute("currentPage"));
-    int range = Integer.parseInt((String) request.getAttribute("range"));
-
-    if (currentPage <= 0) {
-      currentPage = 1;
+    if (request.getParameter("currentPage") != null && request.getParameter("range") != null && request.getParameter("lastPage") != null) {
+      currentPage = Integer.parseInt(request.getParameter("currentPage"));
+      range = Integer.parseInt(request.getParameter("range"));
+      lastPage = Integer.parseInt(request.getParameter("lastPage"));
     }
 
     catalogUserService = Injector.injectCatalogUserService(Injector.injectCatalogDatabaseService(Injector.injectDatabaseHelper("bookCatalogDB")));
-    int lastPage = catalogUserService.getNumberOfPages(range);
+    lastPage = catalogUserService.getNumberOfPages(range);
 
-    if (currentPage >= lastPage) {
+    if (currentPage <= 0) {
+      currentPage = 1;
+    } else if (currentPage >= lastPage) {
       currentPage = lastPage;
     }
 
     List books = catalogUserService.getListOfBooks(currentPage, range);
 
     request.setAttribute("currentPage", currentPage);
+    request.setAttribute("range", range);
     request.setAttribute("lastPage", lastPage);
     request.setAttribute("books", books);
 
