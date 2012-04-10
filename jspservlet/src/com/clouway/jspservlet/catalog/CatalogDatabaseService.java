@@ -30,9 +30,9 @@ public interface CatalogDatabaseService {
   /**
    * Returns a list of Books within a certain range
    *
-   * @param currentPage - page on which the user is currently
-   * @param range - the number of books we want to get
+   * @param start - start index
+   * @param offset - offset
    * @return - list of Books
    */
-  List getBooks(int currentPage, int range);
+  List getBooks(int start, int offset);
 }
