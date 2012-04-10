@@ -29,17 +29,17 @@
 
     <div id="commentList">
         <table>
-            <tag:displayComments comments="${comments}" comment="comment">
+            <tag:commentsRenderer comments="${comments}" comment="comment">
                 <div id="comment">
                     <br/><span>${comment.comment}</span><br/>
                     <span id="userName">${comment.userName}</span>
                 </div>
-            </tag:displayComments>
+            </tag:commentsRenderer>
         </table>
     </div>
 
     <div id="commentForm">
-        <form action="<%=getPath()%>/saveCommentServlet?bookId=${book.bookId}" method="post">
+        <form action="<%=getPath()%>/addCommentServlet?bookId=${book.bookId}" method="post">
 
             Username:<br/>
             <input type="text" name="username" /><br/>
