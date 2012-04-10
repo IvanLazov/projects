@@ -225,6 +225,7 @@
   <filter-mapping>
     <filter-name>CatalogFilter</filter-name>
     <url-pattern>/catalog/bookcatalog.jsp</url-pattern>
+    <url-pattern>/catalog/bookcomments.jsp</url-pattern>
   </filter-mapping>
 
   <servlet>
@@ -234,15 +235,6 @@
   <servlet-mapping>
     <servlet-name>CatalogServlet</servlet-name>
     <url-pattern>/catalogServlet</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>PageChangerServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.catalog.PageChangerServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>PageChangerServlet</servlet-name>
-    <url-pattern>/pageChangerServlet</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -255,21 +247,12 @@
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>SaveCommentServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.catalog.SaveCommentServlet</servlet-class>
+    <servlet-name>AddCommentServlet</servlet-name>
+    <servlet-class>com.clouway.jspservlet.catalog.AddCommentServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>SaveCommentServlet</servlet-name>
-    <url-pattern>/saveCommentServlet</url-pattern>
+    <servlet-name>AddCommentServlet</servlet-name>
+    <url-pattern>/addCommentServlet</url-pattern>
   </servlet-mapping>
-  
-  <filter>
-    <filter-name>RedirectFilter</filter-name>
-    <filter-class>com.clouway.jspservlet.catalog.RedirectFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>RedirectFilter</filter-name>
-    <url-pattern>/catalog/bookcomments.jsp</url-pattern>
-  </filter-mapping>
   
 </web-app>
