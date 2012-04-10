@@ -11,8 +11,8 @@
 
   <tag>
     <description>Loops all books in a list</description>
-    <name>displayBooks</name>
-    <tag-class>com.clouway.jspservlet.catalog.DisplayBooks</tag-class>
+    <name>booksRenderer</name>
+    <tag-class>com.clouway.jspservlet.catalog.BooksRenderer</tag-class>
     <body-content>scriptless</body-content>
     <attribute>
       <name>books</name>
@@ -43,8 +43,8 @@
 
   <tag>
     <description>Loops all comments in a list</description>
-    <name>displayComments</name>
-    <tag-class>com.clouway.jspservlet.catalog.DisplayComments</tag-class>
+    <name>commentsRenderer</name>
+    <tag-class>com.clouway.jspservlet.catalog.CommentsRenderer</tag-class>
     <body-content>scriptless</body-content>
     <attribute>
       <name>comments</name>
