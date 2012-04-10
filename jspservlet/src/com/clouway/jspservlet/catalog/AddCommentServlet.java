@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * SaveCommentServlet is used to save user's comment in the database
+ * AddCommentServlet is used to add user's comment in the database
  *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
-public class SaveCommentServlet extends HttpServlet {
+public class AddCommentServlet extends HttpServlet {
 
   private CommentUserService commentUserService;
 
