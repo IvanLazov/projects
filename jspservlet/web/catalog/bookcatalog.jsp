@@ -16,7 +16,6 @@
 <body>
 
     <div id="catalog">
-
         <table id="catalogTable">
             <tr>
                 <th>ID</th>
@@ -25,25 +24,24 @@
                 <th>Released</th>
             </tr>
 
-            <tag:displayBooks books="${books}" book="book" currentPage="${currentPage}" range="${range}" lastPage="${lastPage}">
+            <tag:booksRenderer books="${books}" book="book" currentPage="${currentPage}" range="${range}" lastPage="${lastPage}">
                 <tr id="innerTr">
                     <td>${book.bookId}.</td>
                     <td><a href="<path:getPath/>/commentServlet?bookId=${book.bookId}">${book.title}</a></td>
                     <td>${book.author}</td>
-                    <td>${book.released}</td>                    
+                    <td>${book.released}</td>
                 </tr>
-            </tag:displayBooks>
+            </tag:booksRenderer>
 
         </table>
 
         <div id="paging">
-            <a href="<%=getPath()%>/pageChangerServlet?currentPage=1&lastPage=${lastPage}&range=${range}"> << </a>
-            <a href="<%=getPath()%>/pageChangerServlet?currentPage=${currentPage - 1}&lastPage=${lastPage}&range=${range}"> < </a>
+            <a href="<%=getPath()%>/catalogServlet?currentPage=1&lastPage=${lastPage}&range=${range}"> << </a>
+            <a href="<%=getPath()%>/catalogServlet?currentPage=${currentPage - 1}&lastPage=${lastPage}&range=${range}"> < </a>
             <span><b>${currentPage}</b></span>
-            <a href="<%=getPath()%>/pageChangerServlet?currentPage=${currentPage + 1}&lastPage=${lastPage}&range=${range}"> > </a>
-            <a href="<%=getPath()%>/pageChangerServlet?currentPage=${lastPage}&lastPage=${lastPage}&range=${range}"> >> </a>
+            <a href="<%=getPath()%>/catalogServlet?currentPage=${currentPage + 1}&lastPage=${lastPage}&range=${range}"> > </a>
+            <a href="<%=getPath()%>/catalogServlet?currentPage=${lastPage}&lastPage=${lastPage}&range=${range}"> >> </a>
         </div>
-
     </div>
 
 </body>
