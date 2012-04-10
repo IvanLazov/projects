@@ -26,6 +26,9 @@ public class DepositServiceImpl implements DepositService {
     if (amount <= 0 || amount > 10000) {
       throw new InvalidDepositAmountException();
     }
-    balanceService.updateBalance(balanceService.getBalance() + amount);
+
+    double currentBalance = balanceService.getBalance();
+
+    balanceService.updateBalance(currentBalance + amount);
   }
 }

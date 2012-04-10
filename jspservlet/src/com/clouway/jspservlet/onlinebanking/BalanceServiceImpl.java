@@ -28,7 +28,7 @@ public class BalanceServiceImpl implements BalanceService {
    * @param amount - the amount we add to the user's account balance
    */
   public void updateBalance(double amount) {
-    databaseHelper.executeQuery("UPDATE account SET balance=? WHERE userId=?", amount, user.getUserId());
+    databaseHelper.executeTransaction("UPDATE account SET balance=? WHERE userId=?", amount, user.getUserId());
   }
 
   /**
