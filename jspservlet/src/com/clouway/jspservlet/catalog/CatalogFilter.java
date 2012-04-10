@@ -20,11 +20,6 @@ public class CatalogFilter implements Filter {
   }
 
   public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-
-    servletRequest.setAttribute("currentPage", "1");
-    servletRequest.setAttribute("range", "3");
-    servletRequest.setAttribute("lastPage", "0");
-
     servletRequest.getRequestDispatcher("/catalogServlet").forward(servletRequest, servletResponse);
   }
 
