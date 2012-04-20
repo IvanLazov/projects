@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class DatabaseHelper {
 
   private final MysqlDataSource dataSource = new MysqlDataSource();
-  
+
   public DatabaseHelper() {
     dataSource.setServerName("localhost");
     dataSource.setDatabaseName("bankdb");
@@ -32,14 +32,12 @@ public class DatabaseHelper {
       setAutoCommit(connection, false);
       executePreparedStatement(connection, query, params);
       commit(connection);
-      setAutoCommit(connection, true);
     } catch (UnexecutedPreparedStatementException e) {
-      rollback(connection);
+      rollBack(connection);
     } finally {
       try {
-        if (connection != null) {
-          connection.close();
-        }
+        setAutoCommit(connection, true);
+        connection.close();
       } catch (SQLException e) {
         e.printStackTrace();
       }
@@ -52,21 +50,18 @@ public class DatabaseHelper {
     executePreparedStatement(connection, query, params);
 
     try {
-      if (connection != null) {
-        connection.close();
-      }
+      connection.close();
     } catch (SQLException e) {
-        e.printStackTrace();
+      e.printStackTrace();
     }
   }
 
   public String executeQueryResult(String query, Object... params) {
 
-    Connection connection = null;
+    Connection connection = getConnection();
     String result = "";
 
     try {
-      connection = getConnection();
       PreparedStatement preparedStatement = connection.prepareStatement(query);
       fillParameters(preparedStatement, params);
       ResultSet resultSet = preparedStatement.executeQuery();
@@ -77,9 +72,7 @@ public class DatabaseHelper {
       e.printStackTrace();
     } finally {
       try {
-        if (connection != null) {
-          connection.close();
-        }
+        connection.close();
       } catch (SQLException e) {
         e.printStackTrace();
       }
@@ -90,27 +83,26 @@ public class DatabaseHelper {
 
   public <T> T executeQuery(String query, Provider<T> provider, Object... params) {
 
-    Connection connection = null;
+    Connection connection = getConnection();
     T returnedObject = null;
-    
+
     try {
       connection = dataSource.getConnection();
       PreparedStatement preparedStatement = connection.prepareStatement(query);
       fillParameters(preparedStatement, params);
       ResultSet resultSet = preparedStatement.executeQuery();
 
-      while(resultSet.next()) {
+      while (resultSet.next()) {
         returnedObject = provider.get(resultSet);
       }
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {
-      if (connection != null) {
-        try {
-          connection.close();
-        } catch (SQLException e) {
-          e.printStackTrace();
-        }
+
+      try {
+        connection.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
       }
     }
 
@@ -118,6 +110,7 @@ public class DatabaseHelper {
   }
 
   private Connection getConnection() {
+
     try {
       return dataSource.getConnection();
     } catch (SQLException e) {
@@ -126,6 +119,7 @@ public class DatabaseHelper {
   }
 
   private void setAutoCommit(Connection connection, boolean commit) {
+
     try {
       connection.setAutoCommit(commit);
     } catch (SQLException e) {
@@ -134,6 +128,7 @@ public class DatabaseHelper {
   }
 
   private void executePreparedStatement(Connection connection, String query, Object... params) {
+
     try {
       PreparedStatement preparedStatement = connection.prepareStatement(query);
       fillParameters(preparedStatement, params);
@@ -155,7 +150,7 @@ public class DatabaseHelper {
     }
   }
 
-  private void rollback(Connection connection) {
+  private void rollBack(Connection connection) {
     try {
       connection.rollback();
     } catch (SQLException e) {
@@ -164,7 +159,6 @@ public class DatabaseHelper {
   }
 
   private void fillParameters(PreparedStatement preparedStatement, Object[] params) throws SQLException {
-
     for (int i = 0; i < params.length; i++) {
       preparedStatement.setObject(i + 1, params[i]);
     }
