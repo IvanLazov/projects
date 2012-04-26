@@ -1,5 +1,7 @@
 package com.clouway.jspservlet.onlinebanking;
 
+import com.google.inject.Inject;
+
 /**
  * DepositServiceImpl class implements DepositService.
  * Provides implementation of the deposit method, with which
@@ -11,6 +13,7 @@ public class DepositServiceImpl implements DepositService {
 
   private final BalanceService balanceService;
 
+  @Inject
   public DepositServiceImpl(BalanceService balanceService) {
     this.balanceService = balanceService;
   }

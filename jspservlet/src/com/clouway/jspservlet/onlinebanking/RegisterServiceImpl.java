@@ -1,5 +1,7 @@
 package com.clouway.jspservlet.onlinebanking;
 
+import com.google.inject.Inject;
+
 /**
  * RegisterServiceImpl implements RegisterService methods.
  * Used to register new user with specified username and password
@@ -10,6 +12,7 @@ public class RegisterServiceImpl implements RegisterService {
 
   private final DatabaseHelper databaseHelper;
 
+  @Inject
   public RegisterServiceImpl(DatabaseHelper databaseHelper) {
     this.databaseHelper = databaseHelper;
   }

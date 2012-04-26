@@ -1,5 +1,7 @@
 package com.clouway.jspservlet.onlinebanking;
 
+import com.google.inject.Inject;
+
 /**
  * WithdrawServiceImpl implements WithdrawService.
  * Provides implementation of withdraw method
@@ -10,8 +12,8 @@ public class WithdrawServiceImp implements WithdrawService {
 
   private final BalanceService balanceService;
 
+  @Inject
   public WithdrawServiceImp(BalanceService balanceService) {
-
     this.balanceService = balanceService;
   }
 

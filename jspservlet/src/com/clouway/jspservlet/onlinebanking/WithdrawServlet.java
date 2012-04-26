@@ -1,5 +1,8 @@
 package com.clouway.jspservlet.onlinebanking;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,23 +14,21 @@ import java.io.IOException;
  *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
+@Singleton
 public class WithdrawServlet extends HttpServlet {
 
   private WithdrawService withdrawService;
-  
+
+  @Inject
+  public WithdrawServlet(WithdrawService withdrawService) {
+    this.withdrawService = withdrawService;
+  }
+
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    try {      
-
+    try {
       double amount = Double.parseDouble(request.getParameter("amount"));
-      User user = (User) request.getSession().getAttribute("user");
-      
-      withdrawService = Injector.injectWithdrawService(Injector.injectBalanceService(Injector.injectDatabaseHelper(), user));
       withdrawService.withdraw(amount);
-
-      response.sendRedirect("onlinebanking/userPage.jsp");
-      return;
-
     } catch (NumberFormatException e) {
       request.setAttribute("error", "Cannot withdraw! Invalid entered sum!");
     } catch (InsufficientFundsException e) {
@@ -36,6 +37,6 @@ public class WithdrawServlet extends HttpServlet {
       request.setAttribute("error", "Cannot withdraw! Amount must be between $1 and $10,000");
     }
 
-    request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
+    request.getRequestDispatcher("/userBalance").forward(request, response);
   }
 }

@@ -5,114 +5,17 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
            version="3.0">
 
-  <!-- ONLINE BANKING -->
-  <!-- RegisterServlet -->
-  <servlet>
-    <servlet-name>RegisterServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.onlinebanking.RegisterServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RegisterServlet</servlet-name>
-    <url-pattern>/register</url-pattern>
-  </servlet-mapping>
-
-  <!-- LoginServlet -->
-  <servlet>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.onlinebanking.LoginServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/login</url-pattern>
-  </servlet-mapping>
-
-  <!-- LogoutServlet -->
-  <servlet>
-    <servlet-name>LogoutServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.onlinebanking.LogoutServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LogoutServlet</servlet-name>
-    <url-pattern>/logout</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>DepositServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.onlinebanking.DepositServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>DepositServlet</servlet-name>
-    <url-pattern>/deposit</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>WithdrawServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.onlinebanking.WithdrawServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>WithdrawServlet</servlet-name>
-    <url-pattern>/withdraw</url-pattern>
-  </servlet-mapping>
-
-  <!-- OnlineUsersServlet -->
-  <servlet>
-    <servlet-name>OnlineUsersServlet</servlet-name>
-    <servlet-class>com.clouway.jspservlet.onlinebanking.OnlineUsersServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>OnlineUsersServlet</servlet-name>
-    <url-pattern>/onlineUsers</url-pattern>
-  </servlet-mapping>
+  <filter>
+    <filter-name>guiceFilter</filter-name>
+    <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>guiceFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
   
-  <session-config>
-    <session-timeout>15</session-timeout>
-  </session-config>
-
-  <!-- LoginSecurityFilter -->
-  <filter>
-    <filter-name>LoginSecurityFilter</filter-name>
-    <filter-class>com.clouway.jspservlet.onlinebanking.LoginSecurityFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>LoginSecurityFilter</filter-name>
-    <url-pattern>/onlinebanking/userPage.jsp</url-pattern>
-    <url-pattern>/onlinebanking/</url-pattern>
-  </filter-mapping>
-
-  <!-- UserBalanceFilter -->
-  <filter>
-    <filter-name>UserBalanceFilter</filter-name>
-    <filter-class>com.clouway.jspservlet.onlinebanking.UserBalanceFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>UserBalanceFilter</filter-name>
-    <url-pattern>/onlinebanking/userPage.jsp</url-pattern>
-    <url-pattern>/deposit</url-pattern>
-  </filter-mapping>
-
-  <!-- RegisterSecurityFilter -->
-  <filter>
-    <filter-name>RegisterSecurityFilter</filter-name>
-    <filter-class>com.clouway.jspservlet.onlinebanking.RegisterSecurityFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>RegisterSecurityFilter</filter-name>
-    <url-pattern>/onlinebanking/register.jsp</url-pattern>
-  </filter-mapping>
-
-  <!-- OnlineUsersFilter -->
-  <filter>
-    <filter-name>OnlineUsersFilter</filter-name>
-    <filter-class>com.clouway.jspservlet.onlinebanking.OnlineUsersFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>OnlineUsersFilter</filter-name>
-    <url-pattern>/onlinebanking/login.jsp</url-pattern>
-  </filter-mapping>
-
-  <!-- Listener -->
   <listener>
-    <listener-class>com.clouway.jspservlet.onlinebanking.EndSessionListener</listener-class>
+    <listener-class>com.clouway.jspservlet.onlinebanking.GuiceServletConfig</listener-class>
   </listener>
-  
+
 </web-app>

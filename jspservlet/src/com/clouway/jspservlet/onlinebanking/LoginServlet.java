@@ -1,5 +1,8 @@
 package com.clouway.jspservlet.onlinebanking;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,10 +14,17 @@ import java.io.IOException;
  *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
+@Singleton
 public class LoginServlet extends HttpServlet {
 
-  private final LoginService loginService = new LoginServiceImpl(Injector.injectDatabaseHelper());
-  private final OnlineUserManager onlineUserManager = Injector.injectOnlineUserManager(Injector.injectDatabaseHelper());
+  private final LoginService loginService;
+  private final OnlineUserManager onlineUserManager;
+
+  @Inject
+  public LoginServlet(LoginService loginService, OnlineUserManager onlineUserManager) {
+    this.loginService = loginService;
+    this.onlineUserManager = onlineUserManager;
+  }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -26,7 +36,7 @@ public class LoginServlet extends HttpServlet {
       User user = loginService.login(userName, password);
       onlineUserManager.setUserOnline(request.getSession().getId(), user.getUserName());
       request.getSession().setAttribute("user", user);
-      response.sendRedirect("onlinebanking/userPage.jsp");
+      request.getRequestDispatcher("/userBalance").forward(request, response);
 
     } catch (WrongUserNameOrPasswordException exception) {
       request.setAttribute("error", "Wrong username/password");

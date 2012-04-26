@@ -1,5 +1,8 @@
 package com.clouway.jspservlet.onlinebanking;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,13 +14,18 @@ import java.io.IOException;
  *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
+@Singleton
 public class OnlineUsersServlet extends HttpServlet {
 
-  private final OnlineUserManager onlineUserManager = Injector.injectOnlineUserManager(Injector.injectDatabaseHelper());
+  private final OnlineUserManager onlineUserManager;
+
+  @Inject
+  public OnlineUsersServlet(OnlineUserManager onlineUserManager) {
+    this.onlineUserManager = onlineUserManager;
+  }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     request.setAttribute("numberOfOnlineUsers", onlineUserManager.getNumberOfOnlineUsers());
-    request.getRequestDispatcher("onlinebanking/login.jsp").forward(request, response);
+    request.getRequestDispatcher("login.jsp").forward(request, response);
   }
 }

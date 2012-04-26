@@ -1,5 +1,8 @@
 package com.clouway.jspservlet.onlinebanking;
 
+import com.google.inject.Inject;
+import com.google.inject.Singleton;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,10 +14,17 @@ import java.io.IOException;
  *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
+@Singleton
 public class RegisterServlet extends HttpServlet {
 
-  private final RegisterService registerService = Injector.injectRegisterService(Injector.injectDatabaseHelper());
-  private final Validator validator = new Validator();
+  private final RegisterService registerService;
+  private final Validator validator;
+
+  @Inject
+  public RegisterServlet(RegisterService registerService, Validator validator) {
+    this.registerService = registerService;
+    this.validator = validator;
+  }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -28,9 +38,9 @@ public class RegisterServlet extends HttpServlet {
       request.setAttribute("login", "You can now log in!");
 
     } catch (InvalidUserNameException e) {
-      request.setAttribute("error", "Invalid username! Username must contain only letters. Length from 3 to 20 characters.");
+      request.setAttribute("error", "Username must contain only letters. Length from 3 to 20 characters.");
     } catch (InvalidPasswordException e) {
-      request.setAttribute("error", "Invalid password! Password can contain letters and digits. Length from 6 to 20 characters.");
+      request.setAttribute("error", "Password can contain letters and digits. Length from 6 to 20 characters.");
     } catch (UserNameAlreadyExistsException e) {
       request.setAttribute("error", "Username already taken! Try with another one.");
     }

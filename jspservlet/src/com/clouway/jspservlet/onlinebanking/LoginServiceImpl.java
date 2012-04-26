@@ -1,5 +1,7 @@
 package com.clouway.jspservlet.onlinebanking;
 
+import com.google.inject.Inject;
+
 /**
  * LoginServiceImpl implements LoginService
  *
@@ -9,6 +11,7 @@ public class LoginServiceImpl implements LoginService {
 
   private final DatabaseHelper databaseHelper;
 
+  @Inject
   public LoginServiceImpl(DatabaseHelper databaseHelper) {
     this.databaseHelper = databaseHelper;
   }

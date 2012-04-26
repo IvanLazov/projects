@@ -1,5 +1,7 @@
 package com.clouway.jspservlet.onlinebanking;
 
+import com.google.inject.Inject;
+
 /**
  * OnlineUserManagerImpl implements OnlineUserManager methods
  * Set user online/offline, and get the number of online users
@@ -10,6 +12,7 @@ public class OnlineUserManagerImpl implements OnlineUserManager {
 
   private final DatabaseHelper databaseHelper;
 
+  @Inject
   public OnlineUserManagerImpl(DatabaseHelper databaseHelper) {
     this.databaseHelper = databaseHelper;
   }

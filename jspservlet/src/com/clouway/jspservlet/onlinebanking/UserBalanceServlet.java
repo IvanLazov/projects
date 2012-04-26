@@ -10,23 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * LogoutServlet is used to invalidate user's session
- *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
 @Singleton
-public class LogoutServlet extends HttpServlet {
+public class UserBalanceServlet extends HttpServlet {
 
-  private OnlineUserManager onlineUserManager;
+  private BalanceService balanceService;
 
   @Inject
-  public LogoutServlet(OnlineUserManager onlineUserManager) {
-    this.onlineUserManager = onlineUserManager;
+  public UserBalanceServlet(BalanceService balanceService) {
+    this.balanceService = balanceService;
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    onlineUserManager.setUserOffline(request.getSession().getId());
-    request.getSession().invalidate();
-    response.sendRedirect("onlinebanking/login.jsp");
+    request.setAttribute("userBalance", balanceService.getBalance());
+    request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
   }
 }

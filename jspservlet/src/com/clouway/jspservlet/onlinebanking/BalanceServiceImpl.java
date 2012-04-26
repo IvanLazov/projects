@@ -1,5 +1,8 @@
 package com.clouway.jspservlet.onlinebanking;
 
+import com.google.inject.*;
+import com.google.inject.Provider;
+
 /**
  * BalanceServiceImpl class implements BalanceService interface.
  * Provides implementation of the methods for updating and getting user's account balance
@@ -8,18 +11,17 @@ package com.clouway.jspservlet.onlinebanking;
  */
 public class BalanceServiceImpl implements BalanceService {
 
-  private User user;
+  @Inject private Provider<User> userProvider;
   private final DatabaseHelper databaseHelper;
 
   /**
    * Constructor creates BalanceServiceImpl object
    *
    * @param databaseHelper - databaseHelper we use to execute queries against the database
-   * @param user - User object from which we extract data
    */
-  public BalanceServiceImpl(DatabaseHelper databaseHelper, User user) {
+  @Inject
+  public BalanceServiceImpl(DatabaseHelper databaseHelper) {
     this.databaseHelper = databaseHelper;
-    this.user = user;
   }
 
   /**
@@ -28,7 +30,7 @@ public class BalanceServiceImpl implements BalanceService {
    * @param amount - the amount we add to the user's account balance
    */
   public void updateBalance(double amount) {
-    databaseHelper.executeTransaction("UPDATE account SET balance=? WHERE userId=?", amount, user.getUserId());
+    databaseHelper.executeTransaction("UPDATE account SET balance=? WHERE userId=?", amount, userProvider.get().getUserId());
   }
 
   /**
@@ -37,6 +39,6 @@ public class BalanceServiceImpl implements BalanceService {
    * @return - user balance
    */
   public double getBalance() {
-    return Double.parseDouble(databaseHelper.executeQueryResult("SELECT balance FROM account WHERE userId=?", user.getUserId()));
+    return Double.parseDouble(databaseHelper.executeQueryResult("SELECT balance FROM account WHERE userId=?", userProvider.get().getUserId()));
   }
 }

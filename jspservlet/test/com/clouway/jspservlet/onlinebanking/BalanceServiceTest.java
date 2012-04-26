@@ -20,7 +20,7 @@ public class BalanceServiceTest {
   public void setUp() {
         
     databaseHelper = new DatabaseHelper();
-    balanceService = new BalanceServiceImpl(databaseHelper, user);
+    balanceService = new BalanceServiceImpl(databaseHelper);
     databaseHelper.executeQuery("DELETE FROM account");
     databaseHelper.executeQuery("DELETE FROM user");
   }
