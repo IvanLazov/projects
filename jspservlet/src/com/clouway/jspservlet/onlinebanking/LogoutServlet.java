@@ -17,7 +17,7 @@ import java.io.IOException;
 @Singleton
 public class LogoutServlet extends HttpServlet {
 
-  private OnlineUserManager onlineUserManager;
+  private final OnlineUserManager onlineUserManager;
 
   @Inject
   public LogoutServlet(OnlineUserManager onlineUserManager) {

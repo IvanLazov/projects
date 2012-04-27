@@ -17,7 +17,7 @@ import java.io.IOException;
 @Singleton
 public class WithdrawServlet extends HttpServlet {
 
-  private WithdrawService withdrawService;
+  private final WithdrawService withdrawService;
 
   @Inject
   public WithdrawServlet(WithdrawService withdrawService) {

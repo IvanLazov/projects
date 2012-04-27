@@ -17,7 +17,7 @@ import java.io.IOException;
 @Singleton
 public class DepositServlet extends HttpServlet {
 
-  private DepositService depositService;
+  private final DepositService depositService;
 
   @Inject
   public DepositServlet(DepositService depositService) {

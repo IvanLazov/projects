@@ -15,7 +15,7 @@ import java.io.IOException;
 @Singleton
 public class UserBalanceServlet extends HttpServlet {
 
-  private BalanceService balanceService;
+  private final BalanceService balanceService;
 
   @Inject
   public UserBalanceServlet(BalanceService balanceService) {
