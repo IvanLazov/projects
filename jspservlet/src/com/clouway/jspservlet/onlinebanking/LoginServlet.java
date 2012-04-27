@@ -40,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 
     } catch (WrongUserNameOrPasswordException exception) {
       request.setAttribute("error", "Wrong username/password");
-      request.getRequestDispatcher("onlinebanking/login.jsp").forward(request, response);
+      request.getRequestDispatcher("/onlineUsers").forward(request, response);
     }
   }
 }
