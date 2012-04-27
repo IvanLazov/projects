@@ -24,8 +24,16 @@ public class OnlineUsersServlet extends HttpServlet {
     this.onlineUserManager = onlineUserManager;
   }
 
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    getNumberOfOnlineUsers(request, response);
+  }
+
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    getNumberOfOnlineUsers(request, response);
+  }
+
+  private void getNumberOfOnlineUsers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     request.setAttribute("numberOfOnlineUsers", onlineUserManager.getNumberOfOnlineUsers());
-    request.getRequestDispatcher("login.jsp").forward(request, response);
+    request.getRequestDispatcher("/onlinebanking/login.jsp").forward(request, response);
   }
 }
