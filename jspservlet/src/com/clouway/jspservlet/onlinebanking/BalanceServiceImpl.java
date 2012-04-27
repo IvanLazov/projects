@@ -11,7 +11,7 @@ import com.google.inject.Provider;
  */
 public class BalanceServiceImpl implements BalanceService {
 
-  @Inject private Provider<User> userProvider;
+  private Provider<User> userProvider;
   private final DatabaseHelper databaseHelper;
 
   /**
@@ -20,8 +20,9 @@ public class BalanceServiceImpl implements BalanceService {
    * @param databaseHelper - databaseHelper we use to execute queries against the database
    */
   @Inject
-  public BalanceServiceImpl(DatabaseHelper databaseHelper) {
+  public BalanceServiceImpl(DatabaseHelper databaseHelper, Provider<User> provider) {
     this.databaseHelper = databaseHelper;
+    this.userProvider = provider;
   }
 
   /**
