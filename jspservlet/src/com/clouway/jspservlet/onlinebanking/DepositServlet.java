@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -26,15 +27,18 @@ public class DepositServlet extends HttpServlet {
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    HttpSession session = request.getSession();
+
     if (request.getParameter("deposit") != null) {
 
       try {
         double amount = Double.parseDouble(request.getParameter("amount"));
         depositService.deposit(amount);
+        session.setAttribute("error", "");
       } catch (NumberFormatException e) {
-        request.setAttribute("error", "Cannot deposit! Invalid entered amount");
+        session.setAttribute("error", "Cannot deposit! Invalid entered amount");
       } catch (InvalidDepositAmountException e) {
-        request.setAttribute("error", "Cannot deposit! Amount must be between $1 and $10,000");
+        session.setAttribute("error", "Cannot deposit! Amount must be between $1 and $10,000");
       }
 
       request.getRequestDispatcher("/userBalance").forward(request, response);
