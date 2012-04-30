@@ -30,11 +30,11 @@ public class WithdrawServlet extends HttpServlet {
       double amount = Double.parseDouble(request.getParameter("amount"));
       withdrawService.withdraw(amount);
     } catch (NumberFormatException e) {
-      request.setAttribute("error", "Cannot withdraw! Invalid entered sum!");
+      request.getSession().setAttribute("error", "Cannot withdraw! Invalid entered sum!");
     } catch (InsufficientFundsException e) {
-      request.setAttribute("error", "Cannot withdraw! Insufficient Funds!");
+      request.getSession().setAttribute("error", "Cannot withdraw! Insufficient Funds!");
     } catch (InvalidWithdrawAmountException e) {
-      request.setAttribute("error", "Cannot withdraw! Amount must be between $1 and $10,000");
+      request.getSession().setAttribute("error", "Cannot withdraw! Amount must be between $1 and $10,000");
     }
 
     request.getRequestDispatcher("/userBalance").forward(request, response);

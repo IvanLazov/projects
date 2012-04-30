@@ -15,16 +15,20 @@ public class BalanceServiceTest {
   private BalanceService balanceService;
   private final User user = new User(1, "Ivan", "159159");
   private final Account account = new Account(1, 1, 0.0);
-  
+
   @Before
   public void setUp() {
-        
+
     databaseHelper = new DatabaseHelper();
-    balanceService = new BalanceServiceImpl(databaseHelper);
+    balanceService = new BalanceServiceImpl(databaseHelper, new com.google.inject.Provider<com.clouway.jspservlet.onlinebanking.User>() {
+      public User get() {
+        return new User(1, "Ivan", "159159");
+      }
+    });
     databaseHelper.executeQuery("DELETE FROM account");
     databaseHelper.executeQuery("DELETE FROM user");
   }
-  
+
   @Test
   public void updateUserBalance() {
 

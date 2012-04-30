@@ -26,11 +26,12 @@
             </tr>
             <tr>
                 <td>Balance:</td>
-                <td><%= request.getAttribute("userBalance") %> $</td>
+                <%--<td><%= request.getAttribute("userBalance") %> $</td>--%>
+                <td><%= request.getSession().getAttribute("userBalance") %></td>
             </tr>
             <tr>
                 <td>Enter amount:</td>
-                <td colspan="2"><input type="text" name="amount" maxlength="5"/></td>
+                <td colspan="2"><input type="text" name="amount"/></td>
             </tr>
             <tr>
                 <td></td>
@@ -50,7 +51,7 @@
 
 <%-- Error --%>
 <div id="error">
-    <%= request.getAttribute("error") == null ? "" : request.getAttribute("error")%>
+    <%= request.getSession().getAttribute("error") == null ? "" : request.getSession().getAttribute("error") %>
 </div>
 
 </body>
