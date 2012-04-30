@@ -32,9 +32,9 @@ public class DepositServlet extends HttpServlet {
         double amount = Double.parseDouble(request.getParameter("amount"));
         depositService.deposit(amount);
       } catch (NumberFormatException e) {
-        request.getSession().setAttribute("error", "Cannot deposit! Invalid entered amount");
+        request.setAttribute("error", "Cannot deposit! Invalid entered amount");
       } catch (InvalidDepositAmountException e) {
-        request.getSession().setAttribute("error", "Cannot deposit! Amount must be between $1 and $10,000");
+        request.setAttribute("error", "Cannot deposit! Amount must be between $1 and $10,000");
       }
 
       request.getRequestDispatcher("/userBalance").forward(request, response);

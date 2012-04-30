@@ -23,9 +23,7 @@ public class UserBalanceServlet extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    //request.setAttribute("userBalance", balanceService.getBalance());
-    //request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
-    request.getSession().setAttribute("userBalance", balanceService.getBalance());
-    response.sendRedirect(request.getContextPath() + "/onlinebanking/userPage.jsp");
+    request.setAttribute("userBalance", balanceService.getBalance());
+    request.getRequestDispatcher("/onlinebanking/userPage.jsp").forward(request, response);
   }
 }

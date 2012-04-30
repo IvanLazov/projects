@@ -26,8 +26,7 @@
             </tr>
             <tr>
                 <td>Balance:</td>
-                <%--<td><%= request.getAttribute("userBalance") %> $</td>--%>
-                <td><%= request.getSession().getAttribute("userBalance") %></td>
+                <td><%= request.getAttribute("userBalance") %> $</td>
             </tr>
             <tr>
                 <td>Enter amount:</td>
@@ -51,7 +50,7 @@
 
 <%-- Error --%>
 <div id="error">
-    <%= request.getSession().getAttribute("error") == null ? "" : request.getSession().getAttribute("error") %>
+    <%= request.getAttribute("error") == null ? "" : request.getAttribute("error") %>
 </div>
 
 </body>
