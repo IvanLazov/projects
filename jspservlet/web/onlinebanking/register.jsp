@@ -35,6 +35,10 @@
                 <td></td>
                 <td><input type="submit" value="Register"/></td>
             </tr>
+            <tr>
+                <td></td>
+                <td><a href="<%=getPath()%>/onlinebanking/login.jsp">Go to login page</a></td>
+            </tr>
         </table>
     </form>
 </div>
@@ -42,7 +46,7 @@
 <div id="info">
 <%
     if (request.getAttribute("login") != null) {
-        out.println("<a href='onlinebanking/login.jsp'>You can now log in </a>");
+        out.println("<a href='onlinebanking/login.jsp'>Account created!<br />You can now login with your account</a>");
     }
 %>
 </div>
