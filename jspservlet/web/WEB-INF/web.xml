@@ -15,7 +15,7 @@
   </filter-mapping>
   
   <listener>
-    <listener-class>com.clouway.jspservlet.onlinebanking.GuiceServletConfig</listener-class>
+    <listener-class>com.clouway.guice.onlinebanking.GuiceServletConfig</listener-class>
   </listener>
 
 </web-app>

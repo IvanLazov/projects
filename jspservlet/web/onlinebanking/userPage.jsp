@@ -1,4 +1,4 @@
-<%@ page import="com.clouway.jspservlet.onlinebanking.User" %>
+<%@ page import="com.clouway.guice.onlinebanking.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%!
