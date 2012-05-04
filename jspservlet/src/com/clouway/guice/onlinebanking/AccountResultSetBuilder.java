@@ -4,11 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * AccountProvider class is used to create an Account object
+ * AccountResultSetBuilder class is used to create an Account object
  *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
-public class AccountProvider implements Provider<Account> {
+public class AccountResultSetBuilder implements ResultSetBuilder<Account> {
 
   /**
    * Get an Account object from a ResultSet

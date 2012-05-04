@@ -81,7 +81,7 @@ public class DatabaseHelper {
     return result;
   }
 
-  public <T> T executeQuery(String query, Provider<T> provider, Object... params) {
+  public <T> T executeQuery(String query, ResultSetBuilder<T> resultSetBuilder, Object... params) {
 
     Connection connection = getConnection();
     T returnedObject = null;
@@ -93,7 +93,7 @@ public class DatabaseHelper {
       ResultSet resultSet = preparedStatement.executeQuery();
 
       while (resultSet.next()) {
-        returnedObject = provider.get(resultSet);
+        returnedObject = resultSetBuilder.get(resultSet);
       }
     } catch (SQLException e) {
       e.printStackTrace();

@@ -25,7 +25,7 @@ public class LoginServiceImpl implements LoginService {
    */
   public User login(String userName, String password) {
 
-    User user = databaseHelper.executeQuery("SELECT * FROM user WHERE userName=? && password=?", new UserProvider(), userName, password);
+    User user = databaseHelper.executeQuery("SELECT * FROM user WHERE userName=? && password=?", new UserResultSetBuilder(), userName, password);
     
     if (user == null) {
       throw new WrongUserNameOrPasswordException();

@@ -4,11 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * UserProvider implements Provider to be able to get a User from a ResultSet
+ * UserResultSetBuilder implements ResultSetBuilder to be able to get a User from a ResultSet
  *
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
-public class UserProvider implements Provider<User> {
+public class UserResultSetBuilder implements ResultSetBuilder<User> {
 
   /**
    * Get a User from a ResultSet
