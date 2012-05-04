@@ -30,7 +30,7 @@ public class AccountProviderTest {
     databaseHelper.executeQuery("INSERT INTO user(userId, userName, password) VALUES(?,?,?)", user.getUserId(), user.getUserName(), user.getPassword());
     databaseHelper.executeQuery("INSERT INTO account(accountId, userId, balance) VALUES (?,?,?)", expectedAccount.getAccountId(), expectedAccount.getUserId(), expectedAccount.getBalance());
 
-    Account actualAccount = databaseHelper.executeQuery("SELECT * FROM account WHERE accountId=?", new AccountProvider(), expectedAccount.getAccountId());
+    Account actualAccount = databaseHelper.executeQuery("SELECT * FROM account WHERE accountId=?", new AccountResultSetBuilder(), expectedAccount.getAccountId());
     assertEquals(expectedAccount, actualAccount);
   }
 
