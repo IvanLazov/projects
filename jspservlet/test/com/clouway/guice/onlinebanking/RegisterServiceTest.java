@@ -39,8 +39,8 @@ public class RegisterServiceTest {
 
     registerService.register("Ivan", "123456");        
     
-    User user = databaseHelper.executeQuery("SELECT * FROM user WHERE userName=?", new UserProvider(), "Ivan");
-    Account account = databaseHelper.executeQuery("SELECT * FROM account WHERE userId=?", new AccountProvider(), user.getUserId());
+    User user = databaseHelper.executeQuery("SELECT * FROM user WHERE userName=?", new UserResultSetBuilder(), "Ivan");
+    Account account = databaseHelper.executeQuery("SELECT * FROM account WHERE userId=?", new AccountResultSetBuilder(), user.getUserId());
     
     assertEquals(user.getUserId(), account.getUserId());
     assertEquals(0.0, account.getBalance());
