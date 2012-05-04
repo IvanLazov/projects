@@ -26,7 +26,7 @@ public class UserProviderTest {
   public void getUser() {
     
     databaseHelper.executeQuery("INSERT INTO user(userId,userName,password) VALUES(?,?,?)", expectedUser.getUserId(), expectedUser.getUserName(), expectedUser.getPassword());
-    User actualUser = databaseHelper.executeQuery("SELECT * FROM user WHERE userName=?", new UserProvider(), expectedUser.getUserName());
+    User actualUser = databaseHelper.executeQuery("SELECT * FROM user WHERE userName=?", new UserResultSetBuilder(), expectedUser.getUserName());
 
     assertEquals(expectedUser, actualUser);
   }
