@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 /**
  * @author Ivan Lazov <darkpain1989@gmail.com>
  */
-public class GuiceServletConfig extends GuiceServletContextListener {
+public class GuiceConfig extends GuiceServletContextListener {
 
   protected Injector getInjector() {
 
